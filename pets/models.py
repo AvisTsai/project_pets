@@ -52,8 +52,9 @@ class Pet(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = '咖啡豆'
-        verbose_name_plural = '咖啡豆'
+        verbose_name = '寵物'
+        verbose_name_plural = '寵物'
+
 
 class MemberManagement(models.Model):
     UserID = models.CharField('使用者ID', max_length=20, unique=True)
