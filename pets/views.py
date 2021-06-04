@@ -1,8 +1,12 @@
 from django.shortcuts import render
-
-# Create your views here.
 from django.http import HttpResponse
+from .models import Pet
 
-# Create your views here.
+
 def index(request):
-    return HttpResponse('<h1>寵物</h1>')
+    pets = Pet.objects.all()
+    return render(request, 'pets/index.html', {'pets': pets})
+
+# def index(request):
+#     return HttpResponse('<h1>寵物</h1>')
+
