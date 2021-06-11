@@ -1,28 +1,51 @@
 from django.db import models
 
 
-# Create your models here.
-class Roast(models.TextChoices):
-    # enum = value, display
-    LIGHT = 'Light', '極淺度烘焙'
-    CINNAMON = 'Cinnamon', '淺度烘焙'
-    MEDIUM = 'Medium', '中度烘焙'
-    HIGH = 'High', '中度微深烘焙'
-    CITY = 'City', '中深度烘焙'
-    FULL_CITY = 'Full-City', '微深度烘焙'
-    FRENCH = 'French', '極深烘焙'
-    ITALIAN = 'Italian', '極深度烘焙'
-
-
-class OriginPlace(models.Model):
-    name = models.CharField('名稱', max_length=20, unique=True)
+class Register(models.Model):
+    username = models.CharField(max_length=15)
+    user_pwd = models.CharField(max_length=15)
+    check_password = models.CharField(max_length=15, default='請再輸入一次密碼')
+    user_email = models.CharField(max_length=20)
 
     def __str__(self):
-        return self.name
+        return self.username
 
     class Meta:
-        verbose_name = '產地'
-        verbose_name_plural = '產地'
+        verbose_name = '註冊'
+        verbose_name_plural = '註冊'
+
+
+# Create your models here.
+class Species(models.TextChoices):
+    # enum = value, display
+    Bulldog = 'Bulldog', '鬥牛犬'
+    Corgi = 'Corgi', '柯基'
+    Chihuahua = 'Chihuahua', '吉娃娃'
+    Dachshund = 'Dachshund', '臘腸狗'
+    Golden = 'Golden', '黃金獵犬'
+    Labrador = 'Labrador', '拉布拉多'
+    Maltese = 'Maltese', '馬爾濟斯'
+    Pomeranian = 'Pomeranian', '博美'
+    Poodle = 'Poodle', '貴賓犬'
+    Husky = 'Husky', '哈士奇'
+    Terrier = 'Terrier', '約克夏'
+    Schnauzer = 'Schnauzer', '雪納瑞'
+
+
+class Gender(models.TextChoices):
+    male = 'male', '公'
+    female = 'female', '母'
+
+
+# class OriginPlace(models.Model):
+#     name = models.CharField('名稱', max_length=20, unique=True)
+#
+#     def __str__(self):
+#         return self.name
+#
+#     class Meta:
+#         verbose_name = '寵物'
+#         verbose_name_plural = '寵物'
 
 
 class Tag(models.Model):
@@ -38,15 +61,17 @@ class Tag(models.Model):
 
 class Pet(models.Model):
     name = models.CharField('名稱', max_length=20, unique=True)
-    description = models.TextField('描述')
-    roast = models.CharField('尺寸', max_length=10, choices=Roast.choices)
-    price = models.PositiveIntegerField('價格')
-    origin_place = models.ForeignKey(
-        OriginPlace,
-        on_delete=models.PROTECT,
-        verbose_name='種類',
-    )
-    tags = models.ManyToManyField(Tag, verbose_name='標籤')
+    gender = models.CharField('性別', max_length=10, choices=Gender.choices, default='請選擇')
+    description = models.TextField('特徵')
+    species = models.CharField('品種', max_length=10, choices=Species.choices, default='請選擇')
+
+    # price = models.PositiveIntegerField('價格')
+    # origin_place = models.ForeignKey(
+    #     OriginPlace,
+    #     on_delete=models.PROTECT,
+    #     verbose_name='種類',
+    # )
+    # tags = models.ManyToManyField(Tag, verbose_name='標籤')
 
     def __str__(self):
         return self.name
@@ -64,8 +89,27 @@ class MemberManagement(models.Model):
     Email = models.CharField('使用者電子郵件', max_length=20, unique=True)
 
     def __str__(self):
-        return self.name
+        return self.UserName
 
     class Meta:
         verbose_name = '會員管理'
         verbose_name_plural = '會員管理'
+
+
+class Money(models.Model):
+    time = models.DateTimeField(auto_now_add=True)
+    item = models.CharField(max_length=30, verbose_name='項目')
+    KINDS_CHOICES = (
+        ('food', '食物'),
+        ('toy', '玩具'),
+        ('salon', '美容'),
+        ('others', '其他')
+    )
+    price = models.IntegerField(default=0, verbose_name='金額')
+
+    def __str__(self):
+        return self.item
+
+    class Meta:
+        verbose_name = '記帳'
+        verbose_name_plural = '記帳'
