@@ -19,14 +19,8 @@ from django.views.generic.base import TemplateView
 from pets.views import register
 
 urlpatterns = [
-    path(r'admin/', admin.site.urls),
-    path(r'pets/', include('pets.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('admin/', admin.site.urls),
+    path('pets/', include('pets.urls')),
     # path(r'', admin.site.urls),
 ]
 
-# def login(request):
-#     return render(request, 'login.html')
-#
-# def register(request):
-#     return render(request, 'register.html')

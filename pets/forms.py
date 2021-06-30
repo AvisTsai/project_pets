@@ -9,11 +9,11 @@ class PetForm(forms.ModelForm):
         model = Pet
 
 
-class RegisterForm(UserCreationForm):
-    username = forms.CharField(label="username")
-    user_pwd = forms.CharField(label="user_pwd")
-    check_password = forms.CharField(label="check_password")
-    user_email = forms.EmailField(label="user_email")
+class RegisterForm(forms.ModelForm):
+    username = forms.CharField(label="帳號")
+    user_pwd = forms.CharField(label="密碼")
+    check_password = forms.CharField(label="確認密碼")
+    user_email = forms.EmailField(label="電子郵件")
 
     class Meta:
         model = Register
