@@ -1,9 +1,11 @@
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 from django.contrib import auth
 from .forms import RegisterForm
+from django.views.decorators.csrf import csrf_exempt
 
 
 def index(request):
@@ -13,14 +15,15 @@ def index(request):
 
 
 # 註冊
+@csrf_exempt
 def register(request):
-
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/login')
-
+        else:
+            return redirect('/register')
     context = {
         'form': RegisterForm
     }
@@ -32,23 +35,20 @@ def login(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        user = User.auth.authenticate(username=username, password=password)
+        user = authenticate(username=username, password=password)
 
         if user and user.is_staff is False:
             auth.login(request, user)
-            return redirect('/login/')
+            return redirect('/login')
         elif user and user.is_staff is True:
             auth.login(request, user)
-            return redirect('/pets/')
+            return redirect('/pets')
         else:
-            return redirect('/login/')
+            return redirect('/login')
     else:
         return render(request, 'login.html', locals())
 
-# def add(request):
-#     form = PetForm(request.POST or None)
-#     if form.is_valid():
-#         form.save()
-#         messages.success(request, '新增成功')
-#         return redirect('pets:index')
-#     return render(request, 'pets/add.html', {'form': form})
+
+def logout(request):
+    auth.logout(request)
+    return redirect('index')

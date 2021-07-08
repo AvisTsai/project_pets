@@ -1,66 +1,65 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Register</title>-->
-<!--</head>-->
-
-<!--<body>-->
-
-<!--<h3>註冊</h3>-->
-<!--<form method="POST">-->
-<!--     <label>帳號</label>-->
-<!--         <input class="form-control" type="text" name="username">-->
-<!--     <label>密碼</label>-->
-<!--         <input class="form-control" type="text" name="user_pwd">-->
-<!--     <label>確認密碼</label>-->
-<!--         <input class="form-control" type="text" name="check_password">-->
-<!--     <label>電子郵件</label>-->
-<!--         <input class="form-control" type="text" name="user_email">-->
-<!--    {% csrf_token %}-->
-<!--    <button type="submit">送出</button>-->
-<!--</form>-->
-<!--</body>-->
-<!--</html>-->
-
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
+{% load static %}
 <head>
-    <meta charset="UTF-8">
-    <title>Register</title>
+	<title>Register DearFurkid</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
 </head>
-<body>
-{% block content %}
 
-<h1>Dfurkid</h1>
-<h3>註冊</h3>
+<body class="left-sidebar is-preload">
+	<div id="page-wrapper">
+		<section id="header" class="wrapper">
+			<div id="logo">
+				<h1>Dearfurkid</h1>
+			</div>
+		</section>
 
-    <form action="" method="POST">
-        {% csrf_token %}
+	</div>
 
-        {{ form.as_p }}
-        <input class="btn btn-success" type="submit" value="送出" />
-    </form>
+<!---->
+	<div id="content2" style="margin:0px auto">
+			<div id="content">
+				{% csrf_token %}
+				<form method="POST" action="">
 
-{% endblock  %}
+				<article class="box post">
+					<header class="style1">
+						<br>
+						<br>
+
+						<span id="username" class="text_field">你的帳號：</span>
+						<input name="username" type="text" maxlength="15" id="userID" style="width: 200px;"
+							placeholder="請使用數字、英文"><br><br>
+						<span id="user_pwd" class="text_field">你的密碼：</span>
+						<input name="user_pwd" type="password" maxlength="20" id="userpwd" style="width: 200px;"
+							placeholder="請使用數字、英文"><br><br>
+						<span id="check_password" class="text_field">確認密碼：</span>
+						<input name="check_password" type="password" maxlength="20" id="userpwd" style="width: 200px;"
+							placeholder="請再輸入一次密碼"><br><br>
+						<span id="user_email" class="text_field">電子信箱：</span>
+						<input name="user_email" type="text" maxlength="20" id="useremail" style="width: 200px;"
+							placeholder="example@gmail.com"><br><br>
+						<button type="submit">送出</button>
+					</header>
+				</article>
+			</form>
+		</div>
+	</div>
+
+<!--	 Scripts -->
+	<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.dropotron.min.js' %}"></script>
+    <script src="{% static 'assets/js/browser.min.js' %}"></script>
+    <script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+    <script src="{% static 'assets/js/util.js' %}" ></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
 
 </body>
+
 </html>
 
-<!--<form method="POST">-->
-<!--    <span id="username" class="text_field">你的帳號：</span>-->
-<!--    <input name="username" type="text" maxlength="15" id="userID" style="width: 200px;"-->
-<!--           placeholder="請使用數字、英文"><br><br>-->
-<!--    <span id="user_pwd" class="text_field">你的密碼：</span>-->
-<!--    <input name="user_pwd" type="password" maxlength="20" id="userpwd" style="width: 200px;"-->
-<!--           placeholder="請使用數字、英文"><br><br>-->
-<!--    <span id="check_password" class="text_field">確認密碼：</span>-->
-<!--    <input name="check_password" type="password" maxlength="20" id="userpwd" style="width: 200px;"-->
-<!--           placeholder="請再輸入一次密碼"><br><br>-->
-<!--    <span id="user_email" class="text_field">電子信箱：</span>-->
-<!--    <input name="user_email" type="text" maxlength="20" id="useremail" style="width: 200px;"-->
-<!--           placeholder="example@gmail.com"><br><br>-->
-<!--    {% csrf_token %}-->
-<!--    <button type="submit">送出</button>-->
-<!--</form>-->
+
+
+
