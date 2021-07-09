@@ -6,11 +6,10 @@ from django.http import HttpResponseRedirect
 from django.contrib import auth
 from .forms import RegisterForm
 from django.views.decorators.csrf import csrf_exempt
+from django.urls import reverse
 
 
 def index(request):
-    # pets = Pet.objects.all()
-    # return render(request, 'pets/index.html', {'pets': pets})
     return render(request, 'index.html')
 
 
@@ -51,4 +50,8 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect('index')
+    return redirect('/index')
+
+
+# 超連結
+
