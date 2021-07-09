@@ -9,5 +9,6 @@ app_name = 'pets'
 urlpatterns = [
     path('', views.index),
     path('register', views.register, name='register'),
+    path('calendar', views.displayMouth, name='calendar'),
     # path(r'^login/', views.login, name='login'),
 ]
