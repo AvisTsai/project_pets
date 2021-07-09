@@ -8,4 +8,10 @@ admin.site.register(Pet)
 admin.site.register(Tag)
 admin.site.register(MemberManagement)
 admin.site.register(Money)
-admin.site.register(Register)
+
+
+class RegisterAdmin(admin.ModelAdmin):
+    list_display = ('username', 'user_pwd', 'user_email')
+
+
+admin.site.register(Register, RegisterAdmin)

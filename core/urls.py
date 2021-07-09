@@ -15,18 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic.base import TemplateView
-from pets.views import register
 
 urlpatterns = [
-    path(r'admin/', admin.site.urls),
+    # path(r'admin/', admin.site.urls),
     path(r'pets/', include('pets.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
-    # path(r'', admin.site.urls),
+    path('', admin.site.urls),
 ]
 
-# def login(request):
-#     return render(request, 'login.html')
-#
-# def register(request):
-#     return render(request, 'register.html')
