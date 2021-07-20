@@ -1,12 +1,13 @@
+import datetime
+
 from django.contrib.auth import authenticate
-from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 from django.contrib import auth
-from .forms import RegisterForm
+from .forms import RegisterForm, MoneyForm
 from django.views.decorators.csrf import csrf_exempt
-from django.urls import reverse
+from django.utils import timezone
+from .models import Money
 
 
 def index(request):
@@ -53,5 +54,28 @@ def logout(request):
     return redirect('/index')
 
 
-# 超連結
+def grooming(request):
+    return render(request, 'pet-g11.html', locals())
 
+
+# 記帳
+def current_time(request):
+    now = datetime.datetime.now()
+    time_style = now.strftime("%Y-%m-%d %H:%M:%S")
+    return render(request, 'pet-m.html', {'cur_time': time_style})
+
+
+def bookkeeping(request):
+    money = Money.objects.all()  # 查詢所有資料
+    if request.method == 'POST':
+        form = MoneyForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect("pets/bookkeeping")
+
+    context = {
+        'money': money,
+        'form': MoneyForm
+    }
+
+    return render(request, 'pet-m.html', context)

@@ -1,3 +1,5 @@
+from django.utils import timezone
+
 from django.db import models
 
 
@@ -97,15 +99,20 @@ class MemberManagement(models.Model):
         verbose_name_plural = '會員管理'
 
 
+# 記帳
+
+class Category(models.TextChoices):
+    food = 'food', '食物'
+    toy = 'toy', '玩具'
+    clothes = 'clothes', '衣服'
+    salon = 'salon', '美容'
+    others = 'others', '其他'
+
+
 class Money(models.Model):
-    time = models.DateTimeField(auto_now_add=True)
-    item = models.CharField(max_length=30, verbose_name='項目')
-    KINDS_CHOICES = (
-        ('food', '食物'),
-        ('toy', '玩具'),
-        ('salon', '美容'),
-        ('others', '其他')
-    )
+    time = models.DateTimeField(default=timezone.now())
+    category = models.CharField(max_length=255, choices=Category.choices, default='未分類')
+    item = models.CharField(max_length=255, verbose_name='項目')
     price = models.IntegerField(default=0, verbose_name='金額')
 
     def __str__(self):

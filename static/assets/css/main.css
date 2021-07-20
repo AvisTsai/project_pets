@@ -52,6 +52,7 @@ blockquote, q {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+	color: #919499;
 }
 
 body {
@@ -1479,6 +1480,7 @@ input, select, textarea {
 
 	table {
 		width: 100%;
+		text-align:center;
 	}
 
 		table.default {
@@ -1511,10 +1513,11 @@ input, select, textarea {
 /* Form */
 
 	form label {
-		display: block;
+		display: inline-block;
 		font-weight: 700;
 		color: #484d55;
 		margin: 0.25em 0 0.5em 0;
+		width:15%;
 	}
 
 	form input[type="text"],

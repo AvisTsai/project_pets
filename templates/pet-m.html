@@ -1,10 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}"/>
+
+    <title>記帳</title>
 </head>
-<body>
+<body class="left-sidebar is-preload">
+<div id="page-wrapper">
+    <section id="header" class="wrapper">
+        <div id="logo">
+            <h1>Dearfurkid</h1>
+        </div>
+    </section>
+
+</div>
+
+
+<div id="content2">
+    <div id="content">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <article class="box post">
+                <header class="style1" >
+                    <br>
+                    <span class="text_field">時間：</span>
+                    <label class="price">{{ form.time }}</label>
+                    <span class="text_field">類別：</span>
+                    <label class="price">{{ form.category }}</label>
+                    <span class="text_field">項目：</span>
+                    <label class="price">{{ form.item }}</label>
+                    <span class="text_field">金額：</span>
+                    <label class="price">{{ form.price }}</label>
+                    <input class="btn btn-success" type="submit" value="儲存"/>
+                </header>
+            </article>
+        </form>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th>時間</th>
+        <th>類別</th>
+        <th>項目</th>
+        <th>金額</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for Money in money %}
+    <tr>
+        <td>{{ money.time }}</td>
+        <td>{{ money.category }}</td>
+        <td>{{ money.item}}</td>
+        <td>{{ money.price }}</td>
+        <td>
+            <a href="#" class="btn btn-info">修改</a>
+            <a href="#" class="btn btn-danger">刪除</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.dropotron.min.js' %}"></script>
+<script src="{% static 'assets/js/browser.min.js' %}"></script>
+<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+<script src="{% static 'assets/js/util.js' %}"></script>
+<script src="{% static 'assets/js/main.js' %}"></script>
+
 
 </body>
 </html>

@@ -1,48 +1,48 @@
 <!DOCTYPE HTML>
 <html>
-
+{% load static %}
 <head>
-	<title>Forgot DearFurkid</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
+    <title>Forgot DearFurkid</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}"/>
 </head>
 
 <body class="left-sidebar is-preload">
-	<div id="page-wrapper">
-		<section id="header" class="wrapper">
-			<div id="logo">
-				<h1>Dearfurkid</h1>
-			</div>
-		</section>
+<div id="page-wrapper">
+    <section id="header" class="wrapper">
+        <div id="logo">
+            <h1>Dearfurkid</h1>
+        </div>
+    </section>
 
-	</div>
+</div>
 
-	<div id="content">
-		<article class="box post">
-			<header class="style1">
-				<br>
-				<br>
-				<span id="username" class="text_field">請輸入你的帳號：</span>
-				<input name="userID" type="text" maxlength="20" id="userID" style="width: 200px;">
-				<br>
-				<br>
-				<span id="email" class="text_field">請輸入電子郵件：</span>
-				<input name="email" type="email" maxlength="20" id="email" style="width: 200px;"><br><br>
-				<a href="login.html"  class="button style1">送出</a></li>
-				<p>(送出後會將密碼寄到你的信箱)</p>
-			</header>
-		</article>
-	</div>
+<div id="content">
+    <article class="box post">
+        <header class="style1">
+            <br>
+            <br>
+            <span id="username" class="text_field">請輸入你的帳號：</span>
+            <input name="userID" type="text" maxlength="20" id="userID" style="width: 200px;">
+            <br>
+            <br>
+            <span id="email" class="text_field">請輸入電子郵件：</span>
+            <input name="email" type="email" maxlength="20" id="email" style="width: 200px;"><br><br>
+            <a href="login.html" class="button style1">送出</a></li>
+            <p>(送出後會將密碼寄到你的信箱)</p>
+        </header>
+    </article>
+</div>
 
 
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.dropotron.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
+<!-- Scripts -->
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.dropotron.min.js' %}"></script>
+<script src="{% static 'assets/js/browser.min.js' %}"></script>
+<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+<script src="{% static 'assets/js/util.js' %}"></script>
+<script src="{% static 'assets/js/main.js' %}"></script>
 
 </body>
 
