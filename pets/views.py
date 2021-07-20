@@ -67,6 +67,7 @@ def current_time(request):
 
 def bookkeeping(request):
     money = Money.objects.all()  # 查詢所有資料
+    form = MoneyForm()
     if request.method == 'POST':
         form = MoneyForm(request.POST)
         if form.is_valid():

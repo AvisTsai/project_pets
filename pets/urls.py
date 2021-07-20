@@ -10,5 +10,7 @@ urlpatterns = [
     path('login', views.login, name='login'),
     path('logout', views.logout, name='logout'),
     path('grooming', views.grooming, name='grooming'),
+    #記帳
     path('bookkeeping', views.bookkeeping, name='bookkeeping'),
+    path('bkupdate/<str:pk>', views.bkupdate, name='Bkupdate')
 ]
