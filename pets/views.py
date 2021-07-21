@@ -21,9 +21,9 @@ def register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/login')
+            return redirect('pets:login')
         else:
-            return redirect('/register')
+            return redirect('pets:register')
     context = {
         'form': RegisterForm
     }
@@ -39,12 +39,12 @@ def login(request):
 
         if user and user.is_staff is False:
             auth.login(request, user)
-            return redirect('/login')
+            return redirect('pets:login')
         elif user and user.is_staff is True:
             auth.login(request, user)
             return redirect('/pets')
         else:
-            return redirect('/login')
+            return redirect('pets:login')
     else:
         return render(request, 'login.html', locals())
 
@@ -72,7 +72,7 @@ def bookkeeping(request):
         form = MoneyForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect("pets/bookkeeping")
+        return redirect("pets:bookkeeping")
 
     context = {
         'money': money,
@@ -80,3 +80,35 @@ def bookkeeping(request):
     }
 
     return render(request, 'pet-m.html', context)
+
+
+def update(request, pk):
+    money = Money.objects.get(id=pk)
+    form = MoneyForm(instance=money)
+
+    if request.method == 'POST':
+        form = MoneyForm(request.POST, instance=money)
+        if form.is_valid():
+            form.save()
+        return redirect("pets:bookkeeping")
+
+    context = {
+        'form': form
+
+    }
+
+    return render(request, 'update.html', context)
+
+
+def delete(request, pk):
+    money = Money.objects.get(id=pk)
+
+    if request.method == "POST":
+        money.delete()
+        return redirect('pets:bookkeeping')
+
+    context = {
+        'money': money
+    }
+
+    return render(request, 'delete.html', context)
