@@ -4,33 +4,35 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
     <title>更改記帳資料</title>
 </head>
+
 <body>
-{% block content %}
+    {% block content %}
 
-<form action="" method="POST">
-    {% csrf_token %}
-    <div class="form-group">
-        <div class="form-group col-md-6">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="form-group col-md-6">
 
-            {{ form }}
+                {{ form }}
 
-            <input class="btn btn-success" type="submit" value="更新"/>
+                <input class="btn btn-success" type="submit" value="更新" />
+            </div>
         </div>
-    </div>
-</form>
-{% endblock %}
+    </form>
+    {% endblock %}
 
 
-<script src="{% static 'assets/js/jquery.min.js' %}"></script>
-<script src="{% static 'assets/js/jquery.dropotron.min.js' %}"></script>
-<script src="{% static 'assets/js/browser.min.js' %}"></script>
-<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
-<script src="{% static 'assets/js/util.js' %}"></script>
-<script src="{% static 'assets/js/main.js' %}"></script>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
 
 </body>
+
 </html>
