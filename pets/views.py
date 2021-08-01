@@ -42,7 +42,7 @@ def login(request):
             return redirect('pets:login')
         elif user and user.is_staff is True:
             auth.login(request, user)
-            return redirect('/pets')
+            return redirect('pets:index')
         else:
             return redirect('pets:login')
     else:

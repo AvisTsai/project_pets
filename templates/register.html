@@ -48,6 +48,23 @@
 </div>
 
 
+						<span id="username" class="text_field">你的帳號：</span>
+						<label name="username" type="text" maxlength="15" id="userID" style="width: 200px;"
+							   placeholder="請使用數字、英文">{{ form.username }}</label><br><br>
+						<span id="user_pwd" class="text_field">你的密碼：</span>
+						<label name="user_pwd" type="password" maxlength="20" id="userpwd" style="width: 200px;"
+							   placeholder="請使用數字、英文">{{ form.user_pwd }}</label><br><br>
+						<span id="check_password" class="text_field">確認密碼：</span>
+						<label name="check_password" type="password" maxlength="20" id="userpwd" style="width: 200px;"
+							   placeholder="請再輸入一次密碼">{{ form.check_password }}</label><br><br>
+						<span id="user_email" class="text_field">電子信箱：</span>
+						<label name="user_email" type="text" maxlength="20" id="useremail" style="width: 200px;"
+							placeholder="example@gmail.com">{{ form.user_email }}</label><br><br>
+						<button type="submit">送出</button>
+					</header>
+				</article>
+			</form>
+		</div>
 	</div>
 
 	<!-- Scripts -->

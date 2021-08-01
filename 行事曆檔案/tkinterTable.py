@@ -1,4 +1,3 @@
-
 '''import tkinter
 from  tkinter import ttk  #匯入內部包
 
@@ -27,16 +26,17 @@ from tkinter import ttk
 from tkinter import *
 root = Tk()  # 初始框的声明
 columns = ("姓名", "IP地址")
-treeview = ttk.Treeview(root, height=18, show="headings", columns=columns)  # 表格
- 
+treeview = ttk.Treeview(
+    root, height=18, show="headings", columns=columns)  # 表格
+
 treeview.column("姓名", width=100, anchor='center') # 表示列,不显示
 treeview.column("IP地址", width=300, anchor='center')
- 
+
 treeview.heading("姓名", text="姓名") # 显示表头
 treeview.heading("IP地址", text="IP地址")
- 
+
 treeview.pack(side=LEFT, fill=BOTH)
- 
+
 name = ['电脑1','服务器','笔记本']
 ipcode = ['10.13.71.223','10.25.61.186','10.25.11.163']
 for i in range(min(len(name),len(ipcode))): # 写入数据
@@ -45,13 +45,16 @@ for i in range(min(len(name),len(ipcode))): # 写入数据
 root.mainloop()  # 进入消息循环
 '''
 
-
 # 練習月曆
+
 import calendar
+import tkinter as tk
 from tkinter import ttk
 from tkinter import *
 import numpy as np
 from tkinter import messagebox
+from datetime import *
+
 root = Tk()  # 初始框的声明
 Weeklist = ("sun", "mon", "tue", "wed", "thu", "fri", "sat")
 columns = Weeklist
@@ -65,30 +68,66 @@ for i in Weeklist:
 
 treeview.pack(side=LEFT, fill=BOTH)
 
-datalist = []
-# 將當月日期存到datalist
-for j in range(len(calendar.monthcalendar(2021, 7))):
-    for k in range(len(calendar.monthcalendar(2021, 7)[j])):
-        value = calendar.monthcalendar(2021, 7)[j][k]  # 將0值變為空值
-        if value == 0:
-            value = '-'
-            datalist.append(value)
-            #sheet.cell(row=j + 9, column=k + 1).value = value
-            #tree.insert("",3,text="line1" ,values=("1","2","3"))
-            #treeview.insert('', "end", values = value)
-        else:
-            #treeview.insert('', "end", values = value)
-            datalist.append(value)
+global de_m
+todayy = date.today()
+de_y = todayy.year
+de_m = todayy.month
+root.title(str(de_y) + '/' + str(de_m))
 
-newlist = np.reshape(datalist, (5, 7))
 
-# for i in range(1,6):
-#     data = tuple(newlist[i-1]
-#     for j in range(newlist[i-1]):
-#         treeview.insert('', "end", values = data)
-for i in range(1, 6):
-    data = tuple(newlist[i-1])
-    treeview.insert('', "end", values=data)
+def MouthAdd():  # 月份增加
+    global de_m
+    de_m = de_m + 1
+    printMouth()
+    root.title('2021/' + str(de_m))
+    print(de_m)
+
+
+def MouthReduce():  # 月份減少
+    global de_m
+    de_m = de_m - 1
+    root.title('2021/' + str(de_m))
+    printMouth()
+
+
+pic_1 = tk.PhotoImage(file='icons8-forward-16.png')
+pic_2 = tk.PhotoImage(file='icons8-back-16.png')
+btn_YA = ttk.Button(image=pic_1, command=MouthAdd)
+btn_YA.pack()
+btn_YR = ttk.Button(image=pic_2, command=MouthReduce)
+btn_YR.pack()
+
+
+# 印製月曆
+
+
+def printMouth():
+    global de_m
+    datalist = []
+    # 將當月日期存到datalist
+    for j in range(len(calendar.monthcalendar(de_y, de_m))):
+        for k in range(len(calendar.monthcalendar(de_y, de_m)[j])):
+            value = calendar.monthcalendar(de_y, de_m)[j][k]  # 將0值變為空值
+            if value == 0:
+                value = '-'
+                datalist.append(value)
+                # sheet.cell(row=j + 9, column=k + 1).value = value
+                # tree.insert("",3,text="line1" ,values=("1","2","3"))
+                # treeview.insert('', "end", values = value)
+            else:
+                # treeview.insert('', "end", values = value)
+                datalist.append(value)
+
+    newlist = np.reshape(datalist, (5, 7))
+    treeview.delete(*treeview.get_children())
+    # for i in range(1,6):
+    #     data = tuple(newlist[i-1]
+    #     for j in range(newlist[i-1]):
+    #         treeview.insert('', "end", values = data)
+    for i in range(1, 6):
+        data = tuple(newlist[i - 1])
+        treeview.insert('', "end", values=data)
+
 
 # btn_YA = ttk.Button(root,text = '新增事件或提醒', width=20, command='newEvent')
 # btn_YA.pack()
@@ -97,7 +136,7 @@ for i in range(1, 6):
 
 def set_cell_value(event):  # 雙擊進入編輯
     for item in treeview.selection():
-        #item = I001
+        # item = I001
         item_text = treeview.item(item, "values")
         # print(item_text)  # 輸出所選行的值
     # label_topic = ttk.Label(text="請输入事件名稱:")
@@ -120,13 +159,13 @@ def set_cell_value(event):  # 雙擊進入編輯
     # entryedit = Text(root, width=5+(cn-1)*5, height=1)
     # entryedit.place(x=16+(cn-1)*130, y=6+rn*20)
     # print(newlist[cn][rn-2])
-    #print(item_text[cn-1])
+    # print(item_text[cn-1])
     # Label_y = ttk.Label(text= '2021/7')
     # Label_y.pack()
-    lable_date = ttk.Label(text = '您選擇的日期是:'+item_text[cn-1]+ '號',font=25)
+    lable_date = ttk.Label(text='您選擇的日期是:' + item_text[cn - 1] + '號', font=25)
     lable_date.pack(pady=10)
 
-    #清除資料
+    # 清除資料
     def reset():
         lable_date.destroy()
         reset_button.destroy()
@@ -140,58 +179,60 @@ def set_cell_value(event):  # 雙擊進入編輯
         reset_button.destroy()
         if len(topic_box.get()) == 0:
             messagebox.showinfo("Error", "事件名稱未填寫")
+            lable_date.destroy()
             return
 
         lable_resu = ttk.Label(text='事件名稱 : ')
         lable_resu.pack(pady=10)
         lable_result = ttk.Label(text=topic_box.get())
         lable_result.pack(pady=10)
-        lable_rsm = ttk.Label(text= str(hon_scale.get())+'小時前提醒。')
+        lable_rsm = ttk.Label(text=str(hon_scale.get()) + '點提醒。')
         lable_rsm.pack(pady=10)
 
         def saveEvent():
-            data=open("output0709.txt",'w+') 
-            lines = ['日期:\n', '2021/07/'+str(item_text[cn-1]), '事件名稱:\n', '小時前提醒\n']
+            data = open("output0709.txt", 'w+')
+            lines = ['日期:\n', '2021/07/' +
+                     str(item_text[cn - 1]), '事件名稱:\n', '小時前提醒\n']
             data.writelines(lines)
             data.close()
+            messagebox.showinfo("OK", "事件已儲存")
 
-        #儲存
-        save_button = ttk.Button(root, text='儲存', width=4, command=saveEvent)    
-        save_button.pack(pady=20) 
+        # 儲存
+        save_button = ttk.Button(root, text='儲存', width=4, command=saveEvent)
+        save_button.pack(pady=20)
 
-    reset_button = ttk.Button(root, text='重設', width=4, command=reset)    
-    reset_button.pack(pady=20) 
+    reset_button = ttk.Button(root, text='重設', width=4, command=reset)
+    reset_button.pack(pady=20)
     okb = ttk.Button(root, text='OK', width=4, command=saveedit)
     # okb.place(x=50+(cn-1)*130,y=3+rn*25)
     okb.pack(pady=0)
 
 
-
-
-label_topic = ttk.Label(text="請输入事件名稱:")
+label_topic = ttk.Label(text="請输入事件名稱:", font=30)
 label_topic.pack(pady=20)
 topic_box = Entry()
 topic_box.pack()
-#什麼時候提醒
-label_remind = ttk.Label(text="請输入要什麼時候提醒您:")
+# 什麼時候提醒
+label_remind = ttk.Label(text="請输入要什麼時候提醒您:" + "\n(yyyymmdd-xx:xx)", font=30)
 label_remind.pack(pady=20)
 hon_scale = Entry()
 hon_scale.pack()
 
-#scale 小時
+# scale 小時
 # label_remind = ttk.Label(text="請输入幾小時前提醒(1~72):")#,showvalue=YES
 # label_remind.pack(pady=20)
 # hon_scale = ttk.Scale(root,from_= 1,to = 72,orient=HORIZONTAL)
 # hon_scale.pack()
-label = Label(root)  
-label.pack() 
-Label_y = ttk.Label(text= '2021/7',font=30)
+label = Label(root)
+label.pack()
+Label_y = ttk.Label(text='2021/7', font=30)
 Label_y.pack()
 # print(hon_scale.get())
 # remind_box = Entry()
 # remind_box.pack()
 
+printMouth()
 treeview.bind('<Double-1>', set_cell_value)
 root.bind("<Escape>", lambda x: root.destroy())
-print()
+
 root.mainloop()
