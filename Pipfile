@@ -8,6 +8,8 @@ django = "*"
 django-bootstrap4 = "*"
 
 [dev-packages]
+flake8 = "*"
+flake8-commas = "*"
 
 [requires]
 python_version = "3.9"
