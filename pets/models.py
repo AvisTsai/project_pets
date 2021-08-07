@@ -1,3 +1,4 @@
+import django
 from django.utils import timezone
 
 from django.db import models
@@ -110,7 +111,7 @@ class Category(models.TextChoices):
 
 
 class Money(models.Model):
-    time = models.DateTimeField(default=timezone.now())
+    time = models.DateTimeField(default=django.utils.timezone.now)
     category = models.CharField(max_length=255, choices=Category.choices, default='未分類')
     item = models.CharField(max_length=255, verbose_name='項目')
     price = models.IntegerField(default=0, verbose_name='金額')
