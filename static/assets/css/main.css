@@ -33,7 +33,12 @@ body {
 	line-height: 1;
 }
 
-
+/*隱藏Numberinput的箭頭*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
 
 
 ol, ul {
@@ -1551,13 +1556,13 @@ input, select, textarea {
 	form input[type="text"],
 	form input[type="email"]
 	input[type="password"] {
-		line-height: 1em;
+		line-height: 1.5em;
 		/*width: 200px;*/
-		height: 50px;
+		/*height: 50%;*/
 	}
 
 	form select {
-		line-height: 1em;
+		line-height: 1.5em;
 	}
 
 	form textarea {
