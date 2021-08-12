@@ -14,4 +14,9 @@ urlpatterns = [
     path('bookkeeping/', views.bookkeeping, name='bookkeeping'),
     path('update/<str:pk>', views.update, name='update'),
     path('delete/<str:pk>', views.delete, name='delete'),
+    # 領養
+    path('adopt', views.adopt, name="adopt"),
+    path('adopt1', views.adopt1, name="adopt1"),
+    # 諮詢
+    path('consult', views.consult, name='consult'),
 ]
