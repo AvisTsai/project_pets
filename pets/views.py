@@ -118,7 +118,6 @@ def delete(request, pk):
 def adopt(request):
     return render(request, 'pet-a.html')
 
-
 def adopt1(request):
     return render(request, 'pet-a1.html')
 

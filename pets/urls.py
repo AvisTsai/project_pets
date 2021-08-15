@@ -17,6 +17,6 @@ urlpatterns = [
     # 領養
     path('adopt', views.adopt, name="adopt"),
     path('adopt1', views.adopt1, name="adopt1"),
-    # 諮詢
+    # 住宿
     path('consult', views.consult, name='consult'),
 ]
