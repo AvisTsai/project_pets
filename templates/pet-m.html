@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <html>
 	{% load static %}
-<head>
-	<title>寵物商城 | Dfurkid</title>
+<head >
+	<title>Register DearFurkid</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="stylesheet" href="{% static 'assets/css/main.css' %}"/>
 </head>
 
-<body class="homepage is-preload">
+<body class="homepage is-preload" style="background-color: #fffcf5;">
 	<div id="page-wrapper">
 
 		<!-- Header -->
@@ -78,41 +78,26 @@
 
 		</section>
 
-        <section id="main" class="wrapper style2">
-			<div class="title">飲食紀錄</div>
-			<div class="container">
-				<div class="row gtr-150">
-					<div class="col-8 col-12-medium">
-
-
-	
-
-
-								<br>
-							</p>
-
-						</section>
-					</div>
-				</div>
-			</div>
-		</section>
+        <section id="main" class="wrapper style2" style="background-color: #fffcf5";>
+			<div class="title" style="background-color: #fffcf5";>寵物記帳</div>
+				</section>
 
 	</div>
 
-	<div id="content2">
+	<div id="content2" >
 		<div id="content">
 			<form action="" method="POST">
 				{% csrf_token %}
 				<article class="box post">
 					<header class="style1" >
 						<br>
-						<span class="text_field">時間：</span>
+						<span class="text_field" style="font-family:Microsoft JhengHei; font-size:27px;color:black;">時間：</span>
 						<label class="price">{{ form.time }}</label>
-						<span class="text_field">類別：</span>
+						<span class="text_field" style="font-family:Microsoft JhengHei; font-size:27px;color:black;">類別：</span>
 						<label class="price">{{ form.category }}</label>
-						<span class="text_field">項目：</span>
+						<span class="text_field" style="font-family:Microsoft JhengHei; font-size:27px;color:black;">項目：</span>
 						<label class="price">{{ form.item }}</label>
-						<span class="text_field">金額：</span>
+						<span class="text_field" style="font-family:Microsoft JhengHei; font-size:27px;color:black;">金額：</span>
 						<label class="price">{{ form.price }}</label>
 						<input class="btn btn-success" type="submit" value="儲存"/>
 					</header>
@@ -124,35 +109,36 @@
 	<table class="table table-bordered table-striped">
 		<thead class="thead-dark">
 		<tr>
-			<th>時間</th>
-			<th>類別</th>
-			<th>項目</th>
-			<th>金額</th>
+			<th style="font-family:Microsoft JhengHei; font-size:27px"><span style="color:black;">時間</span></th>
+			<th style="font-family:Microsoft JhengHei; font-size:27px"><span style="color:black;">類別</span></th>
+			<th style="font-family:Microsoft JhengHei; font-size:27px"><span style="color:black;">項目</span></th>
+			<th style="font-family:Microsoft JhengHei; font-size:27px"><span style="color:black;" class="priceinput">金額</span></th>
 		</tr>
 		</thead>
+		
 		<tbody>
 		{% for Money in money %}
+	
 		<tr>
-			<td>{{ Money.time }}</td>
-			<td>{{ Money.category }}</td>
-			<td>{{ Money.item}}</td>
-			<td>{{ Money.price }}</td>
+			<td style="font-family:Microsoft JhengHei; font-size:18px"><span style="color:black;">{{ Money.time }}</span></td>
+			<td style="font-family:Microsoft JhengHei; font-size:18px"><span style="color:black;">{{ Money.category }}</span></td>
+			<td style="font-family:Microsoft JhengHei; font-size:18px"><span style="color:black;">{{ Money.item}}</span></td>
+			<td style="font-family:Microsoft JhengHei; font-size:18px"><span style="color:black;">{{ Money.price }}</span></td>
 			<td>
-				<a href="{% url 'pets:update' Money.id %}" class="btn btn-info">修改</a>
-				<a href="{% url 'pets:delete' Money.id %}" class="btn btn-danger">刪除</a>
+				<a href="{% url 'pets:update' Money.id %}" class="btn btn-info" style="font-size:18px">修改</a>
+				<a href="{% url 'pets:delete' Money.id %}" class="btn btn-danger" style="font-size:18px">刪除</a>
 			</td>
 		</tr>
 		{% endfor %}
 		</tbody>
 	</table>
 	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.dropotron.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-
+	<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+	<script src="{% static 'assets/js/jquery.dropotron.min.js' %}"></script>
+	<script src="{% static 'assets/js/browser.min.js' %}"></script>
+	<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+	<script src="{% static 'assets/js/util.js' %}"></script>
+	<script src="{% static 'assets/js/main.js' %}"></script>
 </body>
 
 </html>

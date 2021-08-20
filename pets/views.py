@@ -114,3 +114,14 @@ def delete(request, pk):
     return render(request, 'delete.html', context)
 
 
+# 領養
+def adopt(request):
+    return render(request, 'pet-a.html')
+
+def adopt1(request):
+    return render(request, 'pet-a1.html')
+
+
+# 諮詢
+def consult(request):
+    return render(request, 'pet-h.html')
