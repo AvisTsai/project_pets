@@ -112,3 +112,5 @@ def delete(request, pk):
     }
 
     return render(request, 'delete.html', context)
+
+
