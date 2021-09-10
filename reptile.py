@@ -14,4 +14,6 @@ def img_get(html):
     soup = BeautifulSoup(data, "html.parser")
     all_img = soup.select(".boxify-image js-boxify-image center-contain sl-lazy-image")
     return all_img
+
+
 # boxify-image js-boxify-image center-contain sl-lazy-image
