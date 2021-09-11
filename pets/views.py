@@ -125,3 +125,7 @@ def adopt1(request):
 # 諮詢
 def consult(request):
     return render(request, 'pet-h.html')
+
+# 諮詢
+def line(request):
+    return render(request, 'pet-h1.html')

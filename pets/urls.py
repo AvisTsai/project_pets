@@ -19,4 +19,6 @@ urlpatterns = [
     path('adopt1', views.adopt1, name="adopt1"),
     # 住宿
     path('consult', views.consult, name='consult'),
+    # 諮詢
+    path('line', views.line, name='line'),
 ]
