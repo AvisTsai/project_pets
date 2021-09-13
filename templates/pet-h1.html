@@ -8,7 +8,6 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
-	<script src="line.js"></script>
 </head>
 
 <body class="no-sidebar is-preload">
@@ -86,10 +85,13 @@
 			<div class="container">
 				<div class="row gtr-150">
 					<div class="col-4 col-12-medium">
-						姓　　名：<input id="name"><br />
+						姓名：<input id="name"><br />
 						聊天內容：<input id="content"><br />
-						<BR>
 						<button id="btn">送出資料</button>
+
+
+
+
 					</div>
 
 
@@ -98,6 +100,32 @@
 	</div>
 	</section>
 
+	<!-- Start of Easychat code -->
+	<script> var a = document.createElement('a'); 
+					a.setAttribute('href', 'javascript:;'); 
+					a.setAttribute('id', 'easychat-floating-button'); 
+					var img = document.createElement('img'); img.src = 'https://chat-plugin.easychat.co/icon.svg'; 
+					a.appendChild(img); var span = document.createElement('span'); 
+					span.setAttribute('id', 'easychat-unread-badge'); 
+					span.setAttribute('style', 'display: none'); 
+					var d1 = document.createElement('div'); 
+					d1.setAttribute('id', 'easychat-close-btn'); 
+					d1.setAttribute('class', 'easychat-close-btn-close'); 
+					var d2 = document.createElement('div'); 
+					d2.setAttribute('id', 'easychat-chat-dialog'); 
+					d2.setAttribute('class', 'easychat-chat-dialog-close'); 
+					var ifrm = document.createElement('iframe'); 
+					ifrm.setAttribute('id', 'easychat-chat-dialog-iframe'); 
+					ifrm.setAttribute('src', 'https://client-chat.easychat.co/?appkey=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0ZWFtTmFtZSI6IkRGdXJraWQifQ.f7xTQDF9XCvdmL5Q4rNKKTvpFqxDTw6342saSGqV38A&lang=zh-Hant'); 
+					ifrm.style.width = '100%'; 
+					ifrm.style.height = '100%'; 
+					ifrm.style.frameborder = '0'; 
+					ifrm.style.scrolling = 'on'; d2.appendChild(ifrm); 
+					document.body.appendChild(a); 
+					document.body.appendChild(span); 
+					document.body.appendChild(d1); 
+					document.body.appendChild(d2);</script>
+	<script src='https://chat-plugin.easychat.co/easychat.js'></script><!-- End of Easychat code -->
 
 
 
