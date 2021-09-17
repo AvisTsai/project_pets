@@ -121,7 +121,25 @@ def adopt(request):
 def adopt1(request):
     return render(request, 'pet-a1.html')
 
+def adopt2(request):
+    return render(request, 'pet-a2.html')
+    
+def adopt3(request):
+    return render(request, 'pet-a3.html')
+
+def adopt4(request):
+    return render(request, 'pet-a4.html')
+
+def adopt5(request):
+    return render(request, 'pet-a5.html')
+
+def adopt6(request):
+    return render(request, 'pet-a6.html')    
 
 # 諮詢
 def consult(request):
     return render(request, 'pet-h.html')
+
+# 諮詢
+def line(request):
+    return render(request, 'pet-h1.html')
