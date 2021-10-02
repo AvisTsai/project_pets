@@ -4,10 +4,9 @@ import urllib.request as req
 import os
 
 
-def img_get(html):
-    url = "https://www.fuzeshop.com.tw/products"
-    request = req.Request(url, headers={
-        'user-agent': "Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Mobile Safari/537.36"
+url = "https://www.fuzeshop.com.tw/products"
+request = req.Request(url, headers={
+        'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Mobile Safari/537.36'
     })
     with req.urlopen(request) as response:
         data = response.read().decode("utf-8")
