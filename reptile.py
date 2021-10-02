@@ -13,6 +13,4 @@ request = req.Request(url, headers={
     soup = BeautifulSoup(data, "html.parser")
     all_img = soup.select(".boxify-image js-boxify-image center-contain sl-lazy-image")
     return all_img
-
-
-# boxify-image js-boxify-image center-contain sl-lazy-image
+5fy-image js-boxify-image center-contain sl-lazy-image
