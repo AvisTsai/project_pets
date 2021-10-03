@@ -127,6 +127,15 @@ def walk4(request):
 def walk5(request):
     return render(request, 'pet-w5.html')
 
+def main(request):
+    return render(request, 'main.html')
+
+def login(request):
+    return render(request, 'login.html')
+def register(request):
+    return render(request, 'register.html')
+def index1(request):
+    return render(request, 'index1.html')    
 
 # 住宿
 def consult(request):
