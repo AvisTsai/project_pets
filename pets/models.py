@@ -135,5 +135,5 @@ class Event(models.Model):
 # 創造model
     @property
     def get_html_url(self):
-        url = reverse('cal:event_edit', args=(self.id,))
+        url = reverse('pets:event_edit', args=(self.id,))
         return f'<a href="{url}"> {self.title} </a>'

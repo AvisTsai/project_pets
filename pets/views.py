@@ -130,7 +130,7 @@ def delete(request, pk):
 # 行事曆
 class CalendarView(generic.ListView):
     model = Event
-    template_name = 'cal/calendar.html'
+    template_name = 'calendar.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -178,8 +178,8 @@ def event(request, event_id=None):
     form = EventForm(request.POST or None, instance=instance)
     if request.POST and form.is_valid():
         form.save()
-        return HttpResponseRedirect(reverse('cal:calendar'))
-    return render(request, 'cal/event.html', {'form': form})
+        return HttpResponseRedirect(reverse('pets:calendar'))
+    return render(request, 'event.html', {'form': form})
 
 
 # 散步
