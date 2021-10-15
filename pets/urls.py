@@ -89,6 +89,6 @@ urlpatterns = [
     path('main', views.main, name='main'),
     path('login', views.login, name='login'),
     path('register', views.register, name='register'),
-     path('index1', views.index1, name='index1'),
+    path('index1', views.index1, name='index1'),
 
 ]
