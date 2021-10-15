@@ -1,6 +1,7 @@
 import django
 from django.utils import timezone
 
+from django.urls import reverse
 from django.db import models
 
 
@@ -122,3 +123,17 @@ class Money(models.Model):
     class Meta:
         verbose_name = '記帳'
         verbose_name_plural = '記帳'
+
+#         行事曆
+
+class Event(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    start_time = models.DateTimeField()
+    end_time = models.DateTimeField()
+# Create your models here.
+# 創造model
+    @property
+    def get_html_url(self):
+        url = reverse('pets:event_edit', args=(self.id,))
+        return f'<a href="{url}"> {self.title} </a>'
