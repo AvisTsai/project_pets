@@ -1,6 +1,7 @@
 from django.urls import path, include
 
 from . import views
+from django.conf.urls import url
 
 app_name = 'pets'
 
@@ -33,6 +34,12 @@ urlpatterns = [
     path('bookkeeping/', views.bookkeeping, name='bookkeeping'),
     path('update/<str:pk>', views.update, name='update'),
     path('delete/<str:pk>', views.delete, name='delete'),
+
+    # 行事曆
+    path('calendar/', views.CalendarView.as_view(), name='calendar'),
+    path('event/new/', views.event, name='event_new'),
+    # path('event/edit/(?P<event_id>\d+)/', views.event, name='event_edit'),
+
 
     # 領養
     path('adopt', views.adopt, name="adopt"),
