@@ -12,12 +12,12 @@ urlpatterns = [
     path('logout', views.logout, name='logout'),
     
     # 散步
-     path('walk/', views.walk, name='walk'),
-     path('walk1/', views.walk1, name='walk1'),
-     path('walk2/', views.walk2, name='walk2'),
-     path('walk3/', views.walk3, name='walk3'),
-     path('walk4/', views.walk4, name='walk4'),
-     path('walk5/', views.walk5, name='walk5'),
+     path('walk', views.walk, name='walk'),
+     path('walk1', views.walk1, name='walk1'),
+     path('walk2', views.walk2, name='walk2'),
+     path('walk3', views.walk3, name='walk3'),
+     path('walk4', views.walk4, name='walk4'),
+     path('walk5', views.walk5, name='walk5'),
     
     # 住宿
     path('consult', views.consult, name='consult'),
@@ -36,7 +36,7 @@ urlpatterns = [
     path('delete/<str:pk>', views.delete, name='delete'),
 
     # 行事曆
-    path('calendar/', views.CalendarView.as_view(), name='calendar'),
+    path('calendar', views.CalendarView.as_view(), name='calendar'),
     path('event/new/', views.event, name='event_new'),
     path('event/edit/(?P<event_id>\d+)/', views.event, name='event_edit'),
 
