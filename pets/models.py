@@ -111,6 +111,14 @@ class Category(models.TextChoices):
     others = 'others', '其他'
 
 
+class ItemCategory(models.TextChoices):
+    food = 'food', '食物'
+    toy = 'toy', '玩具'
+    clothes = 'clothes', '衣服'
+    salon = 'salon', '美容'
+    others = 'others', '其他'
+
+
 class Money(models.Model):
     time = models.DateTimeField(default=django.utils.timezone.now)
     category = models.CharField(max_length=255, choices=Category.choices, default='未分類')
@@ -124,7 +132,7 @@ class Money(models.Model):
         verbose_name = '記帳'
         verbose_name_plural = '記帳'
 
-#         行事曆
+# 行事曆
 
 class Event(models.Model):
     title = models.CharField(max_length=200)
