@@ -53,7 +53,6 @@ urlpatterns = [
     # 諮詢
     path('line', views.line, name='line'),
     path('h2', views.h2, name='h2'),
-    path('h3', views.h3, name='h3'),
     path('h4', views.h4, name='h4'),
     path('h5', views.h5, name='h5'),
     path('h51', views.h51, name='h51'),

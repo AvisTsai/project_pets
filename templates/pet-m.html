@@ -43,38 +43,37 @@
                     <ul>
                         <li><a href="bookkeeping">寵物記帳</a></li>
                         <li><a href="pet-f">飲食紀錄</a></li>
-                        <li><a href="walk">散步地圖</a></li>
-                        <li><a href="consult">寵物住宿</a></li>
-                        <li><a href="grooming">寵物美容</a></li>
-                        <li><a href="train">寵物訓練</a></li>
-                        <li><a href="adopt">寵物領養</a></li>
+                        <li><a href="{% url 'pets:walk'%}">散步地圖</a></li>
+                        <li><a href="{% url 'pets:consult'%}">寵物住宿</a></li>
+                        <li><a href="{% url 'pets:grooming'%}">寵物美容</a></li>
+                        <li><a href="{% url 'pets:train'%}">寵物訓練</a></li>
+                        <li><a href="{% url 'pets:adopt'%}">寵物領養</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#">線上商城</a>
                     <ul>
-                        <li><a href="s11">鮮食</a></li>
-                        <li><a href="s21">飼料</a></li>
+                        <li><a href="{% url 'pets:s11'%}">鮮食</a></li>
+                        <li><a href="{% url 'pets:s21'%}">飼料</a></li>
                         <li><a href="">衣服</a>
                             <ul>
-                                <li><a href="s31">春夏季</a></li>
-                                <li><a href="s34">秋冬季</a></li>
-                                <li><a href="s37">其他</a></li>
+                                <li><a href="{% url 'pets:s31'%}">春夏季</a></li>
+                                <li><a href="{% url 'pets:s34'%}">秋冬季</a></li>
+                                <li><a href="{% url 'pets:s37'%}">其他</a></li>
                             </ul>
                         </li>
                         </li>
-                        <li><a href="s41">配件</a></li>
+                        <li><a href="{% url 'pets:s37'%}s41">配件</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#">寵物醫院</a>
                     <ul>
 
-                        <li><a href="h2">看診項目</a></li>
-
-                        <li><a href="h4">健康檢查</a></li>
-                        <li><a href="h5">醫院地圖</a></li>
-                        <li><a href="h6">常見問題</a></li>
+                        <li><a href="{% url 'pets:h2'%}">看診項目</a></li>
+                        <li><a href="{% url 'pets:h4'%}">健康檢查</a></li>
+                        <li><a href="{% url 'pets:h5'%}">醫院地圖</a></li>
+                        <li><a href="{% url 'pets:h6'%}">常見問題</a></li>
 
                     </ul>
                 </li>
