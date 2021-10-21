@@ -71,12 +71,6 @@ def grooming(request):
 
 
 # 記帳
-def current_time(request):
-    now = datetime.datetime.now()
-    time_style = now.strftime("%Y-%m-%d %H:%M:%S")
-    return render(request, 'pet-m.html', {'cur_time': time_style})
-
-
 def bookkeeping(request):
     money = Money.objects.all()  # 查詢所有資料
     form = MoneyForm()

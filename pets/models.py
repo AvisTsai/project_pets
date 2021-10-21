@@ -120,10 +120,10 @@ class ItemCategory(models.TextChoices):
 
 
 class Money(models.Model):
-    time = models.DateTimeField(default=django.utils.timezone.now)
+    time = models.DateTimeField(default='請選擇時間')
     category = models.CharField(max_length=255, choices=Category.choices, default='未分類')
     item = models.CharField(max_length=255, verbose_name='項目')
-    price = models.IntegerField(default=0, verbose_name='金額')
+    price = models.IntegerField(verbose_name='金額')
 
     def __str__(self):
         return self.item

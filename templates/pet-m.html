@@ -3,189 +3,214 @@
 {% load static %}
 
 <head>
-	<title>Welcome to DearFurkid</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
-
+    <title>Welcome to DearFurkid</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/main.css' %}"/>
+    <!--    datetimepicker-->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/jquery.datetimepicker.css' %}"/>
 
 </head>
 
 <body class="homepage is-preload">
-	<div id="page-wrapper">
+<div id="page-wrapper">
 
-		<!-- Header -->
-		<section id="header" class="wrapper">
+    <!-- Header -->
+    <section id="header" class="wrapper">
 
-			<!-- Logo -->
-			<div id="logo">
-				<h1><a href="index">Dearfurkid</a></h1>
-				<p>Your Pet</p>
-			</div>
+        <!-- Logo -->
+        <div id="logo">
+            <h1><a href="index">Dearfurkid</a></h1>
+            <p>Your Pet</p>
+        </div>
 
-			<!-- Nav -->
-			<nav id="nav">
-				<ul>
-					<li class="current"><a href="index">首 頁</a></li>
-					<li>
-						<a href="#">個人資訊</a>
-						<ul>
-							<li><a href="calendar">提醒事項</a></li>
-							<li><a href="modify">修改密碼</a></li>
-							<li><a href="#">帳號登出</a></li>
-							<li><a href="h7">關於我們</a></li>
-						</ul>
-					</li>
+        <!-- Nav -->
+        <nav id="nav">
+            <ul>
+                <li class="current"><a href="index">首 頁</a></li>
+                <li>
+                    <a href="#">個人資訊</a>
+                    <ul>
+                        <li><a href="calendar">提醒事項</a></li>
+                        <li><a href="modify">修改密碼</a></li>
+                        <li><a href="#">帳號登出</a></li>
+                        <li><a href="h7">關於我們</a></li>
+                    </ul>
+                </li>
 
-					<li>
-						<a href="#">日常生活</a>
-						<ul>
-							<li><a href="pets:bookkeeping">寵物記帳</a></li>
-							<li><a href="pet-f">飲食紀錄</a></li>
-							<li><a href="walk">散步地圖</a></li>
-							<li><a href="consult">寵物住宿</a></li>
-							<li><a href="grooming">寵物美容</a></li>
-							<li><a href="train">寵物訓練</a></li>
-							<li><a href="adopt">寵物領養</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="#">線上商城</a>
-						<ul>
-							<li><a href="s11">鮮食</a></li>
-							<li><a href="s21">飼料</a></li>
-							<li><a href="">衣服</a>
-								<ul>
-									<li><a href="s31">春夏季</a></li>
-									<li><a href="s34">秋冬季</a></li>
-									<li><a href="s37">其他</a></li>
-								</ul>
-							</li>
-					</li>
-					<li><a href="s41">配件</a></li>
-				</ul>
-				</li>
-				<li>
-					<a href="#">寵物醫院</a>
-					<ul>
+                <li>
+                    <a href="#">日常生活</a>
+                    <ul>
+                        <li><a href="bookkeeping">寵物記帳</a></li>
+                        <li><a href="pet-f">飲食紀錄</a></li>
+                        <li><a href="walk">散步地圖</a></li>
+                        <li><a href="consult">寵物住宿</a></li>
+                        <li><a href="grooming">寵物美容</a></li>
+                        <li><a href="train">寵物訓練</a></li>
+                        <li><a href="adopt">寵物領養</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">線上商城</a>
+                    <ul>
+                        <li><a href="s11">鮮食</a></li>
+                        <li><a href="s21">飼料</a></li>
+                        <li><a href="">衣服</a>
+                            <ul>
+                                <li><a href="s31">春夏季</a></li>
+                                <li><a href="s34">秋冬季</a></li>
+                                <li><a href="s37">其他</a></li>
+                            </ul>
+                        </li>
+                        </li>
+                        <li><a href="s41">配件</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">寵物醫院</a>
+                    <ul>
 
-						<li><a href="h2">看診項目</a></li>
+                        <li><a href="h2">看診項目</a></li>
 
-						<li><a href="h4">健康檢查</a></li>
-						<li><a href="h5">醫院地圖</a></li>
-						<li><a href="h6">常見問題</a></li>
+                        <li><a href="h4">健康檢查</a></li>
+                        <li><a href="h5">醫院地圖</a></li>
+                        <li><a href="h6">常見問題</a></li>
 
-					</ul>
-				</li>
+                    </ul>
+                </li>
 
-				</ul>
-			</nav>
+            </ul>
+        </nav>
 
-		</section>
+    </section>
 
-        <div id="main" class="wrapper style2" style=";padding-bottom: 0px;padding-top: 20px;";>
-			<div class="title" style="";>寵物記帳</div>
-		</div>
+    <div id="main" class="wrapper style2" style=";padding-bottom: 0px;padding-top: 20px;" ;>
+        <div class="title" style="" ;>寵物記帳</div>
+    </div>
 
-	</div>
+</div>
 
-	<div id="content2" >
-		<div id="content">
-			<form action="" method="POST">
-				{% csrf_token %}
-				<article class="box post">
-					<header class="style1" >
-						<br>
-						<span class="text_field" style="font-family:Microsoft JhengHei; font-size:27px;color:black;">時間：</span>
-						<label class="price">{{ form.time }}</label>
-						<span class="text_field" style="font-family:Microsoft JhengHei; font-size:27px;color:black;">類別：</span>
-						<label class="price">{{ form.category }}</label>
-						<span class="text_field" style="font-family:Microsoft JhengHei; font-size:27px;color:black;">項目：</span>
-						<label class="price">{{ form.item }}</label>
-						<span class="text_field" style="font-family:Microsoft JhengHei; font-size:27px;color:black;">金額：</span>
-						<label class="price">{{ form.price }}</label>
-						<input class="btn btn-success" type="submit" value="儲存"/>
-					</header>
-				</article>
-			</form>
-		</div>
-	</div>
-	
-	<table class="table table-bordered table-striped">
-		<thead class="thead-dark">
-		<tr>
-			<th style="font-family:Microsoft JhengHei; font-size:27px"><span style="color:black;">時間</span></th>
-			<th style="font-family:Microsoft JhengHei; font-size:27px"><span style="color:black;">類別</span></th>
-			<th style="font-family:Microsoft JhengHei; font-size:27px"><span style="color:black;">項目</span></th>
-			<th style="font-family:Microsoft JhengHei; font-size:27px"><span style="color:black;" class="priceinput">金額</span></th>
-		</tr>
-		</thead>
-		
-		<tbody>
-		{% for Money in money %}
-	
-		<tr>
-			<td style="font-family:Microsoft JhengHei; font-size:18px"><span style="color:black;">{{ Money.time }}</span></td>
-			<td style="font-family:Microsoft JhengHei; font-size:18px"><span style="color:black;">{{ Money.category }}</span></td>
-			<td style="font-family:Microsoft JhengHei; font-size:18px"><span style="color:black;">{{ Money.item}}</span></td>
-			<td style="font-family:Microsoft JhengHei; font-size:18px"><span style="color:black;">{{ Money.price }}</span></td>
-			<td>
-				<a href="{% url 'pets:update' Money.id %}" class="btn btn-info" style="font-size:18px">修改</a>
-				<a href="{% url 'pets:delete' Money.id %}" class="btn btn-danger" style="font-size:18px">刪除</a>
-			</td>
-		</tr>
-		{% endfor %}
-		</tbody>
-	</table>
-	<section id="footer" class="wrapper" >
-		<div class="title"></div>
-		<div class="container">
+<div id="content2">
+    <div id="content">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <article class="box post">
+                <header class="style1">
+                    <br>
+                    <span class="text_field"
+                          style="font-family:Microsoft JhengHei; font-size:27px;color:black;">時間：</span>
+                    <label class="price" >{{ form.time }}</label>
+                    <span class="text_field"
+                          style="font-family:Microsoft JhengHei; font-size:27px;color:black;">類別：</span>
+                    <label class="price">{{ form.category }}</label>
+                    <span class="text_field"
+                          style="font-family:Microsoft JhengHei; font-size:27px;color:black;">項目：</span>
+                    <label class="price">{{ form.item }}</label>
+                    <span class="text_field"
+                          style="font-family:Microsoft JhengHei; font-size:27px;color:black;">金額：</span>
+                    <label class="price">{{ form.price }}</label>
+                    <input class="btn btn-success" type="submit" value="儲存"/>
+                </header>
+            </article>
+        </form>
+    </div>
+</div>
 
-			<div class="row">
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th style="font-family:Microsoft JhengHei; font-size:27px"><span style="color:black;">時間</span></th>
+        <th style="font-family:Microsoft JhengHei; font-size:27px"><span style="color:black;">類別</span></th>
+        <th style="font-family:Microsoft JhengHei; font-size:27px"><span style="color:black;">項目</span></th>
+        <th style="font-family:Microsoft JhengHei; font-size:27px"><span style="color:black;"
+                                                                         class="priceinput">金額</span></th>
+    </tr>
+    </thead>
 
-				<div class="col-12-medium" style="margin: 0px auto;">
+    <tbody>
+    {% for Money in money %}
 
-					<!-- Contact -->
-					<section class="feature-list col-12-medium">
-						<div class="row">
-							<div class="col">
-								<section>
-									<h3 class="icon solid fa-home">Dearfurkid</h3>
-									<p>
-										<a href="QA">常見Q&A</a><br>
-										<a href="pr">隱私權政策</a>
+    <tr>
+        <td style="font-family:Microsoft JhengHei; font-size:18px"><span style="color:black;">{{ Money.time }}</span>
+        </td>
+        <td style="font-family:Microsoft JhengHei; font-size:18px"><span
+                style="color:black;">{{ Money.category }}</span></td>
+        <td style="font-family:Microsoft JhengHei; font-size:18px"><span style="color:black;">{{ Money.item}}</span>
+        </td>
+        <td style="font-family:Microsoft JhengHei; font-size:18px"><span style="color:black;">{{ Money.price }}</span>
+        </td>
+        <td>
+            <a href="{% url 'pets:update' Money.id %}" class="btn btn-info" style="font-size:18px">修改</a>
+            <a href="{% url 'pets:delete' Money.id %}" class="btn btn-danger" style="font-size:18px">刪除</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<section id="footer" class="wrapper">
+    <div class="title"></div>
+    <div class="container">
 
-									</p>
-								</section>
-							</div>
+        <div class="row">
 
-							<div class="col">
-								<section>
-									<h3 class="icon solid fa-envelope">聯絡我們</h3>
-									<p>
-										<a href="mailto:dfurkid@gmail.com" target="_blank">dfurkid@gmail.com</a>
-										<br>
-										<a href="https://lin.ee/8SJlSiV">
-											<img src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png"
-												alt="加入好友" height="30" border="0">
-										</a>
-									</p>
-								</section>
-							</div>
-						</div>
+            <div class="col-12-medium" style="margin: 0px auto;">
 
-					</section>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Scripts -->
-	<script src="{% static 'assets/js/jquery.min.js' %}"></script>
-	<script src="{% static 'assets/js/jquery.dropotron.min.js' %}"></script>
-	<script src="{% static 'assets/js/browser.min.js' %}"></script>
-	<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
-	<script src="{% static 'assets/js/util.js' %}"></script>
-	<script src="{% static 'assets/js/main.js' %}"></script>
+                <!-- Contact -->
+                <section class="feature-list col-12-medium">
+                    <div class="row">
+                        <div class="col">
+                            <section>
+                                <h3 class="icon solid fa-home">Dearfurkid</h3>
+                                <p>
+                                    <a href="QA">常見Q&A</a><br>
+                                    <a href="pr">隱私權政策</a>
+
+                                </p>
+                            </section>
+                        </div>
+
+                        <div class="col">
+                            <section>
+                                <h3 class="icon solid fa-envelope">聯絡我們</h3>
+                                <p>
+                                    <a href="mailto:dfurkid@gmail.com" target="_blank">dfurkid@gmail.com</a>
+                                    <br>
+                                    <a href="https://lin.ee/8SJlSiV">
+                                        <img src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png"
+                                             alt="加入好友" height="30" border="0">
+                                    </a>
+                                </p>
+                            </section>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Scripts -->
+
+<!--<script src="{% static 'assets/js/jquery.js' %}"></script>-->
+<!--<script src="{% static 'assets/js/jquery.datetimepicker.full.min.js' %}"></script>-->
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.dropotron.min.js' %}"></script>
+<script src="{% static 'assets/js/browser.min.js' %}"></script>
+<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+<script src="{% static 'assets/js/util.js' %}"></script>
+<script src="{% static 'assets/js/main.js' %}"></script>
+<link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css"
+          integrity="sha256-DOS9W6NR+NFe1fUhEE0PGKY/fubbUCnOfTje2JMDw3Y=" crossorigin="anonymous"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"
+          integrity="sha256-FEqEelWI3WouFOo2VWP/uJfs1y8KJ++FLh2Lbqc8SJk=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#id_time').datetimepicker({
+            step:15,
+        });
+    });
+</script>
 </body>
 
 </html>
