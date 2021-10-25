@@ -32,7 +32,7 @@ urlpatterns = [
     path('train_find', views.train_find, name='train_find'),
 
     # 記帳
-    path('bookkeeping/', views.bookkeeping, name='bookkeeping'),
+    path('bookkeeping', views.bookkeeping, name='bookkeeping'),
     path('update/<str:pk>', views.update, name='update'),
     path('delete/<str:pk>', views.delete, name='delete'),
 
@@ -51,8 +51,7 @@ urlpatterns = [
     path('adopt_pet6', views.adopt_pet6, name="adopt_pet6"),
     path('adopt_pet7', views.adopt_pet7, name="adopt_pet7"),
    
-    # 諮詢
-    path('line', views.line, name='line'),
+   
 
     # 寵物醫院
     path('Hospital_visits', views.Hospital_visits, name='Hospital_visits'),

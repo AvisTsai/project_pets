@@ -277,11 +277,11 @@ def mall_freshfood1(request):
     return render(request, 'pet-s11.html')
 
 
-def mall_freshfood12(request):
+def mall_freshfood2(request):
     return render(request, 'pet-s12.html')
 
 
-def mall_freshfood13(request):
+def mall_freshfood3(request):
     return render(request, 'pet-s13.html')
 
 
