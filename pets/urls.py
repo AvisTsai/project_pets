@@ -10,25 +10,26 @@ urlpatterns = [
     path('register', views.register, name='register'),
     path('login', views.login, name='login'),
     path('logout', views.logout, name='logout'),
+    path('aboutus', views.aboutus, name='aboutus'),
     
     # 散步
-     path('walk', views.walk, name='walk'),
-     path('walk1', views.walk1, name='walk1'),
-     path('walk2', views.walk2, name='walk2'),
-     path('walk3', views.walk3, name='walk3'),
-     path('walk4', views.walk4, name='walk4'),
-     path('walk5', views.walk5, name='walk5'),
+     path('walk_pet', views.walk_pet, name='walk_pet'),
+     path('walk_Taipei', views.walk_Taipei, name='walk_Taipei'),
+     path('walk_Taoyuan', views.walk_Taoyuan, name='walk_Taoyuan'),
+     path('walk_Taizhong', views.walk_Taizhong, name='walk_Taizhong'),
+     path('walk_Tainan', views.walk_Tainan, name='walk_Tainan'),
+     path('walk_Kaohsiung', views.walk_Kaohsiung, name='walk_Kaohsiung'),
     
     # 住宿
     path('consult', views.consult, name='consult'),
 
     # 美容
-    path('grooming', views.grooming, name='grooming'),
-    path('grooming1', views.grooming1, name='grooming1'),
+    path('grooming_pet', views.grooming_pet, name='grooming_pet'),
+    path('grooming_find', views.grooming_find, name='grooming_find'),
     
     # 訓練
-    path('train', views.train, name='train'),
-    path('train1', views.train1, name='train1'),
+    path('train_pet', views.train_pet, name='train_pet'),
+    path('train_find', views.train_find, name='train_find'),
 
     # 記帳
     path('bookkeeping/', views.bookkeeping, name='bookkeeping'),
@@ -42,49 +43,51 @@ urlpatterns = [
 
 
     # 領養
-    path('adopt', views.adopt, name="adopt"),
-    path('adopt1', views.adopt1, name="adopt1"),
-    path('adopt2', views.adopt2, name="adopt2"),
-    path('adopt3', views.adopt3, name="adopt3"),
-    path('adopt4', views.adopt4, name="adopt4"),
-    path('adopt5', views.adopt5, name="adopt5"),
-    path('adopt6', views.adopt6, name="adopt6"),
+    path('adopt_pet1', views.adopt_pet1, name="adopt_pet1"),
+    path('adopt_pet2', views.adopt_pet2, name="adopt_pet2"),
+    path('adopt_pet3', views.adopt_pet3, name="adopt_pet3"),
+    path('adopt_pet4', views.adopt_pet4, name="adopt_pet4"),
+    path('adopt_pet5', views.adopt_pet5, name="adopt_pet5"),
+    path('adopt_pet6', views.adopt_pet6, name="adopt_pet6"),
+    path('adopt_pet7', views.adopt_pet7, name="adopt_pet7"),
    
     # 諮詢
     path('line', views.line, name='line'),
-    path('h2', views.h2, name='h2'),
-    path('h4', views.h4, name='h4'),
-    path('h5', views.h5, name='h5'),
-    path('h51', views.h51, name='h51'),
-    path('h52', views.h52, name='h52'),
-    path('h53', views.h53, name='h53'),
-    path('h54', views.h54, name='h54'),
-    path('h55', views.h55, name='h55'),
-    path('h6', views.h6, name='h6'),
-    path('h7', views.h7, name='h7'),
+
+    # 寵物醫院
+    path('Hospital_visits', views.Hospital_visits, name='Hospital_visits'),
+    path('Hospital_healthcheck', views.Hospital_healthcheck, name='Hospital_healthcheck'),
+    path('Hospital_map', views.Hospital_map, name='Hospital_map'),
+    path('Hospital_mapTPE', views.Hospital_mapTPE, name='Hospital_mapTPE'),
+    path('Hospital_mapTYC', views.Hospital_mapTYC, name='Hospital_mapTYC'),
+    path('Hospital_mapTXG', views.Hospital_mapTXG, name='Hospital_mapTXG'),
+    path('Hospital_mapTNN', views.Hospital_mapTNN, name='Hospital_mapTNN'),
+    path('Hospital_mapKHH', views.Hospital_mapKHH, name='Hospital_mapKHH'),
+    path('Hospital_commonproblem', views.Hospital_commonproblem, name='Hospital_commonproblem'),
+    
     
     # 商城
-    path('s11', views.s11, name='s11'),
-    path('s12', views.s12, name='s12'),
-    path('s13', views.s13, name='s13'),
-    path('s21', views.s21, name='s21'),
-    path('s22', views.s22, name='s22'),
-    path('s31', views.s31, name='s31'),
-    path('s32', views.s32, name='s32'),
-    path('s33', views.s33, name='s33'),
-    path('s34', views.s34, name='s34'),
-    path('s35', views.s35, name='s35'),
-    path('s36', views.s36, name='s36'),
-    path('s37', views.s37, name='s37'),
-    path('s38', views.s38, name='s38'),
-    path('s41', views.s41, name='s41'),
-    path('s42', views.s42, name='s42'),
-    path('s43', views.s43, name='s43'),
-    path('s44', views.s44, name='s44'),
+    path('mall_freshfood1', views.mall_freshfood1, name='mall_freshfood1'),
+    path('mall_freshfood2', views.mall_freshfood2, name='mall_freshfood2'),
+    path('mall_freshfood3', views.mall_freshfood3, name='mall_freshfood3'),
+    path('mall_feed1', views.mall_feed1, name='mall_feed1'),
+    path('mall_feed2', views.mall_feed2, name='mall_feed2'),
+    path('mall_clothing1', views.mall_clothing1, name='mall_clothing1'),
+    path('mall_clothing2', views.mall_clothing2, name='mall_clothing2'),
+    path('mall_clothing3', views.mall_clothing3, name='mall_clothing3'),
+    path('mall_clothing4', views.mall_clothing4, name='mall_clothing4'),
+    path('mall_clothing5', views.mall_clothing5, name='mall_clothing5'),
+    path('mall_clothing6', views.mall_clothing6, name='mall_clothing6'),
+    path('mall_clothing7', views.mall_clothing7, name='mall_clothing7'),
+    path('mall_clothing8', views.mall_clothing8, name='mall_clothing8'),
+    path('mall_accessories1', views.mall_accessories1, name='mall_accessories1'),
+    path('mall_accessories2', views.mall_accessories2, name='mall_accessories2'),
+    path('mall_accessories3', views.mall_accessories3, name='mall_accessories3'),
+    path('mall_accessories4', views.mall_accessories4, name='mall_accessories4'),
 
     # 基本
     path('QA', views.QA, name='QA'),
-    path('pr', views.pr, name='pr'),
+    path('privacy', views.privacy, name='privacy'),
     path('main', views.main, name='main'),
     path('login', views.login, name='login'),
     path('register', views.register, name='register'),
