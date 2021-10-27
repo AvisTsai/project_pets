@@ -63,7 +63,8 @@ urlpatterns = [
     path('Hospital_mapTNN', views.Hospital_mapTNN, name='Hospital_mapTNN'),
     path('Hospital_mapKHH', views.Hospital_mapKHH, name='Hospital_mapKHH'),
     path('Hospital_commonproblem', views.Hospital_commonproblem, name='Hospital_commonproblem'),
-    
+    path('funeral_pet', views.funeral_pet, name='funeral_pet'),
+
     
     # 商城
     path('mall_freshfood1', views.mall_freshfood1, name='mall_freshfood1'),
