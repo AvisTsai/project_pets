@@ -32,7 +32,7 @@ urlpatterns = [
     path('train_find', views.train_find, name='train_find'),
 
     # 記帳
-    path('bookkeeping', views.bookkeeping, name='bookkeeping'),
+    path('bookkeeping/', views.bookkeeping, name='bookkeeping'),
     path('update/<str:pk>', views.update, name='update'),
     path('delete/<str:pk>', views.delete, name='delete'),
 
