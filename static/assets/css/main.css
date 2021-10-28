@@ -2067,6 +2067,25 @@ input, select, textarea {
 	}
 
 /* Header */
+	#header1{
+		display: -moz-flex;
+		display: -webkit-flex;
+		display: -ms-flex;
+		display: flex;
+		-moz-align-items: center;
+		-webkit-align-items: center;
+		-ms-align-items: center;
+		align-items: center;
+		-moz-justify-content: center;
+		-webkit-justify-content: center;
+		-ms-justify-content: center;
+		justify-content: center;
+		position: relative;
+		height: 24em;
+		background: url("../../images/dog1.jpg") center center;
+		background-size: cover;
+		padding: 0;
+	}
 
 	#header {
 		display: -moz-flex;
