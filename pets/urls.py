@@ -64,6 +64,8 @@ urlpatterns = [
     path('Hospital_mapKHH', views.Hospital_mapKHH, name='Hospital_mapKHH'),
     path('Hospital_commonproblem', views.Hospital_commonproblem, name='Hospital_commonproblem'),
     path('funeral_pet', views.funeral_pet, name='funeral_pet'),
+    path('funeral_find', views.funeral_find, name='funeral_find'),
+
 
     
     # 商城

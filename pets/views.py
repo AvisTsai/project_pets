@@ -383,6 +383,9 @@ def Hospital_mapKHH(request):
 def funeral_pet(request):
     return render(request, 'pet-fu.html')
 
+def funeral_find(request):
+    return render(request, 'pet-fu1.html')
+
 # 常見
 def Hospital_commonproblem(request):
     return render(request, 'pet-h6.html')
