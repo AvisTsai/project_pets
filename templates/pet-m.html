@@ -31,22 +31,22 @@
                 <li>
                     <a href="#">個人資訊</a>
                     <ul>
-                        <li><a href="calendar">提醒事項</a></li>
-                        <li><a href="modify">修改密碼</a></li>
+                        <li><a href="{% url 'calendar'%}">提醒事項</a></li>
+                        <li><a href="{% url 'modify'%}">修改密碼</a></li>
                         <li><a href="#">帳號登出</a></li>
-                        <li><a href="aboutus">關於我們</a></li>
+                        <li><a href="{% url 'aboutus'%}">關於我們</a></li>
                     </ul>
                 </li>
 
                 <li>
                     <a href="#">日常生活</a>
                     <ul>
-                        <li><a href="bookkeeping">寵物記帳</a></li>
-                        <li><a href="walk_pet">散步地圖</a></li>
-                        <li><a href="consult">寵物住宿</a></li>
-                        <li><a href="grooming_pet">寵物美容</a></li>
-                        <li><a href="train_pet">寵物訓練</a></li>
-                        <li><a href="adopt_pet1">寵物領養</a></li>
+                        <li><a href="{% url 'bookkeeping'%}">寵物記帳</a></li>
+                        <li><a href="{% url 'walk_pet'%}">散步地圖</a></li>
+                        <li><a href="{% url 'consult'%}">寵物住宿</a></li>
+                        <li><a href="{% url 'grooming_pet'%}">寵物美容</a></li>
+                        <li><a href="{% url 'train_pet'%}">寵物訓練</a></li>
+                        <li><a href="{% url 'adopt_pet1'%}">寵物領養</a></li>
                     </ul>
                 </li>
                 <li>
@@ -56,25 +56,23 @@
                         <li><a href="mall_feed1">飼料</a></li>
                         <li><a href="">衣服</a>
                             <ul>
-                                <li><a href="mall_clothing1">春夏季</a></li>
-                                <li><a href="mall_clothing4">秋冬季</a></li>
-                                <li><a href="mall_clothing7">其他</a></li>
+                                <li><a href="{% url 'mall_clothing1'%}">春夏季</a></li>
+                                <li><a href="{% url 'mall_clothing4'%}">秋冬季</a></li>
+                                <li><a href="{% url 'mall_clothing7'%}">其他</a></li>
                             </ul>
                         </li>
                 </li>
-                <li><a href="mall_accessories1">配件</a></li>
+                        <li><a href="{% url 'mall_accessories1'%}s41">配件</a></li>
             </ul>
             </li>
             <li>
                 <a href="#">寵物醫院</a>
                 <ul>
-
-                    <li><a href="Hospital_visits">看診項目</a></li>
-                    <li><a href="Hospital_healthcheck">健康檢查</a></li>
-                    <li><a href="Hospital_map">醫院地圖</a></li>
-                    <li><a href="funeral_pet">寵物葬儀</a></li>
-                    <li><a href="Hospital_commonproblem">常見問題</a></li>
-                    
+                    <li><a href="{% url 'Hospital_visits'%}">看診項目</a></li>
+                    <li><a href="{% url 'Hospital_healthcheck'%}">健康檢查</a></li>
+                    <li><a href="{% url 'Hospital_map'%}">醫院地圖</a></li>
+                    <li><a href="{% url 'funeral_pet'%}">寵物葬儀</a></li>
+                    <li><a href="{% url 'Hospital_commonproblem'%}">常見問題</a></li>
 
                 </ul>
             </li>
