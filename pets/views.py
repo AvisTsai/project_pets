@@ -2,18 +2,16 @@ import datetime
 
 from django.contrib.auth import authenticate
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib import auth
 from .forms import RegisterForm, MoneyForm
 from django.views.decorators.csrf import csrf_exempt
-from django.utils import timezone
-from .models import Money
-
+from django.views.generic import ListView, CreateView, UpdateView
 from datetime import datetime, timedelta, date
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.utils.safestring import mark_safe
 import calendar
 
@@ -74,6 +72,7 @@ def grooming(request):
 def bookkeeping(request):
     money = Money.objects.all()  # 查詢所有資料
     form = MoneyForm()
+
     if request.method == 'POST':
         form = MoneyForm(request.POST)
         if form.is_valid():
@@ -202,7 +201,8 @@ def walk_Tainan(request):
 def walk_Kaohsiung(request):
     return render(request, 'pet-w5.html')
 
-#基本
+
+# 基本
 
 def main(request):
     return render(request, 'main.html')
@@ -383,8 +383,10 @@ def Hospital_mapKHH(request):
 def funeral_pet(request):
     return render(request, 'pet-fu.html')
 
+
 def funeral_find(request):
     return render(request, 'pet-fu1.html')
+
 
 # 常見
 def Hospital_commonproblem(request):

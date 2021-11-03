@@ -2927,4 +2927,21 @@ input, select, textarea {
 
 	}
 
-
+    #BackTop{
+      padding:10px;
+      border: solid black;
+      border-width: 0px 3px 3px 0;
+      display: inline-block;
+      transform: rotate(-135deg);
+      background:#FFFFF;
+      color:#484d55;
+      text-decoration:none;
+      position:fixed;
+      bottom:30px;
+      right:30px;
+      display:none;
+    }
+    #BackTop:hover{
+      background:#FFFFF;
+      text-decoration:none;
+    }

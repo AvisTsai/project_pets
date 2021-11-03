@@ -737,7 +737,8 @@
 			</div>
 		</div>
 	</section>
-	<button type="button" id="BackTop" class="toTop-arrow"></button>
+	<a type="button" id="BackTop" class="toTop-arrow"></a>
+</body>
 
 	<!-- Scripts -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
@@ -748,9 +749,9 @@
 			});
 			$(window).scroll(function() {
 				if ( $(this).scrollTop() > 300 ){
-					$('#BackTop').fadeIn(222);
+					$('#BackTop').fadeIn('Fixed');
 				} else {
-					$('#BackTop').stop().fadeOut(222);
+					$('#BackTop').stop().fadeOut('Fixed');
 				}
 			}).scroll();
 		});
@@ -762,6 +763,6 @@
 	<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
 	<script src="{% static 'assets/js/util.js' %}"></script>
 	<script src="{% static 'assets/js/main.js' %}"></script>
-</body>
+
 
 </html>
