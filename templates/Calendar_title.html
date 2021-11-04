@@ -1,0 +1,55 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+
+
+
+<br>
+
+<div class="row">
+	<div class="col-md-7">
+		<h5>我的所有事件</h5>
+		<form method="get" action="/titleSearch/">
+  		{% csrf_token %}
+	  	<input type="search" placeholder="搜索" required>
+  		<button type="submit">搜索</button>
+		</form>
+<!--		<br>-->
+<!--		<input type="search" name="q" placeholder="請輸入要搜尋的標題" required>-->
+<!--		<button type="button" class="btn btn-outline-primary">搜尋</button>-->
+<!--		<hr>-->
+
+
+				{% for title in title %}
+					<table class="table table-bordered">
+					<tr>
+						<td>title</td>
+						<td>{{title.title}}</td>
+<!--						<td>{{title.title}}</td>-->
+<!--						<td><ul>{{title.get_html_url}}</ul></td>-->
+<!--						<td><li> {title.get_html_url} </li></td>-->
+					</tr>
+					<tr>
+						<td>Description</td>
+						<td>{{title.description}}</td>
+<!--						<td>{{order.status}}</td>-->
+<!--						<td><a href="">Update</a></td>-->
+<!--						<td><a href="">Delete</a></td>-->
+
+					</tr>
+					<tr>
+						<td>start_time</td>
+						<td>{{title.start_time}}</td>
+					</tr>
+
+					</table>
+				{% endfor %}
+
+
+			</table>
+		</div>
+	</div>
+
+</div>
+
+{% endblock %}

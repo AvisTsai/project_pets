@@ -140,10 +140,14 @@ class Money(models.Model):
 # 行事曆
 
 class Event(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField("標題", max_length=200)
     description = models.TextField()
     start_time = models.DateTimeField()
     end_time = models.DateTimeField()
+
+    def __str__(self):
+        return self.title
+    # date_created = models.DateTimeField(auto_now_add=True, null=True)
 # Create your models here.
 # 創造model
     @property

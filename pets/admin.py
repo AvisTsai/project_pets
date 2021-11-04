@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Pet, Tag, MemberManagement, Money, Register
+from .models import Pet, Tag, MemberManagement, Money, Register,Event
 
 # Register your models here.
 admin.site.register(Pet)
