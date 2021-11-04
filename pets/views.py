@@ -179,7 +179,7 @@ def event(request, event_id=None):
 
 # 散步
 def walk_pet(request):
-    return render(request, 'pet-w0.html')
+    return render(request, 'walk_pet.html')
 
 
 def walk_Taipei(request):
