@@ -2067,6 +2067,24 @@ input, select, textarea {
 	}
 
 /* Header */
+	#header1{
+		display: -moz-flex;
+		display: -webkit-flex;
+		display: -ms-flex;
+		display: flex;
+		-moz-align-items: center;
+		-webkit-align-items: center;
+		-ms-align-items: center;
+		align-items: center;
+		-moz-justify-content: center;
+		-webkit-justify-content: center;
+		-ms-justify-content: center;
+		justify-content: center;
+		position: relative;
+		height: 24em;
+		background-size: cover;
+		padding: 0;
+	}
 
 	#header {
 		display: -moz-flex;
@@ -2908,4 +2926,22 @@ input, select, textarea {
 
 	}
 
-
+/* ARROR */
+    #BackTop{
+      padding:10px;
+      border: solid black;
+      border-width: 0px 3px 3px 0;
+      display: inline-block;
+      transform: rotate(-135deg);
+      background:#FFFFF;
+      color:#484d55;
+      text-decoration:none;
+      position:fixed;
+      bottom:30px;
+      right:30px;
+      display:none;
+    }
+    #BackTop:hover{
+      background:#FFFFF;
+      text-decoration:none;
+    }

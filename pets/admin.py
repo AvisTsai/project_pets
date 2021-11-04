@@ -7,8 +7,6 @@ admin.site.register(Pet)
 # admin.site.register(OriginPlace)
 admin.site.register(Tag)
 admin.site.register(MemberManagement)
-admin.site.register(Money)
-admin.site.register(Event)
 
 
 class RegisterAdmin(admin.ModelAdmin):
@@ -16,3 +14,10 @@ class RegisterAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Register, RegisterAdmin)
+
+
+class MoneyAdmin(admin.ModelAdmin):
+    list_display = ('time', 'category', 'item', 'price')
+
+
+admin.site.register(Money, MoneyAdmin)

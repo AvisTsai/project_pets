@@ -102,7 +102,6 @@ class MemberManagement(models.Model):
 
 
 # 記帳
-
 class Category(models.TextChoices):
     food = 'food', '食物'
     toy = 'toy', '玩具'
@@ -111,11 +110,25 @@ class Category(models.TextChoices):
     others = 'others', '其他'
 
 
+class Item(models.TextChoices):
+    food = 'food', '肉乾'
+    food1 = 'food1', '鮮食'
+    toy = 'toy', '飛盤'
+    clothes = 'clothes', '領巾'
+    salon = 'salon', '剪毛'
+    others = 'others', '項圈'
+    # food = {'飼料', '鮮食', '餅乾', '潔牙骨', '肉乾'}
+    # toy = {'球', '飛盤', '繩索', '玩偶', '塑膠玩具'}
+    # clothes = {'褲裝', '領巾', '裙裝'}
+    # salon = {'洗澡', '剪毛'}
+    # others = {'預防針', '項圈', '保養品', '看醫生'}
+
+
 class Money(models.Model):
-    time = models.DateTimeField(default=django.utils.timezone.now)
-    category = models.CharField(max_length=255, choices=Category.choices, default='未分類')
-    item = models.CharField(max_length=255, verbose_name='項目')
-    price = models.IntegerField(default=0, verbose_name='金額')
+    time = models.DateTimeField(default='請選擇時間')
+    category = models.CharField(max_length=255, choices=Category.choices, verbose_name='類別')
+    item = models.CharField(max_length=255, choices=Item.choices, verbose_name='項目')
+    price = models.IntegerField(verbose_name='金額')
 
     def __str__(self):
         return self.item
@@ -124,7 +137,7 @@ class Money(models.Model):
         verbose_name = '記帳'
         verbose_name_plural = '記帳'
 
-#         行事曆
+# 行事曆
 
 class Event(models.Model):
     title = models.CharField("標題", max_length=200)

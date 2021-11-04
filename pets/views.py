@@ -2,18 +2,16 @@ import datetime
 
 from django.contrib.auth import authenticate
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.contrib import auth, messages
+from django.http import HttpResponse, JsonResponse
+from django.contrib import auth
 from .forms import RegisterForm, MoneyForm
 from django.views.decorators.csrf import csrf_exempt
-from django.utils import timezone
-from .models import Money
-
+from django.views.generic import ListView, CreateView, UpdateView
 from datetime import datetime, timedelta, date
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
 from django.utils.safestring import mark_safe
 import calendar
 
@@ -72,15 +70,10 @@ def grooming(request):
 
 
 # 記帳
-def current_time(request):
-    now = datetime.datetime.now()
-    time_style = now.strftime("%Y-%m-%d %H:%M:%S")
-    return render(request, 'pet-m.html', {'cur_time': time_style})
-
-
 def bookkeeping(request):
     money = Money.objects.all()  # 查詢所有資料
     form = MoneyForm()
+
     if request.method == 'POST':
         form = MoneyForm(request.POST)
         if form.is_valid():
@@ -220,29 +213,31 @@ def viewTitle(request):
 	return render(request, 'Calendar_title.html', context)
 
 # 散步
-def walk(request):
+def walk_pet(request):
     return render(request, 'pet-w0.html')
 
 
-def walk1(request):
+def walk_Taipei(request):
     return render(request, 'pet-w1.html')
 
 
-def walk2(request):
+def walk_Taoyuan(request):
     return render(request, 'pet-w2.html')
 
 
-def walk3(request):
+def walk_Taizhong(request):
     return render(request, 'pet-w3.html')
 
 
-def walk4(request):
+def walk_Tainan(request):
     return render(request, 'pet-w4.html')
 
 
-def walk5(request):
+def walk_Kaohsiung(request):
     return render(request, 'pet-w5.html')
 
+
+# 基本
 
 def main(request):
     return render(request, 'main.html')
@@ -266,175 +261,175 @@ def consult(request):
 
 
 # 美容
-def grooming(request):
+def grooming_pet(request):
     return render(request, 'pet-g11.html')
 
 
-def grooming1(request):
+def grooming_find(request):
     return render(request, 'pet-g12.html')
 
 
 # 訓練
-def train(request):
+def train_pet(request):
     return render(request, 'pet-t11.html')
 
 
-def train1(request):
+def train_find(request):
     return render(request, 'pet-t12.html')
 
 
 # 領養
-def adopt(request):
+def adopt_pet1(request):
     return render(request, 'pet-a.html')
 
 
-def adopt1(request):
+def adopt_pet2(request):
     return render(request, 'pet-a1.html')
 
 
-def adopt2(request):
+def adopt_pet3(request):
     return render(request, 'pet-a2.html')
 
 
-def adopt3(request):
+def adopt_pet4(request):
     return render(request, 'pet-a3.html')
 
 
-def adopt4(request):
+def adopt_pet5(request):
     return render(request, 'pet-a4.html')
 
 
-def adopt5(request):
+def adopt_pet6(request):
     return render(request, 'pet-a5.html')
 
 
-def adopt6(request):
+def adopt_pet7(request):
     return render(request, 'pet-a6.html')
 
 
 # 商城
-def s11(request):
+def mall_freshfood1(request):
     return render(request, 'pet-s11.html')
 
 
-def s12(request):
+def mall_freshfood2(request):
     return render(request, 'pet-s12.html')
 
 
-def s13(request):
+def mall_freshfood3(request):
     return render(request, 'pet-s13.html')
 
 
-def s21(request):
+def mall_feed1(request):
     return render(request, 'pet-s21.html')
 
 
-def s22(request):
+def mall_feed2(request):
     return render(request, 'pet-s22.html')
 
 
-def s31(request):
+def mall_clothing1(request):
     return render(request, 'pet-s31.html')
 
 
-def s32(request):
+def mall_clothing2(request):
     return render(request, 'pet-s32.html')
 
 
-def s33(request):
+def mall_clothing3(request):
     return render(request, 'pet-s33.html')
 
 
-def s34(request):
+def mall_clothing4(request):
     return render(request, 'pet-s34.html')
 
 
-def s35(request):
+def mall_clothing5(request):
     return render(request, 'pet-s35.html')
 
 
-def s36(request):
+def mall_clothing6(request):
     return render(request, 'pet-s36.html')
 
 
-def s37(request):
+def mall_clothing7(request):
     return render(request, 'pet-s37.html')
 
 
-def s38(request):
+def mall_clothing8(request):
     return render(request, 'pet-s38.html')
 
 
-def s41(request):
+def mall_accessories1(request):
     return render(request, 'pet-s41.html')
 
 
-def s42(request):
+def mall_accessories2(request):
     return render(request, 'pet-s42.html')
 
 
-def s43(request):
+def mall_accessories3(request):
     return render(request, 'pet-s43.html')
 
 
-def s44(request):
+def mall_accessories4(request):
     return render(request, 'pet-s44.html')
 
 
 # 寵物醫院
 
-# 諮詢
-def line(request):
-    return render(request, 'pet-h1.html')
-
 
 # 看診
-def h2(request):
+def Hospital_visits(request):
     return render(request, 'pet-h2.html')
 
 
-# 門診
-def h3(request):
-    return render(request, 'pet-h3.html')
-
-
 # 健康
-def h4(request):
+def Hospital_healthcheck(request):
     return render(request, 'pet-h4.html')
 
 
 # 地圖
-def h5(request):
+def Hospital_map(request):
     return render(request, 'pet-h5.html')
 
 
-def h51(request):
+def Hospital_mapTPE(request):
     return render(request, 'pet-h51.html')
 
 
-def h52(request):
+def Hospital_mapTYC(request):
     return render(request, 'pet-h52.html')
 
 
-def h53(request):
+def Hospital_mapTXG(request):
     return render(request, 'pet-h53.html')
 
 
-def h54(request):
+def Hospital_mapTNN(request):
     return render(request, 'pet-h54.html')
 
 
-def h55(request):
+def Hospital_mapKHH(request):
     return render(request, 'pet-h55.html')
 
 
+# 葬儀
+def funeral_pet(request):
+    return render(request, 'pet-fu.html')
+
+
+def funeral_find(request):
+    return render(request, 'pet-fu1.html')
+
+
 # 常見
-def h6(request):
+def Hospital_commonproblem(request):
     return render(request, 'pet-h6.html')
 
 
 # 關於
-def h7(request):
+def aboutus(request):
     return render(request, 'pet-h7.html')
 
 
@@ -443,5 +438,5 @@ def QA(request):
     return render(request, 'QA.html')
 
 
-def pr(request):
+def privacy(request):
     return render(request, 'privacy.html')
