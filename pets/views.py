@@ -3,7 +3,7 @@ import datetime
 from django.contrib.auth import authenticate
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib import auth
+from django.contrib import auth, messages
 from .forms import RegisterForm, MoneyForm
 from django.views.decorators.csrf import csrf_exempt
 from django.utils import timezone
@@ -20,6 +20,7 @@ import calendar
 from .models import *
 from .utils import Calendar
 from .forms import EventForm
+
 
 
 def index(request):
@@ -150,16 +151,26 @@ class CalendarView(generic.ListView):
 
 def prev_month(d):
     first = d.replace(day=1)
+    print('first', first)
     prev_month = first - timedelta(days=1)
+    print(prev_month)
     month = 'month=' + str(prev_month.year) + '-' + str(prev_month.month)
     return month
 
 
 def next_month(d):
     days_in_month = calendar.monthrange(d.year, d.month)[1]
+    # print('days_in_month', days_in_month)
+    # 31
     last = d.replace(day=days_in_month)
+    # print('last', last)
+    # 2021-12-31
     next_month = last + timedelta(days=1)
+    # print(next_month)
+    # 2022-01-01
     month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
+    # print(month)
+    # mouth=2022-1
     return month
 
 
@@ -183,6 +194,30 @@ def event(request, event_id=None):
         return HttpResponseRedirect(reverse('pets:calendar'))
     return render(request, 'event.html', {'form': form})
 
+# 刪除事件
+# def delEvent(request, event_id=None):
+# 	del_Event = get_object_or_404(Event, pk=event_id)
+# 	if request.method == "POST":
+# 		del_Event.delete()
+# 		return redirect('/')
+# 	return render(request, 'delEvent.html')
+
+# 行事曆搜尋功能
+def titleSearch(request):
+    q = request.GET.get('q')
+    title = Event.objects.filter(title__icontains=q)
+    return render(request, 'result.html', {'title': title})
+
+# titleSearch()
+
+def viewTitle(request):
+	title = Event.objects.all()
+	description = Event.objects.all()
+    # start_time = Event.objects.all()
+
+	context = {'title':title, 'Descriptions':description,
+               }
+	return render(request, 'Calendar_title.html', context)
 
 # 散步
 def walk(request):

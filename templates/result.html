@@ -1,0 +1,14 @@
+<!--{% if error_msg %}-->
+<!--    <p>{{ error_msg }}</p>-->
+<!--{% endif %}-->
+
+{% for title in title %}
+  <tr>
+    <td>title</td>
+    <td>{{title.title}}</td>
+  </tr>
+{% empty %}
+  <div class="no-post">
+    没有搜索到符合条件的文章
+  </div>
+{% endfor %}

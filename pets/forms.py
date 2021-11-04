@@ -68,5 +68,6 @@ class EventForm(ModelForm):
         super(EventForm, self).__init__(*args, **kwargs)
         # input_formats to parse HTML5 datetime-local input to datetime field
         # datetime input設定
+        # 用於嘗試將字符串轉換為有效datetime.datetime對象的格式列表
         self.fields['start_time'].input_formats = ('%Y-%m-%dT%H:%M',)
         self.fields['end_time'].input_formats = ('%Y-%m-%dT%H:%M',)

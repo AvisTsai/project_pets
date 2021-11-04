@@ -38,7 +38,9 @@ urlpatterns = [
     # 行事曆
     path('calendar/', views.CalendarView.as_view(), name='calendar'),
     path('event/new/', views.event, name='event_new'),
-    path('event/edit/(?P<event_id>\d+)/', views.event, name='event_edit'),
+    path('CalTitle/', views.viewTitle, name='CalTitle'),
+    path('event/edit/<event_id>/', views.event, name='event_edit'),
+    path('titleSearch/', views.titleSearch, name='search'),
 
 
     # 領養
