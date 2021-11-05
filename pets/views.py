@@ -20,7 +20,6 @@ from .utils import Calendar
 from .forms import EventForm
 
 
-
 def index(request):
     return render(request, 'index.html')
 
@@ -66,7 +65,7 @@ def logout(request):
 
 
 def grooming(request):
-    return render(request, 'pet-g11.html', locals())
+    return render(request, 'grooming_pet.html', locals())
 
 
 # 記帳
@@ -85,7 +84,7 @@ def bookkeeping(request):
         'form': MoneyForm
     }
 
-    return render(request, 'pet-m.html', context)
+    return render(request, 'bookkeeping.html', context)
 
 
 def update(request, pk):
@@ -187,6 +186,7 @@ def event(request, event_id=None):
         return HttpResponseRedirect(reverse('pets:calendar'))
     return render(request, 'event.html', {'form': form})
 
+
 # 刪除事件
 # def delEvent(request, event_id=None):
 # 	del_Event = get_object_or_404(Event, pk=event_id)
@@ -201,16 +201,18 @@ def titleSearch(request):
     title = Event.objects.filter(title__icontains=q)
     return render(request, 'result.html', {'title': title})
 
+
 # titleSearch()
 
 def viewTitle(request):
-	title = Event.objects.all()
-	description = Event.objects.all()
+    title = Event.objects.all()
+    description = Event.objects.all()
     # start_time = Event.objects.all()
 
-	context = {'title':title, 'Descriptions':description,
+    context = {'title': title, 'Descriptions': description,
                }
-	return render(request, 'Calendar_title.html', context)
+    return render(request, 'Calendar_title.html', context)
+
 
 # 散步
 def walk_pet(request):
@@ -218,23 +220,23 @@ def walk_pet(request):
 
 
 def walk_Taipei(request):
-    return render(request, 'pet-w1.html')
+    return render(request, 'walk_Taipei.html')
 
 
 def walk_Taoyuan(request):
-    return render(request, 'pet-w2.html')
+    return render(request, 'walk_Taoyuan.html')
 
 
 def walk_Taizhong(request):
-    return render(request, 'pet-w3.html')
+    return render(request, 'walk_Taizhong.html')
 
 
 def walk_Tainan(request):
-    return render(request, 'pet-w4.html')
+    return render(request, 'walk_Tainan.html')
 
 
 def walk_Kaohsiung(request):
-    return render(request, 'pet-w5.html')
+    return render(request, 'walk_Kaohsiung.html')
 
 
 # 基本
@@ -257,123 +259,123 @@ def index1(request):
 
 # 住宿
 def consult(request):
-    return render(request, 'pet-h.html')
+    return render(request, 'consult.html')
 
 
 # 美容
 def grooming_pet(request):
-    return render(request, 'pet-g11.html')
+    return render(request, 'grooming_pet.html')
 
 
 def grooming_find(request):
-    return render(request, 'pet-g12.html')
+    return render(request, 'grooming_find.html')
 
 
 # 訓練
 def train_pet(request):
-    return render(request, 'pet-t11.html')
+    return render(request, 'train_pet.html')
 
 
 def train_find(request):
-    return render(request, 'pet-t12.html')
+    return render(request, 'train_find.html')
 
 
 # 領養
 def adopt_pet1(request):
-    return render(request, 'pet-a.html')
+    return render(request, 'adopt_pet1.html')
 
 
 def adopt_pet2(request):
-    return render(request, 'pet-a1.html')
+    return render(request, 'adopt_pet2.html')
 
 
 def adopt_pet3(request):
-    return render(request, 'pet-a2.html')
+    return render(request, 'adopt_pet3.html')
 
 
 def adopt_pet4(request):
-    return render(request, 'pet-a3.html')
+    return render(request, 'adopt_pet4.html')
 
 
 def adopt_pet5(request):
-    return render(request, 'pet-a4.html')
+    return render(request, 'adopt_pet5.html')
 
 
 def adopt_pet6(request):
-    return render(request, 'pet-a5.html')
+    return render(request, 'adopt_pet6.html')
 
 
 def adopt_pet7(request):
-    return render(request, 'pet-a6.html')
+    return render(request, 'adopt_pet7.html')
 
 
 # 商城
 def mall_freshfood1(request):
-    return render(request, 'pet-s11.html')
+    return render(request, 'mall_freshfood1.html')
 
 
 def mall_freshfood2(request):
-    return render(request, 'pet-s12.html')
+    return render(request, 'mall_freshfood2.html')
 
 
 def mall_freshfood3(request):
-    return render(request, 'pet-s13.html')
+    return render(request, 'mall_freshfood3.html')
 
 
 def mall_feed1(request):
-    return render(request, 'pet-s21.html')
+    return render(request, 'mall_feed1.html')
 
 
 def mall_feed2(request):
-    return render(request, 'pet-s22.html')
+    return render(request, 'mall_feed2.html')
 
 
 def mall_clothing1(request):
-    return render(request, 'pet-s31.html')
+    return render(request, 'mall_clothing1.html')
 
 
 def mall_clothing2(request):
-    return render(request, 'pet-s32.html')
+    return render(request, 'mall_clothing2.html')
 
 
 def mall_clothing3(request):
-    return render(request, 'pet-s33.html')
+    return render(request, 'mall_clothing3.html')
 
 
 def mall_clothing4(request):
-    return render(request, 'pet-s34.html')
+    return render(request, 'mall_clothing4.html')
 
 
 def mall_clothing5(request):
-    return render(request, 'pet-s35.html')
+    return render(request, 'mall_clothing5.html')
 
 
 def mall_clothing6(request):
-    return render(request, 'pet-s36.html')
+    return render(request, 'mall_clothing6.html')
 
 
 def mall_clothing7(request):
-    return render(request, 'pet-s37.html')
+    return render(request, 'mall_clothing7.html')
 
 
 def mall_clothing8(request):
-    return render(request, 'pet-s38.html')
+    return render(request, 'mall_clothing8.html')
 
 
 def mall_accessories1(request):
-    return render(request, 'pet-s41.html')
+    return render(request, 'mall_accessories1.html')
 
 
 def mall_accessories2(request):
-    return render(request, 'pet-s42.html')
+    return render(request, 'mall_accessories2.html')
 
 
 def mall_accessories3(request):
-    return render(request, 'pet-s43.html')
+    return render(request, 'mall_accessories3.html')
 
 
 def mall_accessories4(request):
-    return render(request, 'pet-s44.html')
+    return render(request, 'mall_accessories4.html')
 
 
 # 寵物醫院
@@ -381,56 +383,56 @@ def mall_accessories4(request):
 
 # 看診
 def Hospital_visits(request):
-    return render(request, 'pet-h2.html')
+    return render(request, 'Hospital_visits.html')
 
 
 # 健康
 def Hospital_healthcheck(request):
-    return render(request, 'pet-h4.html')
+    return render(request, 'Hospital_healthcheck.html')
 
 
 # 地圖
 def Hospital_map(request):
-    return render(request, 'pet-h5.html')
+    return render(request, 'Hospital_map.html')
 
 
 def Hospital_mapTPE(request):
-    return render(request, 'pet-h51.html')
+    return render(request, 'Hospital_mapTPE.html')
 
 
 def Hospital_mapTYC(request):
-    return render(request, 'pet-h52.html')
+    return render(request, 'Hospital_mapTYC.html')
 
 
 def Hospital_mapTXG(request):
-    return render(request, 'pet-h53.html')
+    return render(request, 'Hospital_mapTXG.html')
 
 
 def Hospital_mapTNN(request):
-    return render(request, 'pet-h54.html')
+    return render(request, 'Hospital_mapTNN.html')
 
 
 def Hospital_mapKHH(request):
-    return render(request, 'pet-h55.html')
+    return render(request, 'Hospital_mapKHH.html')
 
 
 # 葬儀
 def funeral_pet(request):
-    return render(request, 'pet-fu.html')
+    return render(request, 'funeral_pet.html')
 
 
 def funeral_find(request):
-    return render(request, 'pet-fu1.html')
+    return render(request, 'funeral_find.html')
 
 
 # 常見
 def Hospital_commonproblem(request):
-    return render(request, 'pet-h6.html')
+    return render(request, 'Hospital_commonproblem.html')
 
 
 # 關於
 def aboutus(request):
-    return render(request, 'pet-h7.html')
+    return render(request, 'aboutus.html')
 
 
 # 基本
