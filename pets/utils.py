@@ -47,3 +47,10 @@ class Calendar(HTMLCalendar):
 			cal += f'{self.formatweek(week, events)}\n'
 		# print(cal)
 		return cal
+
+	def getEventurl(self, events):
+		events_per_day = events.filter(start_time__day=day)
+		d = ''
+		for event in events_per_day:
+			d += f'<li> {event.get_html_url} </li>'
+		return f"<td><ul> {d} </ul></td>"

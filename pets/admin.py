@@ -7,6 +7,7 @@ admin.site.register(Pet)
 # admin.site.register(OriginPlace)
 admin.site.register(Tag)
 admin.site.register(MemberManagement)
+admin.site.register(Event)
 
 
 class RegisterAdmin(admin.ModelAdmin):

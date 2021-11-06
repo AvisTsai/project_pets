@@ -20,7 +20,6 @@ from .utils import Calendar
 from .forms import EventForm
 
 
-
 def index(request):
     return render(request, 'index.html')
 
@@ -77,7 +76,7 @@ def bookkeeping(request):
     if request.method == 'POST':
         form = MoneyForm(request.POST)
         if form.is_valid():
-            form.save()
+            form.svae()
         return redirect("pets:bookkeeping")
 
     context = {
@@ -187,6 +186,7 @@ def event(request, event_id=None):
         return HttpResponseRedirect(reverse('pets:calendar'))
     return render(request, 'event.html', {'form': form})
 
+
 # 刪除事件
 # def delEvent(request, event_id=None):
 # 	del_Event = get_object_or_404(Event, pk=event_id)
@@ -201,16 +201,20 @@ def titleSearch(request):
     title = Event.objects.filter(title__icontains=q)
     return render(request, 'result.html', {'title': title})
 
+
 # titleSearch()
 
-def viewTitle(request):
-	title = Event.objects.all()
-	description = Event.objects.all()
-    # start_time = Event.objects.all()
+def viewTitle(request, events):
 
-	context = {'title':title, 'Descriptions':description,
-               }
-	return render(request, 'Calendar_title.html', context)
+    t = Calendar.getEventurl(events)
+    title = Event.objects.all()
+    description = Event.objects.all()
+
+    context = {'title': title, 'Descriptions': description,
+           }
+
+    return render(request, 'Calendar_title.html', context, t)
+
 
 # 散步
 def walk_pet(request):

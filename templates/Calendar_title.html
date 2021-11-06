@@ -1,6 +1,9 @@
 {%  extends 'base.html' %}
 
 {% block content %}
+<div class="clearfix">
+  <a class="btn btn-info left" href="{% url 'pets:calendar' %}"> Calendar </a>
+</div>
 
 
 
@@ -24,9 +27,9 @@
 					<table class="table table-bordered">
 					<tr>
 						<td>title</td>
-						<td>{{title.title}}</td>
 <!--						<td>{{title.title}}</td>-->
-<!--						<td><ul>{{title.get_html_url}}</ul></td>-->
+<!--						<td>{{title.title}}</td>-->
+						<td><ul><li>{d}</li></ul></td>
 <!--						<td><li> {title.get_html_url} </li></td>-->
 					</tr>
 					<tr>
