@@ -9,8 +9,8 @@ from django.db import models
 class Register(models.Model):
     username = models.CharField(max_length=15)
     user_pwd = models.CharField(max_length=15)
-    check_password = models.CharField( max_length=15)
-    user_email = models.CharField( max_length=20)
+    check_password = models.CharField(max_length=15)
+    user_email = models.CharField(max_length=20)
 
     def __str__(self):
         return self.username
@@ -137,6 +137,7 @@ class Money(models.Model):
         verbose_name = '記帳'
         verbose_name_plural = '記帳'
 
+
 # 行事曆
 
 class Event(models.Model):
@@ -147,9 +148,10 @@ class Event(models.Model):
 
     def __str__(self):
         return self.title
+
     # date_created = models.DateTimeField(auto_now_add=True, null=True)
-# Create your models here.
-# 創造model
+    # Create your models here.
+    # 創造model
     @property
     def get_html_url(self):
         url = reverse('pets:event_edit', args=(self.id,))
