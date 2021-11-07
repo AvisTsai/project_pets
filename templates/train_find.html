@@ -186,6 +186,7 @@
 									<h2>推薦寵物訓練所</h2>
 									<br>
 									<p><strong><a name="雙北市" id="雙北市"></a>雙北市</strong></p>
+									<iframe src="https://www.google.com/maps/d/u/1/embed?mid=1H3RDWP9rjQvPiQYGXKtfftxU6BBkxt7L" width="640" height="480"></iframe>
 									<p><strong>D.I.N.G.O.寵物訓練教室</strong></p>
 									<p>地址：新北市永和區中正路662巷5號</p>
 									<p>電話：(02)2923-1101</p>
@@ -210,11 +211,12 @@
 									<p>地址：台北市松山區撫遠街369巷16號1樓</p>
 									<p>電話：(02)2761-7636</p>
 									<br>
-									<p><strong><a href="#top">
-												TOP
+									<p><strong><a href="#雙北市">
+												返回雙北市
 											</a></strong></p><br><br>
 
 									<p><strong><a name="桃園市" id="桃園市"></a>桃園市</strong></p>
+									<iframe src="https://www.google.com/maps/d/u/1/embed?mid=1Lx5HZOve0TXxseaYAw_0py3hLnwFlunX" width="640" height="480"></iframe>
 									<p><strong>勝通比賽犬訓練學校</strong></p>
 									<p>地址：桃園市大溪區員林路三段421號</p>
 									<p>電話：0989-011-700</p>
@@ -227,11 +229,15 @@
 									<p>地址：桃園市大園區溪洲路69巷70號</p>
 									<p>電話：0936-833-980</p>
 									<br>
+									<p><strong>PuppyPuppy學園</strong></p>
+									<p>地址：桃園市桃園區國際路一段530巷165號</p>
+									<p>電話：0908-983-389</p>
 									<br>
-									<p><strong><a href="#top">
-												TOP
+									<p><strong><a href="#桃園市">
+												返回桃園市
 											</a></strong></p><br><br>
 									<p><strong><a name="台中市" id="台中市"></a>台中市</strong></p>
+									<iframe src="https://www.google.com/maps/d/u/1/embed?mid=1m6q7zSFSm6E2EeUzbDObclnrBb3747GH" width="640" height="480"></iframe>
 									<p><strong>陽光夥伴人犬教育學園</strong></p>
 									<p>地址：台中市外埔區土城路248號1樓</p>
 									<p>電話：0934-060-708</p>
@@ -247,21 +253,33 @@
 									<p><strong>鈴木犬舍</strong></p>
 									<p>地址：台中市外埔區土城路248號</p>
 									<p>電話：0934-060-708</p>
+									<br>
+									<p><strong>多糖教室 毛小孩教育訓練</strong></p>
+									<p>地址：台中市南屯區文心路一段294號</p>
+									<p>電話：0930-020-038</p>
 									<br>			
-									<p><strong><a href="#top">
-												TOP
+									<p><strong><a href="#台中市">
+												返回台中市
 											</a></strong></p><br><br>
 									<p><strong><a name="台南市" id="台南市"></a>台南市</strong></p>
+									<iframe src="https://www.google.com/maps/d/u/1/embed?mid=1VgsfFhJL_jqF2fTsaShAOfy5f_SHLkob" width="640" height="480"></iframe>
 									<p><strong>勝銘訓犬學校</strong></p>
 									<p>地址：台南市永康區富強路二段278巷99號</p>
 									<p>電話：0952-765-889</p>
-									
-
 									<br>
-									<p><strong><a href="#top">
-												TOP
+									<p><strong>流川丰寵物美容學苑 KCT台南指定學校</strong></p>
+									<p>地址：台南市東區東門路二段231號</p>
+									<p>電話：(06)275-5938</p>
+									<br>
+									<p><strong>寵物行為訓練| 愛諾寵物生活館</strong></p>
+									<p>地址：台南市東門路二段158巷16號</p>
+									<p>電話：(06)208-8899</p>
+									<br>
+									<p><strong><a href="#台南市">
+												返回台南市
 											</a></strong></p><br><br>
 									<p><strong><a name="高雄市" id="高雄市"></a>高雄市</strong></p>
+									<iframe src="https://www.google.com/maps/d/u/1/embed?mid=1KryYP8jhyhnKg7G5VSJSeQGSyoGGUkU5" width="640" height="480"></iframe>
 									<p><strong>米拉寵物行為訓練</strong></p>
 									<p>地址：高雄市前鎮區中華五路939巷24號</p>
 									<p>電話：0939-149-575</p>
@@ -282,8 +300,8 @@
 									<p>電話：(07)731-0845</p>
 									<br>
 									
-									<p><strong><a href="#top">
-												TOP
+									<p><strong><a href="#高雄市">
+												返回高雄市
 											</a></strong></p>
 								</header>
 
@@ -338,6 +356,24 @@
 			</div>
 		</div>
 	</section>
+	<a type="button" id="BackTop" class="toTop-arrow"></a>
+	</body>
+	<!--	GO TOP Button-->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+	<script>
+		$(function(){
+			$('#BackTop').click(function(){ 
+				$('html,body').animate({scrollTop:0}, 333);
+			});
+			$(window).scroll(function() {
+				if ( $(this).scrollTop() > 300 ){
+					$('#BackTop').fadeIn('Fixed');
+				} else {
+					$('#BackTop').stop().fadeOut('Fixed');
+				}
+			}).scroll();
+		});
+		</script>
 	<!-- Scripts -->
 	<script src="{% static 'assets/js/jquery.min.js' %}"></script>
 	<script src="{% static 'assets/js/jquery.dropotron.min.js' %}"></script>
@@ -346,6 +382,5 @@
 	<script src="{% static 'assets/js/util.js' %}"></script>
 	<script src="{% static 'assets/js/main.js' %}"></script>
 
-</body>
 
 </html>
