@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'bootstrap4',
 ]
 
+
 LOGIN_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
