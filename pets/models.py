@@ -42,17 +42,6 @@ class Gender(models.TextChoices):
     female = 'female', '母'
 
 
-# class OriginPlace(models.Model):
-#     name = models.CharField('名稱', max_length=20, unique=True)
-#
-#     def __str__(self):
-#         return self.name
-#
-#     class Meta:
-#         verbose_name = '寵物'
-#         verbose_name_plural = '寵物'
-
-
 class Tag(models.Model):
     name = models.CharField('名稱', max_length=10, unique=True)
 

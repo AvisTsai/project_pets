@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Pet, Register, Money
+from .models import Pet, Register, Money, MemberManagement
 from django.forms import ModelForm, DateInput
 from pets.models import Event
 
@@ -12,30 +12,15 @@ class PetForm(forms.ModelForm):
         model = Pet
 
 
-class RegisterForm(UserCreationForm):
+class RegisterForm(forms.ModelForm):
     username = forms.CharField(label="帳號")
-    email = forms.EmailField(label="電子郵件")
-    password1 = forms.CharField(label="密碼")
-    password2 = forms.CharField(label="密碼確認")
+    user_pwd = forms.CharField(label="密碼")
+    check_password = forms.CharField(label="確認密碼")
+    user_email = forms.EmailField(label="電子郵件")
 
     class Meta:
-        model = User
-        fields = ('username', 'password1', 'password2', 'email')
-
-# class RegisterForm(forms.ModelForm):
-#     username = forms.CharField(label="帳號")
-#     user_pwd = forms.CharField(label="密碼")
-#     check_password = forms.CharField(label="確認密碼")
-#     user_email = forms.EmailField(label="電子郵件")
-#
-#     class Meta:
-#         model = Register
-#         fields = (
-#             'username',
-#             'user_pwd',
-#             'check_password',
-#             'user_email',
-#         )
+        fields = "__all__"
+        model = Register
 
 
 # 記帳
@@ -43,7 +28,7 @@ class MoneyForm(forms.ModelForm):
 
     class Meta:
         model = Money
-        fields = '__all__'
+        fields = "__all__"
 
         # widgets = {
         #     'time': forms.TimeField(attrs={'class': 'form-control'}),

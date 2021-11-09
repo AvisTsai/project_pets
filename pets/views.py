@@ -20,7 +20,6 @@ from .models import *
 from .utils import Calendar
 
 
-
 def index(request):
     return render(request, 'index.html')
 
@@ -28,6 +27,7 @@ def index(request):
 # 註冊
 
 def register(request):
+    form = RegisterForm()
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
@@ -36,9 +36,10 @@ def register(request):
             return redirect('pets:login')
         else:
             messages.error(request, "Unsuccessful registration. Invalid information.")
-            form = RegisterForm()
 
-    context = {'form': form}
+    context = {
+        'form': form
+    }
     return render(request, 'register.html', context)
 
 
@@ -77,7 +78,7 @@ def bookkeeping(request):
     if request.method == 'POST':
         form = MoneyForm(request.POST)
         if form.is_valid():
-            form.svae()
+            form.save()
         return redirect("pets:bookkeeping")
 
     context = {
@@ -118,7 +119,6 @@ def delete(request, pk):
     }
 
     return render(request, 'delete.html', context)
-
 
 
 # 行事曆
