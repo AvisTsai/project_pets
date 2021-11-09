@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django_filters',
 ]
 
+
 LOGIN_REDIRECT_URL = '/'
 
 MIDDLEWARE = [

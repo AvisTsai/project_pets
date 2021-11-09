@@ -41,7 +41,8 @@ urlpatterns = [
     path('event/new/', views.event, name='event_new'),
     path('CalTitle/', views.viewTitle, name='CalTitle'),
     path('event/edit/<event_id>/', views.event, name='event_edit'),
-    path('titleSearch/', views.titleSearch, name='search'),
+    path('titleSearch/', views.titleSearch, name='result'),
+    path('event/DelEvent/<event_id>/', views.delEvent, name='deleteEvent'),
 
 
     # 領養

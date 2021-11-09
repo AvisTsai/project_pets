@@ -1,10 +1,10 @@
 import datetime
 
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
-from django.contrib import auth
-from .forms import RegisterForm, MoneyForm
+from django.contrib import auth, messages
+from .forms import RegisterForm, MoneyForm, EventForm
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, CreateView, UpdateView
 from datetime import datetime, timedelta, date
@@ -14,10 +14,11 @@ from django.views import generic
 from django.urls import reverse, reverse_lazy
 from django.utils.safestring import mark_safe
 import calendar
+from django.contrib.auth.forms import UserCreationForm
 
 from .models import *
 from .utils import Calendar
-from .forms import EventForm
+
 
 
 def index(request):
@@ -25,19 +26,19 @@ def index(request):
 
 
 # 註冊
-@csrf_exempt
+
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "Registration successful.")
             return redirect('pets:login')
         else:
-            return redirect('pets:register')
-    context = {
-        'form': RegisterForm
-    }
+            messages.error(request, "Unsuccessful registration. Invalid information.")
+            form = RegisterForm()
 
+    context = {'form': form}
     return render(request, 'register.html', context)
 
 
@@ -76,7 +77,7 @@ def bookkeeping(request):
     if request.method == 'POST':
         form = MoneyForm(request.POST)
         if form.is_valid():
-            form.save()
+            form.svae()
         return redirect("pets:bookkeeping")
 
     context = {
@@ -189,16 +190,19 @@ def event(request, event_id=None):
 
 
 # 刪除事件
-# def delEvent(request, event_id=None):
-# 	del_Event = get_object_or_404(Event, pk=event_id)
-# 	if request.method == "POST":
-# 		del_Event.delete()
-# 		return redirect('/')
-# 	return render(request, 'delEvent.html')
+def delEvent(request, event_id=None):
+    instance = Event.objects.get(id=id)
+    instance.delete()
+    return render(request, 'delEvent.html')
+
 
 # 行事曆搜尋功能
 def titleSearch(request):
     q = request.GET.get('q')
+
+    if not q:
+        error_msg = '请输入关键词'
+        return render(request, 'result.html', {'error_msg': error_msg})
     title = Event.objects.filter(title__icontains=q)
     return render(request, 'result.html', {'title': title})
 
@@ -206,12 +210,13 @@ def titleSearch(request):
 # titleSearch()
 
 def viewTitle(request):
-    title = Event.objects.all()
-    description = Event.objects.all()
-    # start_time = Event.objects.all()
+    # t = Calendar.getEventurl(events)
+    title = Event.objects.order_by('start_time')
+    # title.order_by("start_time")
+    # description = Event.objects.all()
 
-    context = {'title': title, 'Descriptions': description,
-               }
+    context = {'title': title}
+
     return render(request, 'Calendar_title.html', context)
 
 
