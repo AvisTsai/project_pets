@@ -119,6 +119,7 @@ def delete(request, pk):
     return render(request, 'delete.html', context)
 
 
+
 # 行事曆
 class CalendarView(generic.ListView):
     model = Event

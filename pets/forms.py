@@ -30,9 +30,6 @@ class RegisterForm(forms.ModelForm):
 
 # 記帳
 class MoneyForm(forms.ModelForm):
-    # category = forms.ChoiceField()
-    # item = forms.ChoiceField()
-    price = forms.NumberInput()
 
     class Meta:
         model = Money
