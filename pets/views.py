@@ -11,6 +11,7 @@ from datetime import datetime, timedelta, date
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
+from django.views.decorators.csrf import csrf_protect
 from django.urls import reverse, reverse_lazy
 from django.utils.safestring import mark_safe
 import calendar
@@ -26,12 +27,15 @@ def index(request):
 
 
 # 註冊
-
+@csrf_protect
 def register(request):
+    print("form")
     if request.method == 'POST':
+        print("form2")
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
+            print("form already saved")
             messages.success(request, "Registration successful.")
             return redirect('pets:login')
         else:

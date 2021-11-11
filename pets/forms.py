@@ -1,9 +1,10 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Pet, Register, Money
+from .models import Pet, Register, Money, Event
 from django.forms import ModelForm, DateInput
-from pets.models import Event
+from django import forms
+
 
 
 class PetForm(forms.ModelForm):
@@ -14,13 +15,13 @@ class PetForm(forms.ModelForm):
 
 class RegisterForm(UserCreationForm):
     username = forms.CharField(label="帳號")
-    email = forms.EmailField(label="電子郵件")
-    password1 = forms.CharField(label="密碼")
-    password2 = forms.CharField(label="密碼確認")
+    user_email = forms.EmailField(label="電子郵件")
+    user_pwd = forms.CharField(label="密碼")
+    check_password = forms.CharField(label="密碼確認")
 
     class Meta:
         model = User
-        fields = ('username', 'password1', 'password2', 'email')
+        fields = ['username', 'user_email', 'user_pwd', 'check_password']
 
 # class RegisterForm(forms.ModelForm):
 #     username = forms.CharField(label="帳號")

@@ -10,7 +10,7 @@ class Register(models.Model):
     username = models.CharField(max_length=15)
     user_pwd = models.CharField(max_length=15)
     check_password = models.CharField(max_length=15)
-    user_email = models.CharField(max_length=20)
+    user_email = models.EmailField(max_length=20)
 
     def __str__(self):
         return self.username
