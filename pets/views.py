@@ -11,7 +11,6 @@ from datetime import datetime, timedelta, date
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
-from django.views.decorators.csrf import csrf_protect
 from django.urls import reverse, reverse_lazy
 from django.utils.safestring import mark_safe
 import calendar
@@ -21,29 +20,23 @@ from .models import *
 from .utils import Calendar
 
 
-
 def index(request):
     return render(request, 'index.html')
 
 
 # 註冊
-@csrf_protect
-def register(request):
-    print("form")
+def registerweb(request):
     if request.method == 'POST':
-        print("form2")
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            print("form already saved")
-            messages.success(request, "Registration successful.")
             return redirect('pets:login')
         else:
-            messages.error(request, "Unsuccessful registration. Invalid information.")
-            form = RegisterForm()
-
-    context = {'form': form}
-    return render(request, 'register.html', context)
+            return render(request, 'registerweb.html', {'form': form})
+    else:
+        form = RegisterForm()
+        context = {'form': form}
+        return render(request, 'registerweb.html', context)
 
 
 def login(request):
@@ -81,7 +74,7 @@ def bookkeeping(request):
     if request.method == 'POST':
         form = MoneyForm(request.POST)
         if form.is_valid():
-            form.svae()
+            form.save()
         return redirect("pets:bookkeeping")
 
     context = {
@@ -104,7 +97,6 @@ def update(request, pk):
 
     context = {
         'form': form
-
     }
 
     return render(request, 'update.html', context)

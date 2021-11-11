@@ -1,10 +1,8 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Pet, Register, Money, Event
+from .models import Pet, Register, Money, MemberManagement
 from django.forms import ModelForm, DateInput
-from django import forms
-
+from pets.models import Event
 
 
 class PetForm(forms.ModelForm):
@@ -13,41 +11,34 @@ class PetForm(forms.ModelForm):
         model = Pet
 
 
-class RegisterForm(UserCreationForm):
-    username = forms.CharField(label="帳號")
-    user_email = forms.EmailField(label="電子郵件")
-    user_pwd = forms.CharField(label="密碼")
-    check_password = forms.CharField(label="密碼確認")
+class RegisterForm(ModelForm):
+    username = forms.CharField(
+        label='帳號',
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    user_pwd = forms.CharField(
+        label='密碼',
+        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+    )
+    check_password = forms.CharField(
+        label='確認密碼',
+        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+    )
+    user_email = forms.EmailField(
+        label='電子郵件',
+        widget=forms.EmailInput(attrs={'class': 'form-control'})
+    )
 
     class Meta:
-        model = User
-        fields = ['username', 'user_email', 'user_pwd', 'check_password']
-
-# class RegisterForm(forms.ModelForm):
-#     username = forms.CharField(label="帳號")
-#     user_pwd = forms.CharField(label="密碼")
-#     check_password = forms.CharField(label="確認密碼")
-#     user_email = forms.EmailField(label="電子郵件")
-#
-#     class Meta:
-#         model = Register
-#         fields = (
-#             'username',
-#             'user_pwd',
-#             'check_password',
-#             'user_email',
-#         )
+        model = Register
+        fields = ('username', 'user_pwd', 'check_password', 'user_email')
 
 
 # 記帳
 class MoneyForm(forms.ModelForm):
-    # category = forms.ChoiceField()
-    # item = forms.ChoiceField()
-    price = forms.NumberInput()
-
     class Meta:
         model = Money
-        fields = '__all__'
+        fields = "__all__"
 
         # widgets = {
         #     'time': forms.TimeField(attrs={'class': 'form-control'}),
@@ -70,9 +61,9 @@ class EventForm(ModelForm):
         # datetime-local is a HTML5 input type, format to make date time show on fields
         # format datetime在html上
         widgets = {
-         'start_time': DateInput(attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
-         'end_time': DateInput(attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
-         }
+            'start_time': DateInput(attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
+            'end_time': DateInput(attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
+        }
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):
