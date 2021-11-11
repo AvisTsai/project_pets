@@ -25,22 +25,18 @@ def index(request):
 
 
 # 註冊
-
-def register(request):
-    form = RegisterForm()
+def registerweb(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, "Registration successful.")
             return redirect('pets:login')
         else:
-            messages.error(request, "Unsuccessful registration. Invalid information.")
-
-    context = {
-        'form': form
-    }
-    return render(request, 'register.html', context)
+            return render(request, 'registerweb.html', {'form': form})
+    else:
+        form = RegisterForm()
+        context = {'form': form}
+        return render(request, 'registerweb.html', context)
 
 
 def login(request):
@@ -101,7 +97,6 @@ def update(request, pk):
 
     context = {
         'form': form
-
     }
 
     return render(request, 'update.html', context)

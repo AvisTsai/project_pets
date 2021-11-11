@@ -1,5 +1,4 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Pet, Register, Money, MemberManagement
 from django.forms import ModelForm, DateInput
@@ -12,20 +11,31 @@ class PetForm(forms.ModelForm):
         model = Pet
 
 
-class RegisterForm(forms.ModelForm):
-    username = forms.CharField(label="帳號")
-    user_pwd = forms.CharField(label="密碼")
-    check_password = forms.CharField(label="確認密碼")
-    user_email = forms.EmailField(label="電子郵件")
+class RegisterForm(ModelForm):
+    username = forms.CharField(
+        label='帳號',
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    user_pwd = forms.CharField(
+        label='密碼',
+        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+    )
+    check_password = forms.CharField(
+        label='確認密碼',
+        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+    )
+    user_email = forms.EmailField(
+        label='電子郵件',
+        widget=forms.EmailInput(attrs={'class': 'form-control'})
+    )
 
     class Meta:
-        fields = "__all__"
         model = Register
+        fields = ('username', 'user_pwd', 'check_password', 'user_email')
 
 
 # 記帳
 class MoneyForm(forms.ModelForm):
-
     class Meta:
         model = Money
         fields = "__all__"
@@ -51,9 +61,9 @@ class EventForm(ModelForm):
         # datetime-local is a HTML5 input type, format to make date time show on fields
         # format datetime在html上
         widgets = {
-         'start_time': DateInput(attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
-         'end_time': DateInput(attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
-         }
+            'start_time': DateInput(attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
+            'end_time': DateInput(attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
+        }
         fields = '__all__'
 
     def __init__(self, *args, **kwargs):

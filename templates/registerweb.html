@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+{% load static %}
+<head>
+    <title>Register DearFurkid</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/jquery.datetimepicker.css' %}"/>
+</head>
+
+<body class="left-sidebar is-preload">
+<div id="page-wrapper">
+    <section id="header" class="wrapper">
+        <div id="logo">
+            <h1>Dearfurkid</h1>
+        </div>
+    </section>
+</div>
+<form method="POST">
+    {% csrf_token %}
+    <div>
+        {{ form.username.error }}
+        {{ form.username.label }}
+        {{ form.username }}
+    </div>
+    <div>
+        {{ form.user_pwd.error }}
+        {{ form.user_pwd.label }}
+        {{ form.user_pwd }}
+    </div>
+    <div>
+        {{ form.check_password.error }}
+        {{ form.check_password.label }}
+        {{ form.check_password }}
+    </div>
+    <div>
+        {{ form.user_email.error }}
+        {{ form.user_email.label }}
+        {{ form.user_email }}
+    </div>
+    <input class="btn btn-success" type="submit" value="送出"/>
+</form>
+</body>
+</html>
