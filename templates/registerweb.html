@@ -17,26 +17,26 @@
         </div>
     </section>
 </div>
-<form method="POST">
+<form method="POST" style="text-align:center;">
     {% csrf_token %}
     <div>
         {{ form.username.error }}
-        {{ form.username.label }}
+        <span style="margin-left:2%">{{ form.username.label }}</span>
         {{ form.username }}
     </div>
     <div>
         {{ form.user_pwd.error }}
-        {{ form.user_pwd.label }}
+        <span style="margin-left:2%"> {{ form.user_pwd.label }}</span>
         {{ form.user_pwd }}
     </div>
     <div>
         {{ form.check_password.error }}
-        {{ form.check_password.label }}
+        <span>{{ form.check_password.label }}</span>
         {{ form.check_password }}
     </div>
     <div>
         {{ form.user_email.error }}
-        {{ form.user_email.label }}
+        <span>{{ form.user_email.label }}</span>
         {{ form.user_email }}
     </div>
     <input class="btn btn-success" type="submit" value="送出"/>
