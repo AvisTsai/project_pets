@@ -248,9 +248,12 @@ def main(request):
 def login(request):
     return render(request, 'login.html')
 
+def forgot(request):
+    return render(request, 'forgot.html')
+
 
 def register(request):
-    return render(request, 'register.html')
+    return render(request, 'registerweb.html')
 
 
 def index1(request):
