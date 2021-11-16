@@ -36,13 +36,15 @@ urlpatterns = [
     path('update/<str:pk>', views.update, name='update'),
     path('delete/<str:pk>', views.delete, name='delete'),
 
-    # 行事曆
+    # 行事曆  path(URL路徑，views的def,方便管理的名稱
     path('calendar', views.CalendarView.as_view(), name='calendar'),
+    #path('calendar', views.viewTitle, name='calendar'),
     path('event/new/', views.event, name='event_new'),
     path('CalTitle/', views.viewTitle, name='CalTitle'),
-    path('event/edit/<event_id>/', views.event, name='event_edit'),
-    path('titleSearch/', views.titleSearch, name='result'),
-    path('event/DelEvent/<event_id>/', views.delEvent, name='deleteEvent'),
+    path('event/edit/<str:event_id>/', views.event, name='event_edit'),
+    path('result/', views.titleSearch, name='result'),
+    path('delEvent/<event_id>', views.delEvent, name='deleteEvent'),
+
 
 
     # 領養

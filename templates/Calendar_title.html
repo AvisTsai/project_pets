@@ -2,55 +2,58 @@
 
 {% block content %}
 <div class="clearfix">
-  <a class="btn btn-info left" href="{% url 'pets:calendar' %}"> Calendar </a>
+    <a class="btn btn-info left" href="{% url 'pets:calendar' %}"> Calendar </a>
 </div>
-
 
 
 <br>
 
 <div class="row">
-	<div class="col-md-7">
-		<h5>我的所有事件</h5>
-		<form method="get" action="/titleSearch/">
-  		{% csrf_token %}
-	  	<input type="search" placeholder="搜索" required>
-  		<button type="submit">搜索</button>
-		</form>
-		<button type="button" class="btn btn-outline-info">排序</button>
-<!--		<br>-->
-<!--		<input type="search" name="q" placeholder="請輸入要搜尋的標題" required>-->
-<!--		<button type="button" class="btn btn-outline-primary">搜尋</button>-->
-<!--		<hr>-->
+    <div class="col-md-7">
+        <h5>我的所有事件</h5>
+        <form method="get" action="{% url 'pets:result' %}">
+            {% csrf_token %}
+            <input type="search" name="q" placeholder="搜索" required>
+            <button type="submit">搜索</button>
+
+        </form>
+        <form method="post">
+            {% csrf_token %}
+            <select name="orderOption">
+                <option selected="selected" disabled>選擇排序方式</option>
+                <option value="date">依日期</option>
+                　
+                <option value="createtime">建立時間</option>
+
+            </select>
+            <button type="submit" class="btn btn-outline-info">確定</button>
+        </form>
 
 
-				{% for title in title %}
-					<table class="table table-bordered">
-					<tr>
-						<td>title</td>
-<!--						<td>{{title.title}}</td>-->
-						<td><li> {{title.get_html_url}} </li></td>
-					</tr>
-					<tr>
-						<td>Description</td>
-						<td>{{title.description}}</td>
-<!--						<td>{{order.status}}</td>-->
-<!--						<td><a href="">Update</a></td>-->
-<!--						<td><a href="">Delete</a></td>-->
+        {% for event in EvenName %}
 
-					</tr>
-					<tr>
-						<td>start_time</td>
-						<td>{{title.start_time}}</td>
-					</tr>
+            <table class="table table-bordered">
+                <tr>
+                    <td>title</td>
+                    <!--最前面加/才能換到要的頁面不然會在原本的URL下繼續加-->
+                    <td><a href="/pets/event/edit/{{event.id}}"> {{event.title}} </a></td>
+                </tr>
+                <tr>
+                    <td>Description</td>
+                    <td>{{event.description}}</td>
+                </tr>
+                <tr>
+                    <td>start_time</td>
+                    <td>{{event.start_time}}</td>
+                </tr>
 
-					</table>
-				{% endfor %}
+            </table>
+        {% endfor %}
 
 
-			</table>
-		</div>
-	</div>
+        </table>
+    </div>
+</div>
 
 </div>
 

@@ -9,7 +9,7 @@
 
 			<p>Are you sure you want to delete </p>
 
-			<form action="{% url 'delEvent' id=event_id  %}" method="POST">
+			<form method="POST">
 
 				{% csrf_token %}
 				<a class="btn btn-warning" href="{% url 'pets:calendar' %}">Cancel</a>

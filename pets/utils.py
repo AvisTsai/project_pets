@@ -14,6 +14,7 @@ class Calendar(HTMLCalendar):
 	# filter events by day
 	def formatday(self, day, events):
 		events_per_day = events.filter(start_time__day=day)
+		# print(events_per_day)
 		d = ''
 		for event in events_per_day:
 			d += f'<li> {event.get_html_url} </li>'

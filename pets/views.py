@@ -18,6 +18,8 @@ from django.contrib.auth.forms import UserCreationForm
 
 from .models import *
 from .utils import Calendar
+from .filters import *
+
 
 
 def index(request):
@@ -170,8 +172,11 @@ def get_date(req_day):
     return datetime.today()
 
 
+# get_object_or_404 它在哪裡
 def event(request, event_id=None):
     instance = Event()
+    instance_id = Event.objects.get(id=event_id)
+
     if event_id:
         instance = get_object_or_404(Event, pk=event_id)
     else:
@@ -181,39 +186,63 @@ def event(request, event_id=None):
     if request.POST and form.is_valid():
         form.save()
         return HttpResponseRedirect(reverse('pets:calendar'))
-    return render(request, 'event.html', {'form': form})
+
+    context = {
+        'form': form,
+        'eventid': instance_id
+    }
+
+    return render(request, 'event.html', context)
 
 
-# 刪除事件
-def delEvent(request, event_id=None):
-    instance = Event.objects.get(id=id)
-    instance.delete()
-    return render(request, 'delEvent.html')
+# 它上面奇石沒有帶我覺得 它只是載初始化 規0的感覺 是喔  那要怎麼實現刪除功能你確定帶ID就好嗎? 70%確定 XD
+def delEvent(request, event_id):
+    instance = Event.objects.get(id=event_id)
+    print(event_id)
+    if request.method == "POST":
+        instance.delete()
+        return redirect('pets:calendar')
+    context = {
+        'instance': instance
+    }
+    return render(request, 'delEvent.html', context)
 
 
 # 行事曆搜尋功能
 def titleSearch(request):
     q = request.GET.get('q')
-
     if not q:
         error_msg = '请输入关键词'
         return render(request, 'result.html', {'error_msg': error_msg})
     title = Event.objects.filter(title__icontains=q)
     return render(request, 'result.html', {'title': title})
 
+#
+# def ViewT(request):
+#     queryset = Event.objects.all()
+#     user_filter = EventFilter(request.GET, queryset = queryset)
+#     print(queryset)
+#     return render(request, 'result.html', {'title': title})
 
-# titleSearch()
 
 def viewTitle(request):
-    # t = Calendar.getEventurl(events)
-    title = Event.objects.order_by('start_time')
-    # title.order_by("start_time")
-    # description = Event.objects.all()
+    OrderNo = request.POST.get('orderOption')
+    # titleurl = ''
+    if OrderNo == "date":
+        EventName = Event.objects.order_by('start_time')
+    else:
+        EventName = Event.objects.all()
 
-    context = {'title': title}
+    context = {'EvenName': EventName, }
 
     return render(request, 'Calendar_title.html', context)
 
+# def orderEvent(request):
+#     title = Event.objects.all()
+#     context = {'title': title}
+#
+#     return render(request, 'Calendar_title.html', context)
+#
 
 # 散步
 def walk_pet(request):

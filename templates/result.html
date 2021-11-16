@@ -3,10 +3,16 @@
 <!--{% endif %}-->
 
 {% for title in title %}
-  <tr>
-    <td>title</td>
-    <td>{{title.title}}</td>
-  </tr>
+  <table class="table table-bordered">
+					<tr>
+						<td>title</td>
+<!--						<td>{{title.title}}</td>-->
+						<td><li> {{title.get_html_url}} </li></td>
+					</tr>
+					<tr>
+						<td>Description</td>
+						<td>{{title.description}}</td>
+                    </tr>
 {% empty %}
   <div class="no-post">
     没有搜索到符合条件的文章
