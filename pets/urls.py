@@ -11,7 +11,8 @@ urlpatterns = [
     path('login', views.login, name='login'),
     path('logout', views.logout, name='logout'),
     path('aboutus', views.aboutus, name='aboutus'),
-    
+    path('forgot', views.forgot, name='forgot'),
+    path('registerweb', views.registerweb, name='registerweb'),
     # 散步
      path('walk_pet', views.walk_pet, name='walk_pet'),
      path('walk_Taipei', views.walk_Taipei, name='walk_Taipei'),

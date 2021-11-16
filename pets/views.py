@@ -3,7 +3,7 @@ import datetime
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
-from django.contrib import auth, messages
+from django.contrib import auth
 from .forms import RegisterForm, MoneyForm, EventForm
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, CreateView, UpdateView
@@ -42,21 +42,20 @@ def registerweb(request):
 
 
 def login(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('pets:index')
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = auth.authenticate(username=username, password=password)
 
-        if user and user.is_staff is False:
-            auth.login(request, user)
-            return redirect('pets:login')
-        elif user and user.is_staff is True:
+        if user is not None and user.is_active:
             auth.login(request, user)
             return redirect('pets:index')
         else:
-            return redirect('pets:login')
-    else:
-        return render(request, 'login.html', locals())
+            return HttpResponse('使用者名稱或密碼錯誤')
+
+    return render(request, 'login.html', locals())
 
 
 def logout(request):
@@ -278,9 +277,12 @@ def main(request):
 def login(request):
     return render(request, 'login.html')
 
+def forgot(request):
+    return render(request, 'forgot.html')
+
 
 def register(request):
-    return render(request, 'register.html')
+    return render(request, 'registerweb.html')
 
 
 def index1(request):

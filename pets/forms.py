@@ -13,19 +13,19 @@ class PetForm(forms.ModelForm):
 
 class RegisterForm(ModelForm):
     username = forms.CharField(
-        label='帳號',
+        label='帳號：',
         widget=forms.TextInput(attrs={'class': 'form-control'})
     )
     user_pwd = forms.CharField(
-        label='密碼',
+        label='密碼：',
         widget=forms.PasswordInput(attrs={'class': 'form-control'})
     )
     check_password = forms.CharField(
-        label='確認密碼',
+        label='確認密碼：',
         widget=forms.PasswordInput(attrs={'class': 'form-control'})
     )
     user_email = forms.EmailField(
-        label='電子郵件',
+        label='電子郵件：',
         widget=forms.EmailInput(attrs={'class': 'form-control'})
     )
 
