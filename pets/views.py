@@ -1,10 +1,9 @@
-import datetime
 
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.contrib import auth
-from .forms import RegisterForm, MoneyForm, EventForm
+from .forms import RegisterForm, EventForm , MoneyForm
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, CreateView, UpdateView
 from datetime import datetime, timedelta, date
@@ -15,11 +14,11 @@ from django.urls import reverse, reverse_lazy
 from django.utils.safestring import mark_safe
 import calendar
 from django.contrib.auth.forms import UserCreationForm
-
+from datetime import datetime as dt
+from urllib.parse import unquote
 from .models import *
 from .utils import Calendar
 from .filters import *
-
 
 
 def index(request):
@@ -141,9 +140,9 @@ class CalendarView(generic.ListView):
 
 def prev_month(d):
     first = d.replace(day=1)
-    print('first', first)
+    # print('first', first)
     prev_month = first - timedelta(days=1)
-    print(prev_month)
+    # print(prev_month)
     month = 'month=' + str(prev_month.year) + '-' + str(prev_month.month)
     return month
 
@@ -168,13 +167,26 @@ def get_date(req_day):
     if req_day:
         year, month = (int(x) for x in req_day.split('-'))
         return date(year, month, day=1)
-    return datetime.today()
+    return datetime.date.today()
 
 
-# get_object_or_404 它在哪裡
-def event(request, event_id=None):
+def new_event(request, event_id=None):
     instance = Event()
-    instance_id = Event.objects.get(id=event_id)
+    form = EventForm(request.POST or None, instance=instance)
+    if request.POST and form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('pets:calendar'))
+    context = {
+        'form': form,
+        # 'eventid': instance_id
+    }
+
+    return render(request, 'event.html', context)
+
+
+def edit_event(request, event_id=None):
+    instance = Event()
+    instance_id = Event.objects.get(pk=event_id)
 
     if event_id:
         instance = get_object_or_404(Event, pk=event_id)
@@ -194,7 +206,6 @@ def event(request, event_id=None):
     return render(request, 'event.html', context)
 
 
-# 它上面奇石沒有帶我覺得 它只是載初始化 規0的感覺 是喔  那要怎麼實現刪除功能你確定帶ID就好嗎? 70%確定 XD
 def delEvent(request, event_id):
     instance = Event.objects.get(id=event_id)
     print(event_id)
@@ -216,6 +227,7 @@ def titleSearch(request):
     title = Event.objects.filter(title__icontains=q)
     return render(request, 'result.html', {'title': title})
 
+
 #
 # def ViewT(request):
 #     queryset = Event.objects.all()
@@ -227,21 +239,55 @@ def titleSearch(request):
 def viewTitle(request):
     OrderNo = request.POST.get('orderOption')
     # titleurl = ''
-    if OrderNo == "date":
+    if OrderNo == "dateDESC":
         EventName = Event.objects.order_by('start_time')
-    else:
+    elif OrderNo == "dateASC":
+        EventName = Event.objects.order_by('-start_time')
+    elif OrderNo == "createtimeASC":
         EventName = Event.objects.all()
+    else:
+        EventName = Event.objects.all()[::-1]
 
     context = {'EvenName': EventName, }
 
     return render(request, 'Calendar_title.html', context)
 
-# def orderEvent(request):
-#     title = Event.objects.all()
-#     context = {'title': title}
-#
-#     return render(request, 'Calendar_title.html', context)
-#
+
+def date_filter_event(request):
+    if request.method == "GET":
+        try:
+            all_event = Event.objects.all()
+            from_date = dt.strptime(request.GET.get('from_date')[0:10],"%Y-%m-%d")
+            to_date = dt.strptime(request.GET.get('to_date')[0:10],"%Y-%m-%d")
+            # print(from_date)
+            # print(to_date)
+            # print(from_date[0:10])
+            # print(from_date[11:16])
+            # print('from_date', dt.strptime(from_date[0:10],"%Y-%m-%d"))
+            searchresult = Event.objects.filter(start_time__gt=from_date).filter(start_time__lt=to_date)
+            # myfilter = OrderFilter(request.GET, queryset=all_event)
+            # orders = myfilter.qs
+            context = {'Event': searchresult}
+            return render(request, 'dateSearch.html', context)
+        except:
+            event = Event.objects.all()
+            return render(request, 'dateSearch.html', {'event': event})
+
+# def sendemail():
+#     object =  Event.objects.all().values_list("start_time")
+#     print(object)
+#     list1 = []
+#     for i in object:
+        # print('i=', int(i[0:1]))
+        # i = list[i]
+        # print(i[2])
+#         # list1.append(dt.strptime(i.get(), "%Y-%m-%d %H-%M"))
+#     currentDateTime = datetime.datetime.now()
+#     print("currentDateTime", currentDateTime)
+#     date2 = (currentDateTime + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+#     print("date2:", date2)
+#     print(list1)
+# sendemail()
 
 # 散步
 def walk_pet(request):
@@ -276,6 +322,7 @@ def main(request):
 
 def login(request):
     return render(request, 'login.html')
+
 
 def forgot(request):
     return render(request, 'forgot.html')

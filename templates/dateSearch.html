@@ -1,0 +1,55 @@
+{%  extends 'base.html' %}
+
+{% block content %}
+<div class="clearfix">
+    <a class="btn btn-info left" href="{% url 'pets:calendar' %}"> Calendar </a>
+	<a class="btn btn-info left" href="{% url 'pets:CalTitle' %}"> 我的事件 </a>
+</div>
+
+
+<br>
+
+<div class="row">
+    <div class="col-md-7">
+        <form method="GET" action=" ">
+			{% csrf_token %}
+            From :<input type="datetime-local" name="from_date">
+			to :<input type="datetime-local" name="to_date">
+			
+
+            <button type="submit" class="btn btn-outline-info">搜尋</button>
+        </form>
+
+
+
+
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+<!--					<th>ID</th>-->
+					<th>標題</th>
+					<th>描述</th>
+					<th>開始時間</th>
+					<th>結束時間</th>
+				</tr>
+
+				{% for order in Event %}
+
+				<tr>
+<!--					<td>{{order.id}}</td>-->
+					<td>{{order.title}}</td>
+					<td>{{order.description}}</td>
+					<td>{{order.start_time}}</td>
+					<td>{{order.end_time}}</td>
+				</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

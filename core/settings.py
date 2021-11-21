@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
+# import pymysql
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-(1c#znx*_fh#cd1nni3*v!=xcehc)-23n8x(ieu9k(sk^3%jhs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'pets.apps.PetsConfig',
     'bootstrap4',
     'django_filters',
+    'django_guid',
 ]
 
 
@@ -54,7 +56,17 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_guid.middleware.guid_middleware',
 ]
+
+DJANGO_GUID = {
+    'GUID_HEADER_NAME': 'Correlation-ID',
+    'VALIDATE_GUID': True,
+    'RETURN_HEADER': True,
+    'EXPOSE_HEADER': True,
+    'INTEGRATIONS': [],
+    'UUID_LENGTH': 32,
+}
 
 ROOT_URLCONF = 'core.urls'
 
@@ -81,16 +93,46 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'fk_test',
+        'USER': 'root',
+        'PASSWORD': 'Zhong10746012',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
+# AUTH_USER_MODEL = 'pets.Register'
+
+
+# LOGGING = {
+#     'filters': {
+#         'correlation_id': {
+#             '()': 'django_guid.log_filters.CorrelationId'
+#         }
+#     },
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'medium',
+#             'filters': ['correlation_id'],
+#         }
+#     }
+
+# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -124,9 +166,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+    
+if not DEBUG:
+    STATIC_ROOT = ''
+    
+STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static/'),
+    ]
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

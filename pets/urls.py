@@ -14,13 +14,13 @@ urlpatterns = [
     path('forgot', views.forgot, name='forgot'),
     path('registerweb', views.registerweb, name='registerweb'),
     # 散步
-     path('walk_pet', views.walk_pet, name='walk_pet'),
-     path('walk_Taipei', views.walk_Taipei, name='walk_Taipei'),
-     path('walk_Taoyuan', views.walk_Taoyuan, name='walk_Taoyuan'),
-     path('walk_Taizhong', views.walk_Taizhong, name='walk_Taizhong'),
-     path('walk_Tainan', views.walk_Tainan, name='walk_Tainan'),
-     path('walk_Kaohsiung', views.walk_Kaohsiung, name='walk_Kaohsiung'),
-    
+    path('walk_pet', views.walk_pet, name='walk_pet'),
+    path('walk_Taipei', views.walk_Taipei, name='walk_Taipei'),
+    path('walk_Taoyuan', views.walk_Taoyuan, name='walk_Taoyuan'),
+    path('walk_Taizhong', views.walk_Taizhong, name='walk_Taizhong'),
+    path('walk_Tainan', views.walk_Tainan, name='walk_Tainan'),
+    path('walk_Kaohsiung', views.walk_Kaohsiung, name='walk_Kaohsiung'),
+
     # 住宿
     path('consult', views.consult, name='consult'),
 
@@ -39,10 +39,11 @@ urlpatterns = [
 
     # 行事曆  path(URL路徑，views的def,方便管理的名稱
     path('calendar', views.CalendarView.as_view(), name='calendar'),
-    #path('calendar', views.viewTitle, name='calendar'),
-    path('event/new/', views.event, name='event_new'),
+    # path('calendar', views.viewTitle, name='calendar'),
+    path('event/new/', views.new_event, name='event_new'),
     path('CalTitle/', views.viewTitle, name='CalTitle'),
-    path('event/edit/<str:event_id>/', views.event, name='event_edit'),
+    path('advancedsearch/', views.date_filter_event, name='datefilter'),
+    path('event/edit/<str:event_id>/', views.edit_event, name='event_edit'),
     path('result/', views.titleSearch, name='result'),
     path('delEvent/<event_id>', views.delEvent, name='deleteEvent'),
 

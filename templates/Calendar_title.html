@@ -17,17 +17,21 @@
             <button type="submit">搜索</button>
 
         </form>
+
         <form method="post">
             {% csrf_token %}
             <select name="orderOption">
                 <option selected="selected" disabled>選擇排序方式</option>
-                <option value="date">依日期</option>
-                　
-                <option value="createtime">建立時間</option>
-
+                <option value="dateASC">依日期(由遠至近)</option>
+                <option value="dateDESC">依日期(由近至遠)</option>　
+                <option value="createtimeASC">建立時間(先建立的優先)</option>
+                <option value="createtimeDESC">建立時間(後建立的優先)</option>
             </select>
             <button type="submit" class="btn btn-outline-info">確定</button>
         </form>
+
+
+            <a href="/pets/advancedsearch/" class="btn btn-danger" style="font-size:18px">進階搜尋</a>
 
 
         {% for event in EvenName %}

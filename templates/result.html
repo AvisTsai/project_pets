@@ -1,20 +1,25 @@
-<!--{% if error_msg %}-->
-<!--    <p>{{ error_msg }}</p>-->
-<!--{% endif %}-->
+{%  extends 'base.html' %}
+
+{% block content %}
 
 {% for title in title %}
-  <table class="table table-bordered">
-					<tr>
-						<td>title</td>
-<!--						<td>{{title.title}}</td>-->
-						<td><li> {{title.get_html_url}} </li></td>
-					</tr>
-					<tr>
-						<td>Description</td>
-						<td>{{title.description}}</td>
-                    </tr>
-{% empty %}
-  <div class="no-post">
-    没有搜索到符合条件的文章
-  </div>
-{% endfor %}
+<table class="table table-bordered">
+  <tr>
+    <th>標題</th>
+    <th>描述</th>
+    <th>開始時間</th>
+    <th>結束時間</th>
+  </tr>
+  <tr>
+    <td>{{title.title}}</td>
+    <td>{{title.description}}</td>
+    <td>{{title.start_time}}</td>
+    <td>{{title.end_time}}</td>
+  </tr>
+
+  {% empty %}
+  <div class="no-post">没有搜索到符合条件的文章</div>
+  {% endfor %}
+</table>
+
+{% endblock %}

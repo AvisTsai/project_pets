@@ -31,7 +31,8 @@ class RegisterForm(ModelForm):
 
     class Meta:
         model = Register
-        fields = ('username', 'user_pwd', 'check_password', 'user_email')
+        # fields = "__all__"
+        fields = ( 'username', 'user_pwd', 'check_password', 'user_email')
 
 
 # 記帳

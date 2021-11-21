@@ -7,14 +7,14 @@
 		<div class="card card-body">
 
 
-			<p>Are you sure you want to delete </p>
+			<p>確定要刪除此事件? </p>
 
 			<form method="POST">
 
 				{% csrf_token %}
 				<a class="btn btn-warning" href="{% url 'pets:calendar' %}">Cancel</a>
 
-				<input class="btn btn-danger" type="submit" name="Confirm">
+				<button type="submit" class="btn btn-outline-info">確定</button>
 			</form>
 		</div>
 	</div>

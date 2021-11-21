@@ -1,19 +1,24 @@
 import django
 from django.utils import timezone
-
+import uuid
 from django.urls import reverse
 from django.db import models
+import datetime
+from .guidmodels import GUIDModel
 
 
 # 註冊
-class Register(models.Model):
+class Register(GUIDModel):
+    id = models.AutoField(primary_key=True, default=uuid.uuid4, editable=False)
+    # id = models.
     username = models.CharField(max_length=15)
     user_pwd = models.CharField(max_length=15)
     check_password = models.CharField(max_length=15)
     user_email = models.EmailField(max_length=20)
+    # models.UUIDField(_(""))
 
     def __str__(self):
-        return self.username
+        return self.id
 
     class Meta:
         verbose_name = '註冊'
@@ -114,7 +119,7 @@ class Item(models.TextChoices):
 
 
 class Money(models.Model):
-    time = models.DateTimeField(default='請選擇時間')
+    time = models.DateField(default='請選擇時間')
     category = models.CharField(max_length=255, choices=Category.choices, verbose_name='類別')
     item = models.CharField(max_length=255, choices=Item.choices, verbose_name='項目')
     price = models.IntegerField(verbose_name='金額')
@@ -132,9 +137,11 @@ class Money(models.Model):
 class Event(models.Model):
     title = models.CharField("標題", max_length=200)
     description = models.TextField()
-    start_time = models.DateTimeField(default='請選擇時間')
-    end_time = models.DateTimeField(default='請選擇時間')
+    start_time = models.DateField(default='請選擇時間',)
+    end_time = models.DateField(default='請選擇時間', )
+    # user_id = models.ForeignKey(Register.id, null=True, on_delete= models.CASCADE)
 
+    
     def __str__(self):
         return self.title
 
@@ -145,3 +152,11 @@ class Event(models.Model):
     def get_html_url(self):
         url = reverse('pets:event_edit', args=(self.id,))
         return f'<a href="{url}"> {self.title} </a>'
+
+    # def convetdatetime(self):
+    #     for obj in Event.objects.all():
+    #         obj.stat_time = datetime.datetime.now().date()
+
+    #     return obj.stat_time
+
+
