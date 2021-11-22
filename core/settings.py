@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 # import pymysql
+import django_heroku
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -179,3 +181,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
 # DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # AUTH_PROFILE_MODULE = 'accounts.UserProfile'
+
+django_heroku.settings(locals())
