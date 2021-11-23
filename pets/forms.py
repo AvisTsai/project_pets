@@ -35,6 +35,17 @@ class RegisterForm(ModelForm):
         fields = ( 'username', 'user_pwd', 'check_password', 'user_email')
 
 
+class LoginForm(ModelForm):
+    username = forms.CharField(
+        label='帳號：',
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    user_pwd = forms.CharField(
+        label='密碼：',
+        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+    )
+
+
 # 記帳
 class MoneyForm(forms.ModelForm):
     class Meta:

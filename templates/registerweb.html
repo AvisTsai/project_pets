@@ -9,24 +9,26 @@
     <link rel="stylesheet" type="text/css" href="{% static 'assets/css/jquery.datetimepicker.css' %}"/>
 </head>
 
-<body class="left-sidebar is-preload" background="{% static 'images/bg4.jpg ' %} ">
+<body class="left-sidebar is-preload">
 <div id="page-wrapper">
-    <section id="header1" class="wrapper">
+    <section id="header" class="wrapper">
         <div id="logo">
             <h1>Dearfurkid</h1>
         </div>
     </section>
+
 </div>
 <form method="POST" style="text-align:center;">
     {% csrf_token %}
+    <h2>Register DearFurkid</h2><br>
     <div>
         {{ form.username.error }}
-        <span style="margin-left:2%">{{ form.username.label }}</span>
+        <span style="margin-left:2.2%;font-color:">{{ form.username.label }}</span>
         {{ form.username }}
     </div>
     <div>
         {{ form.user_pwd.error }}
-        <span style="margin-left:2%"> {{ form.user_pwd.label }}</span>
+        <span style="margin-left:2.2%"> {{ form.user_pwd.label }}</span>
         {{ form.user_pwd }}
     </div>
     <div>

@@ -1,233 +1,401 @@
 <!DOCTYPE HTML>
 
 <html>
-	{% load static %}
+{% load static %}
+
 <head>
-	<title>醫院地圖 | Dfurkid</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+    <title>醫院地圖 | Dfurkid</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
 </head>
 
-<body class="homepage is-preload" style="background-color: #f3f3f3";>
-	<div id="page-wrapper">
+<body class="homepage is-preload" style="background-color: #f3f3f3" ;>
+    <div id="page-wrapper">
 
-		<!-- Header -->
-		<section id="header" class="wrapper">
+        <!-- Header -->
+        <section id="header" class="wrapper">
 
-			<!-- Logo -->
-			<div id="logo">
-				<h1><a href="index">Dearfurkid</a></h1>
-				<p>Your Pet</p>
-			</div>
+            <!-- Logo -->
+            <div id="logo">
+                <h1><a href="index">Dearfurkid</a></h1>
+                <p>Your Pet</p>
+            </div>
 
-			<!-- Nav -->
-			<nav id="nav">
-				<ul>
-					<li class="current"><a href="index">首 頁</a></li>
-					<li>
-						<a href="#">個人資訊</a>
-						<ul>
-							<li><a href="calendar">提醒事項</a></li>
-							<li><a href="modify">修改密碼</a></li>
-							<li><a href="#">帳號登出</a></li>
-							<li><a href="aboutus">關於我們</a></li>
-						</ul>
-					</li>
+            <!-- Nav -->
+            <nav id="nav">
+                <ul>
+                    <li class="current"><a href="index">首 頁</a></li>
+                    <li>
+                        <a href="#">個人資訊</a>
+                        <ul>
+                            <li><a href="calendar">提醒事項</a></li>
+                            <li><a href="modify">修改密碼</a></li>
+                            <li><a href="#">帳號登出</a></li>
+                            <li><a href="aboutus">關於我們</a></li>
+                        </ul>
+                    </li>
 
-					<li>
-						<a href="#">日常生活</a>
-						<ul>
-							<li><a href="bookkeeping">寵物記帳</a></li>
-							<li><a href="walk_pet">散步地圖</a></li>
-							<li><a href="consult">寵物住宿</a></li>
-							<li><a href="grooming_pet">寵物美容</a></li>
-							<li><a href="train_pet">寵物訓練</a></li>
-							<li><a href="adopt_pet1">寵物領養</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="#">寵物商城</a>
-						<ul>
-							<li><a href="mall_freshfood1">鮮食</a></li>
-							<li><a href="mall_feed1">飼料</a></li>
-							<li><a href="">衣服</a>
-								<ul>
-									<li><a href="mall_clothing1">春夏季</a></li>
-									<li><a href="mall_clothing4">秋冬季</a></li>
-									<li><a href="mall_clothing7">其他</a></li>
-								</ul>
-							</li>
-					</li>
-					<li><a href="mall_accessories1">配件</a></li>
-				</ul>
-				</li>
-				<li>
-					<a href="#">寵物醫院</a>
-					<ul>
+                    <li>
+                        <a href="#">日常生活</a>
+                        <ul>
+                            <li><a href="bookkeeping">寵物記帳</a></li>
+                            <li><a href="walk_pet">散步地圖</a></li>
+                            <li><a href="consult">寵物住宿</a></li>
+                            <li><a href="grooming_pet">寵物美容</a></li>
+                            <li><a href="train_pet">寵物訓練</a></li>
+                            <li><a href="adopt_pet1">寵物領養</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">寵物商城</a>
+                        <ul>
+                            <li><a href="mall_freshfood1">鮮食</a></li>
+                            <li><a href="mall_feed1">飼料</a></li>
+                            <li><a href="">衣服</a>
+                                <ul>
+                                    <li><a href="mall_clothing1">春夏季</a></li>
+                                    <li><a href="mall_clothing4">秋冬季</a></li>
+                                    <li><a href="mall_clothing7">其他</a></li>
+                                </ul>
+                            </li>
+                    </li>
+                    <li><a href="mall_accessories1">配件</a></li>
+                </ul>
+                </li>
+                <li>
+                    <a href="#">寵物醫院</a>
+                    <ul>
 
-						<li><a href="Hospital_visits">看診項目</a></li>
-						<li><a href="Hospital_healthcheck">健康檢查</a></li>
-						<li><a href="Hospital_map">醫院地圖</a></li>
-						<li><a href="funeral_pet">寵物葬儀</a></li>
-						<li><a href="Hospital_commonproblem">常見問題</a></li>
-						
+                        <li><a href="Hospital_visits">看診項目</a></li>
+                        <li><a href="Hospital_healthcheck">健康檢查</a></li>
+                        <li><a href="Hospital_map">醫院地圖</a></li>
+                        <li><a href="funeral_pet">寵物葬儀</a></li>
+                        <li><a href="Hospital_commonproblem">常見問題</a></li>
 
-					</ul>
-				</li>
 
-				</ul>
-			</nav>
-		</section>
+                    </ul>
+                </li>
 
-		<!-- Main -->
-		<section id="main" class="wrapper style2">
-			<div class="title">醫院地圖</div>
-			<div class="container">
-				<div class="row gtr-150">
-					<div class="col-8 col-12-medium">
+                </ul>
+            </nav>
 
-						<!-- Content -->
-						<div id="content">
-							<article class="box post">
-													
-								<iframe frameborder=0 name="iframe" width="700px" height="500px"></iframe>
-							</article>
-						
-						</div>
 
-					</div>
-					<div class="col-4 col-12-medium">
+        </section>
 
-						<!-- Sidebar -->
-						<div id="sidebar">
-							<section class="box">
-								<header>
-									<h2>請點選縣市</h2>
-								</header>
-								<a href="Hospital_mapTPE" target="iframe">
-									<p\>雙北市</p>
-								</a>
-								<a href="Hospital_mapTYC" target="iframe">
-									<p\>桃園市</p>
-								</a>
-								<a href="Hospital_mapTXG" target="iframe">
-									<p\>台中市</p>
-								</a>
-								<a href="Hospital_mapTNN" target="iframe">
-									<p\>台南市</p>
-								</a>
-								<a href="Hospital_mapKHH" target="iframe">
-									<p\>高雄市</p>
-								</a>
-							</section>
-							<section class="box">
-								<header>
-									<h2>狗狗相關文章閱讀</h2>
-								</header>
-								<ul class="style2">
-									<li>
-										<article class="box post-excerpt">
-											<a href="https://reurl.cc/KAA8q9" target="_blank" class="image left"><img src="{% static 'images/dog45.jpg ' %}" alt="" /></a>
-											<h3><a href="https://reurl.cc/KAA8q9" target="_blank" >狗與貓會感染Covid-19嗎 | 希爾思</a></h3>
-											<p>冠狀病毒、COVID-19 與您的寵物：您需要知道的事 </p>
-										</article>
-									</li>
-									<li>
-										<article class="box post-excerpt">
-											<a href="https://reurl.cc/3aaKWj" target="_blank" class="image left"><img src="{% static 'images/dog5.jpg ' %}" alt="" /></a>
-											<h3><a href="https://reurl.cc/3aaKWj" target="_blank">舔一口竟致命！與寵物安全互動4原則 | 康健</a></h3>
-											<p>近日國外出現4起因為寵物貓狗舔舐而死亡或截肢的新聞... </p>
-										</article>
-									</li>
-									<li>
-										<article class="box post-excerpt">
-											<a href="https://reurl.cc/eEEMlK" class="image left"><img src="{% static 'images/dog6.jpg ' %}" alt="" /></a>
-											<h3><a href="https://reurl.cc/eEEMlK">7種方法 簡單對抗寵物過敏 | 早安健康</a></h3>
-											<p>看到路上可愛的貓貓狗狗，總讓人情不自禁想摸摸牠們，但如果對牠們的毛過敏...</p>
-										</article>
-									</li>
-								</ul>
+        <!-- Main -->
+        <section id="main" class="wrapper style2">
+            <div class="title">醫院地圖</div>
+            <div class="container">
+                <div class="row gtr-150">
+                    <div class="col-8 col-12-medium">
 
-							</section>
+                        <!-- Content -->
+                        <div id="content">
+                            <article class="box post">
+                                <header class="style1">
+                                    <br>
+                                    <p><strong><a name="雙北市" id="雙北市"></a>雙北市</strong></p>
+                                    <iframe
+                                        src="https://www.google.com/maps/d/u/0/embed?mid=177ETHxJu4AgGtGfMdBk2j8dQSjWKIrwz"
+                                        width="640" height="480"></iframe>
+                                    <p><strong>樂膚莉動物醫院</strong></p>
+                                    <p>地址：台北市大安區仁愛路三段82號</p>
+                                    <p> 營業時間：週二 ~ 週五 10:00 ~ 20:00、週六 10:00 ~ 18:00</p>
+                                    <p> 聯絡電話：(02)2784-6866</p>
+                                    <p> 服務項目：專業皮膚科門診、基礎健檢、藥浴治療、體內外驅蟲、疫苗施打、晶片植入</p>
+                                    <br>
 
-						</div>
+                                    <p><strong>慈愛動物醫院</strong></p>
+                                    <p>地址：台北市大同區寧夏路1號</p>
+                                    <p> 營業時間：24hr全年無休</p>
+                                    <p> 聯絡電話：(02)2556-3320</p>
+                                    <p> 服務項目：一般內科、一般外科、急診、急重症、晶片植入、復健理療、出國健康證明與諮詢、營養諮詢</p>
+                                    <br>
 
-					</div>
-				</div>
-			</div>
-		</section>
+                                    <p><strong>中日動物醫院</strong></p>
+                                    <p>地址：新北市中和區中山路三段2號</p>
+                                    <p> 營業時間：24hr全年無休</p>
+                                    <p>聯絡電話：(02)2226-3639</p>
+                                    <p>服務項目：一般內科、一般外科、健康檢查、急診、影像診斷諮詢、冷凍治療</p>
+                                    <br>
 
-		<!-- Highlights -->
-		
+                                    <p> <strong>伊甸動物醫院</strong></p>
+                                    <p>地址：台北市中山區北安路554巷33號1樓</p>
+                                    <p> 營業時間：週一 ~ 週日 10:30 ~ 11:00、13:00 ~ 16:30、18:00 ~ 20:30</p>
+                                    <p> 聯絡電話：(02)8509-2579</p>
+                                    <p> 服務項目：一般內科、一般外科、腫瘤科、腎臟科、麻醉科、心臟科、牙科、急診</p>
+                                    <br>
+                                    <p><strong><a href="#雙北市">
+                                                返回雙北市
+                                            </a></strong></p><br><br>
+                                    <p><strong><a name="桃園市" id="桃園市"></a>桃園市</strong></p>
+                                    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=19dM8og3jW3EvgrxbZKJdLJEJjj6jnfmI" width="640" height="480"></iframe>
+                                    <p><strong>磨鼻子動物醫院</strong></p>
+                                    <p>地址：台北市中山區北安路554巷33號1樓</p>
+                                    <p> 營業時間：週一 ~ 週日 07:30 ~ 16:30、18:00 ~ 21:30</p>
+                                    <p> 聯絡電話：(03)453-5740、(03)453-5745</p>
+                                    <p> 服務項目：一般內科、一般外科、心臟科、骨科、復健科、齒科、皮膚科、急診</p>
+                                    <br>
+                                    <p><strong>元氣動物醫院</strong></p>
+                                    <p>地址：桃園市桃園區三民路三段381號</p>
+                                    <p> 營業時間：24hr全年無休</p>
+                                    <p>聯絡電話：(03)333-3816</p>
+                                    <p> 服務項目：急診、腫瘤科、高壓氧、心臟科、骨科、高階麻醉科、內視鏡異物夾取、微創手術門診、隱睪特別門診、高階影像斷層掃描門診</p>
+                                    <br>
+                                    <p><strong>品湛動物醫院</strong> </p>
+                                    <p>地址：桃園市桃園區民生路495-9號</p>
+                                    <p> 營業時間：週一 ~ 週日 10:00 ~ 12:30、14:00 ~ 17:00、18:00 ~ 21:30</p>
+                                    <p>聯絡電話：(03)336-3252</p>
+                                    <p> 服務項目：一般內科、一般外科、健康檢查、急診、影像診斷諮詢、冷凍治療</p>
+                                    <br>
+                                    <p><strong>安欣動物醫院</strong></p>
+                                    <p>地址：桃園市桃園區民生路558號</p>
+                                    <p> 營業時間：週一 ~ 週六 10:00 ~ 21:30</p>
+                                    <p>聯絡電話：(03)336-7775</p>
+                                    <p>服務項目：皮膚科、預防注射、一般內外科、產科、晶片注射</p>
+                                    <br>
+                                    <p><strong><a href="#桃園市">
+                                                返回桃園市
+                                            </a></strong></p><br><br>
+                                    <p><strong><a name="台中市" id="台中市"></a>台中市</strong></p>
+                                    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1sGwM2mWFaiD-iYRxKW9daYfqh6Z7k8w0" width="640" height="480"></iframe>
+                                    <p><strong>全國動物醫院</strong></p>
+                                    <p>地址：台中市西區五權八街100號</p>
+                                    <p> 營業時間：24hr全年無休</p>
+                                    <p>聯絡電話：(04)2371-0496</p>
+                                    <p> 服務項目：家醫科、心臟科、腫瘤病理科、急診加護科、牙科、皮膚科、腎病泌尿科、外科、麻醉科、臨床營養科、影像科</p>
+                                    <br>
 
-	</div>
-	<section id="footer" class="wrapper">
-		<div class="title"></div>
-		<div class="container">
+                                    <p><strong>吉米哈利動物醫院</strong></p>
+                                    <p>地址：台中市南屯區大聖街250號</p>
+                                    <p> 營業時間：週一 ~ 週日 09:30 ~ 12:30、13:30 ~ 15:30、15:30 ~ 18:00、19:00 ~
+                                        21:30</p>
+                                    <p> 聯絡電話：(04)2320-6910</p>
+                                    <p> 服務項目：內科、外科、腫瘤科、心臟科、眼科、中獸醫、牙科、雷射治療、健康檢查</p>
+                                    <br>
 
-			<div class="row">
+                                    <p><strong>樂莫動物醫院</strong></p>
+                                    <p>地址：台中市太平區宜昌路550號</p>
+                                    <p> 營業時間：週一 ~ 週日 10:00 ~ 13:00、15:00 ~ 21:00、週四公休</p>
+                                    <p> 聯絡電話：(04)2277-9688</p>
+                                    <p> 服務項目：一般內科、一般外科、皮膚科、齒科、心臟科、預防注射、晶片登記、除蚤驅蟲</p>
+                                    <br>
 
-				<div class="col-12-medium" style="margin: 0px auto;">
+                                    <p><strong>貝爾動物醫院</strong></p>
+                                    <p>地址：台中市西屯區四川路118號</p>
+                                    <p> 營業時間：週一 ~ 週日 09:30 ~ 21:00 </p>
+                                    <p>聯絡電話：(04)2311-2020</p>
+                                    <p>服務項目：一般內科、外科手術、影像科、皮膚科、復健科、針灸</p>
+                                    <br>
+                                    <p><strong><a href="#台中市">
+                                                返回台中市
+                                            </a></strong></p><br><br>
+                                    <p><strong><a name="台南市" id="台南市"></a>台南市</strong></p>
+                                    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1NzUsBiICSNv_q6tynjw4KqSDkQ4TYKnW" width="640" height="480"></iframe>
+                                    <p><strong>向芯動物醫院</strong></p>
+                                    <p>地址：台南市永康區復興路218號</p>
+                                    <p> 營業時間：週一 ~ 週六 10:00 ~ 12:00、14:00 ~ 21:00</p>
+                                    <p>聯絡電話：(06)313-0119</p>
+                                    <p>服務項目：心臟科、腫瘤科、外科</p>
+                                    <br>
 
-					<!-- Contact -->
-					<section class="feature-list col-12-medium">
-						<div class="row">
-							<div class="col">
-								<section>
-									<h3 class="icon solid fa-home">Dearfurkid</h3>
-									<p>
-										<a href="QA">常見Q&A</a><br>
-										<a href="privacy">隱私權政策</a>
+                                    <p><strong>諾亞動物醫院</strong></p>
+                                    <p>地址：台南市中西區成功路297號</p>
+                                    <p> 營業時間：週一 ~ 週六 09:00 ~ 22:00</p>
+                                    <p>聯絡電話：(06)221-7297</p>
+                                    <p>服務項目：一般內科、一般外科、皮膚科、骨科、牙科、眼科、產科、心臟科、泌尿科、病理檢驗、預防注射、晶片植入、節育手術、急診、健康檢查、後事處理
+                                    </p>
+                                    
 
-									</p>
-								</section>
-							</div>
+                                    <p><strong>杰禾動物醫院</strong></p>
+                                    <p>地址：台南市東區仁和路133-3號</p>
+                                    <p> 營業時間：週一 ~ 週五 09:30 ~ 12:00、14:00 ~ 21:00、週四 17:00 ~ 21:00、週六
+                                        09:30 ~
+                                        18:00、週日公休</p>
+                                    <p> 聯絡電話：(06)290-9119</p>
+                                    <p> 服務項目：內科、外科、產科、皮膚科、預防醫療、疫苗施打、血液生化檢查、超音波洗牙、絕育手術、雷射復健治療、健康檢查、火化處理、冷凍治療
+                                    </p>
+                                    <br>
+                                    <p><strong><a href="#台南市">
+                                                返回台南市
+                                            </a></strong></p><br><br>
+                                    <p><strong><a name="高雄市" id="高雄市"></a>高雄市</strong></p>
+                                    <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1i7UvIzAZdpzZ82WJSGqGxWocUmgfPs9t" width="640" height="480"></iframe>
+                                    <p><strong>烏鐸動物醫院</strong> </p>
+                                    <p>地址：高雄市苓雅區中正一路139號</p>
+                                    <p> 營業時間：週一 ~ 週六 10:00 ~ 21:30、週日 10:00 ~ 18:00 </p>
+                                    <p>聯絡電話：(07)722-0804 </p>
+                                    <p>服務項目：內科、外科、預防針、晶片、皮膚科、牙科、疼痛門診 </p>
+                                    <br>
+                                    <p><strong>中興動物醫院</strong></p>
+                                    <p>地址：高雄市三民區大豐二路118之1號</p>
+                                    <p> 營業時間：週一 ~ 週六 09:30 ~ 12:30、14:00 ~ 17:30、18:30 ~ 21:30、週日公休</p>
+                                    <p>聯絡電話：(07)384-4631</p>
+                                    <p>預約電話：(07)384-4633</p>
+                                    <p>服務項目：外科、骨科、腫瘤科、微創手術、麻醉科、眼科、皮膚及內分泌科、心臟科、腎臟泌尿科、導管手術、復健科、產科、腦神經外科、肝膽腸胃科、急診
+                                    </p>
+                                    <br>
+                                    <p><strong>大毛小毛動物醫院</strong></p>
+                                    <p>地址：高雄市三民區文濱路62號</p>
+                                    <p> 營業時間：週一 ~ 週日 09:00 ~ 12:00、13:00 ~ 17:30、18:30 ~ 21:00</p>
+                                    <p> 聯絡電話：(07)780-9102</p>
+                                    <p> 服務項目：一般內科、一般外科、健康檢查、腫瘤專科、麻醉專科</p>
+                                    <br>
+                                    <p><strong>恩澤動物醫院</strong></p>
+                                    <p>地址：高雄市苓雅區武廟路160-2號</p>
+                                    <p> 營業時間：週一 ~ 週日 10:00 ~ 13:00、14:00 ~ 18:00</p>
+                                    <p>聯絡電話：(07)723-9587</p>
+                                    <p>服務項目：一般內科、眼科、內分泌、腎臟、心臟、肝膽腸胃、一般外科、骨科、神經外科、高壓氧治療、復健</p>
+                                    <br>
 
-							<div class="col">
-								<section>
-									<h3 class="icon solid fa-envelope">聯絡我們</h3>
-									<p>
-										<a href="mailto:dfurkid@gmail.com" target="_blank">dfurkid@gmail.com</a>
-										<br>
-										<a href="https://lin.ee/8SJlSiV">
-											<img src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png"
-												alt="加入好友" height="30" border="0">
-										</a>
-									</p>
-								</section>
-							</div>
-						</div>
+                                    <p><strong><a href="#高雄市">
+                                                返回高雄市
+                                            </a></strong></p>
+                                </header>
 
-					</section>
-				</div>
-			</div>
-		</div>
-	</section>
-	<a type="button" id="BackTop" class="toTop-arrow"></a>
-	</body>
-	<!--	GO TOP Button-->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-	<script>
-		$(function(){
-			$('#BackTop').click(function(){ 
-				$('html,body').animate({scrollTop:0}, 333);
-			});
-			$(window).scroll(function() {
-				if ( $(this).scrollTop() > 300 ){
-					$('#BackTop').fadeIn('Fixed');
-				} else {
-					$('#BackTop').stop().fadeOut('Fixed');
-				}
-			}).scroll();
-		});
-		</script>
-	<!-- Scripts -->
-	<script src="{% static 'assets/js/jquery.min.js' %}"></script>
-	<script src="{% static 'assets/js/jquery.dropotron.min.js' %}"></script>
-	<script src="{% static 'assets/js/browser.min.js' %}"></script>
-	<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
-	<script src="{% static 'assets/js/util.js' %}"></script>
-	<script src="{% static 'assets/js/main.js' %}"></script>
+                            </article>
+
+                        </div>
+
+                    </div>
+                    <div class="col-4 col-12-medium">
+
+                        <!-- Sidebar -->
+                        <div id="sidebar">
+                            <section class="box">
+                                <header>
+                                    <h2>快速尋找</h2>
+                                </header>
+                                <a href="#雙北市">
+                                    <p>雙北市</p>
+                                </a>
+                                <a href="#桃園市">
+                                    <p>桃園市</p>
+                                </a>
+                                <a href="#台中市">
+                                    <p>台中市</p>
+                                </a>
+                                <a href="#台南市">
+                                    <p>台南市</p>
+                                </a>
+                                <a href="#高雄市">
+                                    <p>高雄市</p>
+                                </a>
+                            </section>
+                            <section class="box">
+                                <header>
+                                    <h2>狗狗相關文章閱讀</h2>
+                                </header>
+                                <ul class="style2">
+                                    <li>
+                                        <article class="box post-excerpt">
+                                            <a href="https://reurl.cc/KAA8q9" target="_blank" class="image left"><img
+                                                    src="{% static 'images/dog45.jpg ' %}" alt="" /></a>
+                                            <h3><a href="https://reurl.cc/KAA8q9" target="_blank">狗與貓會感染Covid-19嗎 |
+                                                    希爾思</a></h3>
+                                            <p>冠狀病毒、COVID-19 與您的寵物：您需要知道的事 </p>
+                                        </article>
+                                    </li>
+                                    <li>
+                                        <article class="box post-excerpt">
+                                            <a href="https://reurl.cc/3aaKWj" target="_blank" class="image left"><img
+                                                    src="{% static 'images/dog5.jpg ' %}" alt="" /></a>
+                                            <h3><a href="https://reurl.cc/3aaKWj" target="_blank">舔一口竟致命！與寵物安全互動4原則 |
+                                                    康健</a></h3>
+                                            <p>近日國外出現4起因為寵物貓狗舔舐而死亡或截肢的新聞... </p>
+                                        </article>
+                                    </li>
+                                    <li>
+                                        <article class="box post-excerpt">
+                                            <a href="https://reurl.cc/eEEMlK" class="image left"><img
+                                                    src="{% static 'images/dog6.jpg ' %}" alt="" /></a>
+                                            <h3><a href="https://reurl.cc/eEEMlK">7種方法 簡單對抗寵物過敏 | 早安健康</a></h3>
+                                            <p>看到路上可愛的貓貓狗狗，總讓人情不自禁想摸摸牠們，但如果對牠們的毛過敏...</p>
+                                        </article>
+                                    </li>
+                                </ul>
+
+                            </section>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Highlights -->
+
+
+    </div>
+    <section id="footer" class="wrapper">
+        <div class="title"></div>
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-12-medium" style="margin: 0px auto;">
+
+                    <!-- Contact -->
+                    <section class="feature-list col-12-medium">
+                        <div class="row">
+                            <div class="col">
+                                <section>
+                                    <h3 class="icon solid fa-home">Dearfurkid</h3>
+                                    <p>
+                                        <a href="QA">常見Q&A</a><br>
+                                        <a href="privacy">隱私權政策</a>
+
+                                    </p>
+                                </section>
+                            </div>
+
+                            <div class="col">
+                                <section>
+                                    <h3 class="icon solid fa-envelope">聯絡我們</h3>
+                                    <p>
+                                        <a href="mailto:dfurkid@gmail.com" target="_blank">dfurkid@gmail.com</a>
+                                        <br>
+                                        <a href="https://lin.ee/8SJlSiV">
+                                            <img src="https://scdn.line-apps.com/n/line_add_friends/btn/zh-Hant.png"
+                                                alt="加入好友" height="30" border="0">
+                                        </a>
+                                    </p>
+                                </section>
+                            </div>
+                        </div>
+
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+    <a type="button" id="BackTop" class="toTop-arrow"></a>
+</body>
+<!--	GO TOP Button-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script>
+    $(function () {
+        $('#BackTop').click(function () {
+            $('html,body').animate({ scrollTop: 0 }, 333);
+        });
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 300) {
+                $('#BackTop').fadeIn('Fixed');
+            } else {
+                $('#BackTop').stop().fadeOut('Fixed');
+            }
+        }).scroll();
+    });
+</script>
+<!-- Scripts -->
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.dropotron.min.js' %}"></script>
+<script src="{% static 'assets/js/browser.min.js' %}"></script>
+<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+<script src="{% static 'assets/js/util.js' %}"></script>
+<script src="{% static 'assets/js/main.js' %}"></script>
+
 
 </html>

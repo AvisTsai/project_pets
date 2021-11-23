@@ -21,7 +21,7 @@
 {% csrf_token %}
 <div class="container">
 
-    <form method="POST" class="form-inline my-2 my-lg-0">
+    <form method="POST" action="{% url 'pets:index'%}" form-inline my-2 my-lg-0">
         <div style="text-align:center">
             <h2>Login DearFurkid</h2><br>
             <span for="username">帳號:</span>
@@ -30,8 +30,8 @@
             <span for="password">密碼:</span>
             <input class="form-control mr-sm-2" type="password" style="width: 200px;height: 50px;" name="user_pwd"
                    placeholder="Password"><br><br>
-            <button class="btn btn-success" type="submit">送出
-            </button>
+            <input class="btn btn-success" type="submit" value="送出" />
+
         </div>
         &nbsp
         {% csrf_token %}
