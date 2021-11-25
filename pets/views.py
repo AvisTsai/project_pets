@@ -19,6 +19,7 @@ from urllib.parse import unquote
 from .models import *
 from .utils import Calendar
 from .filters import *
+from django.contrib.auth.forms import AuthenticationForm
 
 
 def index(request):
@@ -29,6 +30,9 @@ def index(request):
 def registerweb(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
+        username1 = request.POST.get("username")
+        if (Register.objects.filter(username=username1).exists()):
+            print("username already exist")
         if form.is_valid():
             form.save()
             return redirect('pets:login')
@@ -41,20 +45,21 @@ def registerweb(request):
 
 
 def login(request):
-    if request.user.is_authenticated:
-        return HttpResponseRedirect('pets:index')
+    # if request.user.is_authenticated:
+    #     return HttpResponseRedirect('pets:index')
+    form = AuthenticationForm(request, data=request.POST)
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-        user = auth.authenticate(username=username, password=password)
+        user = authenticate(request, username=username, password=password)
 
         if user is not None and user.is_active:
-            auth.login(request, user)
+            login(request, user)
             return redirect('pets:index')
         else:
             return HttpResponse('使用者名稱或密碼錯誤')
-
-    return render(request, 'login.html', locals())
+    form = AuthenticationForm()
+    return render(request, 'login.html', {'form':form})
 
 
 def logout(request):
@@ -73,7 +78,9 @@ def bookkeeping(request):
 
     if request.method == 'POST':
         form = MoneyForm(request.POST)
+        print('form has created')
         if form.is_valid():
+            print("form have saved")
             form.save()
         return redirect("pets:bookkeeping")
 
@@ -174,11 +181,12 @@ def new_event(request, event_id=None):
     instance = Event()
     form = EventForm(request.POST or None, instance=instance)
     if request.POST and form.is_valid():
+        print("form have saved")
+
         form.save()
         return HttpResponseRedirect(reverse('pets:calendar'))
     context = {
         'form': form,
-        # 'eventid': instance_id
     }
 
     return render(request, 'event.html', context)
@@ -222,18 +230,11 @@ def delEvent(request, event_id):
 def titleSearch(request):
     q = request.GET.get('q')
     if not q:
-        error_msg = '请输入关键词'
+        error_msg = '請输入關键字'
         return render(request, 'result.html', {'error_msg': error_msg})
     title = Event.objects.filter(title__icontains=q)
     return render(request, 'result.html', {'title': title})
 
-
-#
-# def ViewT(request):
-#     queryset = Event.objects.all()
-#     user_filter = EventFilter(request.GET, queryset = queryset)
-#     print(queryset)
-#     return render(request, 'result.html', {'title': title})
 
 
 def viewTitle(request):
@@ -259,14 +260,7 @@ def date_filter_event(request):
             all_event = Event.objects.all()
             from_date = dt.strptime(request.GET.get('from_date')[0:10],"%Y-%m-%d")
             to_date = dt.strptime(request.GET.get('to_date')[0:10],"%Y-%m-%d")
-            # print(from_date)
-            # print(to_date)
-            # print(from_date[0:10])
-            # print(from_date[11:16])
-            # print('from_date', dt.strptime(from_date[0:10],"%Y-%m-%d"))
             searchresult = Event.objects.filter(start_time__gt=from_date).filter(start_time__lt=to_date)
-            # myfilter = OrderFilter(request.GET, queryset=all_event)
-            # orders = myfilter.qs
             context = {'Event': searchresult}
             return render(request, 'dateSearch.html', context)
         except:

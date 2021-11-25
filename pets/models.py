@@ -4,12 +4,12 @@ import uuid
 from django.urls import reverse
 from django.db import models
 import datetime
-from .guidmodels import GUIDModel
+# from .guidmodels import GUIDModel
 
 
 # 註冊
-class Register(GUIDModel):
-    id = models.AutoField(primary_key=True, default=uuid.uuid4, editable=False)
+class Register(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     # id = models.
     username = models.CharField(max_length=15)
     user_pwd = models.CharField(max_length=15)
@@ -139,7 +139,7 @@ class Event(models.Model):
     description = models.TextField()
     start_time = models.DateField(default='請選擇時間',)
     end_time = models.DateField(default='請選擇時間', )
-    # user_id = models.ForeignKey(Register.id, null=True, on_delete= models.CASCADE)
+    # user_id = models.ForeignKey(Register, db_column='id', null=True, on_delete= models.CASCADE)
 
     
     def __str__(self):

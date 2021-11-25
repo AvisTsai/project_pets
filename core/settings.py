@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-(1c#znx*_fh#cd1nni3*v!=xcehc)-23n8x(ieu9k(sk^3%jhs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS =  [
     'urexpenses.herokuapp.com/'
@@ -103,7 +103,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'fk_test',
+        'NAME': 'dearfurkid_1125',
         'USER': 'root',
         'PASSWORD': 'Zhong10746012',
         'HOST': 'localhost',
