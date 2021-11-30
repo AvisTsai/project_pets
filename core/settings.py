@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-(1c#znx*_fh#cd1nni3*v!=xcehc)-23n8x(ieu9k(sk^3%jhs
 DEBUG = True
 
 ALLOWED_HOSTS =  [
-    'urexpenses.herokuapp.com/'
+    'dearfurkid.herokuapp.com/'
 ]
 X_FRAME_OPTIONS = 'ALLOWALL'
 # Application definition
@@ -103,7 +103,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dearfurkid_1125',
+        'NAME': 'fk_test',
         'USER': 'root',
         'PASSWORD': 'Zhong10746012',
         'HOST': 'localhost',
