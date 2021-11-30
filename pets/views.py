@@ -1,24 +1,24 @@
 import datetime
-
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, JsonResponse
 from django.contrib import auth
 from .forms import RegisterForm, MoneyForm, EventForm, LoginForm
-from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import ListView, CreateView, UpdateView
 from datetime import datetime, timedelta, date
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import generic
 from django.urls import reverse, reverse_lazy
+from django.views.decorators.csrf import csrf_exempt
+from django.views.generic import ListView, CreateView, UpdateView
+from django.contrib.auth.forms import UserCreationForm
 from django.utils.safestring import mark_safe
 import calendar
-from django.contrib.auth.forms import UserCreationForm
 from datetime import datetime as dt
-from .models import *
 from .utils import Calendar
 from .filters import *
+from .models import Register
+from django.contrib import messages
 
 
 def index(request):
@@ -29,38 +29,50 @@ def index(request):
 def registerweb(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('pets:login')
+        usnm = request.POST.get('username')
+        if Register.objects.filter(username=usnm).exists():
+            return HttpResponse('使用者已存在')
         else:
-            return render(request, 'registerweb.html', {'form': form})
+            if form.is_valid():
+                messages.success(request, '註冊成功')
+                form.save()
+                return redirect('pets:registerweb')
+            else:
+                return render(request, 'registerweb.html', {'form': form})
     else:
         form = RegisterForm()
         context = {'form': form}
         return render(request, 'registerweb.html', context)
 
 
-def login(request):
-    # if request.user.is_authenticated:
-    #     return HttpResponseRedirect('pets:index')
-    # if request.method == 'POST':
-    #     username = request.POST.get('username')
-    #     user_pwd = request.POST.get('user_pwd')
-    #     user = auth.authenticate(username=username, user_pwd=user_pwd)
-    #
-    #     if user is not None and user.is_active:
-    #         auth.login(request, user)
-    #         return redirect('pets:index')
-    #     else:
-    #         return HttpResponse('使用者名稱或密碼錯誤')
-    # context = {
-    #     'form': LoginForm
-    # }
-    return render(request, 'login.html')
+def loginweb(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        usernm = request.POST.get('username')
+        password = request.POST.get('user_pwd')
+        if Register.objects.filter(username=usernm).exists():
+            if Register.objects.filter(user_pwd=password).exists():
+                form.save()
+                request.session['logindata']
+                return redirect('pets:index')
+            else:
+                messages.error(request, '此使用者密碼錯誤')
+                return render(request, 'loginweb.html', {'form': form})
+        else:
+            messages.error(request, '此使用者帳號尚未註冊')
+            return redirect('pets:loginweb')
+    else:
+        form = LoginForm()
+        context = {'form': form}
+        return render(request, 'loginweb.html', context)
+
 
 def logout(request):
-    auth.logout(request)
-    return redirect('/index')
+    try:
+        del request.session['logindata']
+    except KeyError:
+        pass
+    return HttpResponse("You're logged out.")
 
 
 def grooming(request):
@@ -455,6 +467,7 @@ def QA(request):
 def privacy(request):
     return render(request, 'privacy.html')
 
+
 # 行事曆
 class CalendarView(generic.ListView):
     model = Event
@@ -567,7 +580,6 @@ def titleSearch(request):
     return render(request, 'result.html', {'title': title})
 
 
-
 def viewTitle(request):
     OrderNo = request.POST.get('orderOption')
     # titleurl = ''
@@ -589,8 +601,8 @@ def date_filter_event(request):
     if request.method == "GET":
         try:
             all_event = Event.objects.all()
-            from_date = dt.strptime(request.GET.get('from_date')[0:10],"%Y-%m-%d")
-            to_date = dt.strptime(request.GET.get('to_date')[0:10],"%Y-%m-%d")
+            from_date = dt.strptime(request.GET.get('from_date')[0:10], "%Y-%m-%d")
+            to_date = dt.strptime(request.GET.get('to_date')[0:10], "%Y-%m-%d")
             searchresult = Event.objects.filter(start_time__gt=from_date).filter(start_time__lt=to_date)
             context = {'Event': searchresult}
             return render(request, 'dateSearch.html', context)

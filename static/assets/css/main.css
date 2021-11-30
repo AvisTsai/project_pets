@@ -2949,6 +2949,19 @@ input, select, textarea {
       text-decoration:none;
     }
 
+#id_time{
+    width:100%;
+ }
+
+
+#id_item{
+    width:100%;
+}
+
+#id_category{
+    width:100%;
+}
+
 
 #id_price{
     width:100%;

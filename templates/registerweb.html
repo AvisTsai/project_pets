@@ -41,7 +41,21 @@
         <span>{{ form.user_email.label }}</span>
         {{ form.user_email }}
     </div>
+    <a style="margin-right:2%;color:blue;" href="{% url 'pets:loginweb'%}" >登入</a>
     <input class="btn btn-success" type="submit" value="送出"/>
+
 </form>
+
+{% if messages %}
+  <script>
+    {% for msg in messages %}
+      alert('{{ msg.message }}');
+    {% endfor %}
+
+    change=location.href.substring(0,location.href.length-11)+'loginweb'
+    window.location=change
+  </script>
+{% endif %}
+
 </body>
 </html>

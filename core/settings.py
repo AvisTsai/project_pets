@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'pets.apps.PetsConfig',
     'bootstrap4',
     'django_filters',
+
 ]
 
 LOGIN_REDIRECT_URL = '/'
@@ -86,7 +87,7 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'pets',
+        'NAME': 'project_pets',
         'USER': 'root',
         'PASSWORD': '0000',
         'HOST': 'localhost',

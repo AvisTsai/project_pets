@@ -9,10 +9,10 @@ urlpatterns = [
     path('index', views.index, name='index'),
     path('registerweb', views.registerweb, name='registerweb'),
     path('login', views.login, name='login'),
+    path('loginweb', views.loginweb, name='loginweb'),
     path('logout', views.logout, name='logout'),
     path('aboutus', views.aboutus, name='aboutus'),
     path('forgot', views.forgot, name='forgot'),
-    path('registerweb', views.registerweb, name='registerweb'),
     # 散步
     path('walk_pet', views.walk_pet, name='walk_pet'),
     path('walk_find', views.walk_find, name='walk_find'),
