@@ -55,8 +55,8 @@ def loginweb(request):
             if Register.objects.filter(user_pwd=password).exists():
                 form.save()
                 request.session['login_data'] = usernm
-                # print('判斷快取中是否有:', request.session.get('login_data'))
-                return redirect('pets:index')
+                context = {'token': request.session['login_data']}
+                return render(request, 'index.html', context)
             else:
                 messages.error(request, '此使用者密碼錯誤')
                 return render(request, 'loginweb.html', {'form': form})
