@@ -144,8 +144,8 @@ class Money(models.Model):
 class Event(models.Model):
     title = models.CharField("標題", max_length=200)
     description = models.TextField()
-    start_time = models.DateTimeField(default='請選擇時間')
-    end_time = models.DateTimeField(default='請選擇時間')
+    start_time = models.DateField(default='請選擇時間')
+    end_time = models.DateField(default='請選擇時間')
 
     def __str__(self):
         return self.title
