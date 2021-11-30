@@ -112,9 +112,9 @@ class Category(models.TextChoices):
 
 
 class Item(models.TextChoices):
-    food = 'food', '肉乾'
-    food1 = 'food1', '鮮食'
-    toy = 'toy', '飛盤'
+    food = '肉乾', '肉乾'
+    food1 = '鮮食', '鮮食'
+    toy = '飛盤', '飛盤'
     clothes = 'clothes', '領巾'
     salon = 'salon', '剪毛'
     others = 'others', '項圈'
@@ -138,6 +138,9 @@ class Money(models.Model):
         verbose_name = '記帳'
         verbose_name_plural = '記帳'
 
+class Mobject(models.Model):
+    category = models.CharField(max_length=255, choices=Category.choices, verbose_name='類別')
+    item = models.CharField(max_length=255, choices=Item.choices, verbose_name='項目')
 
 # 行事曆
 
