@@ -32,8 +32,9 @@
                 <span style="margin-left:2.2%"> {{ form.user_pwd.label }}</span>
                 {{ form.user_pwd }}
             </div>
-            <a style="margin-right:2%;color:blue;" href="{% url 'pets:registerweb'%}">註冊</a>-->
-            <input class="btn btn-success" type="submit" value="送出"/>
+            <span id="session-text"></span>
+            <a style="margin-right:2%;color:blue;" href="{% url 'pets:registerweb'%}">註冊</a>
+            <input class="btn btn-success" onclick="saveSession()" type="submit" value="送出"/>
         </div>
         &nbsp
     </form>
@@ -46,16 +47,18 @@
 <script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
 <script src="{% static 'assets/js/util.js' %}"></script>
 <script src="{% static 'assets/js/main.js' %}"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
 {% if messages %}
-  <script>
+<script>
     {% for msg in messages %}
       alert('{{ msg.message }}');
     {% endfor %}
 
     change=location.href.substring(0,location.href.length-8)+'loginweb'
     window.location=change
-  </script>
+
+</script>
 {% endif %}
 
 
