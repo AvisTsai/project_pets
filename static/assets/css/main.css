@@ -1530,8 +1530,9 @@ input, select, textarea {
 		display: inline-block;
 		font-weight: 700;
 		color: #484d55;
-		margin: 0.25em 0 0.5em 0;
+		margin: 0.5em 0 0.5em 0;
 		width:15%;
+		padding-left:1%;
 	}
 
 	form input[type="text"],
@@ -1549,7 +1550,7 @@ input, select, textarea {
 		background: #eee;
 		box-shadow: inset 0px 0px 1px 0px #a0a1a7;
 		border-radius: 0.35em;
-		width: 20%;
+		width: 15%;
 		margin: 1%;
 		padding: 0.75em 1em 0.75em 1em;
 	}
@@ -2041,6 +2042,7 @@ input, select, textarea {
 
 		.wrapper.style2 {
 			background: #fff;
+			padding: 0.1%;
 		}
 
 			.wrapper.style2 .title {
@@ -2947,3 +2949,25 @@ input, select, textarea {
       text-decoration:none;
     }
 
+#id_time{
+    width:100%;
+ }
+
+
+#id_item{
+    width:100%;
+}
+
+#id_category{
+    width:100%;
+}
+
+
+#id_price{
+    width:100%;
+    margin-left:1%;
+}
+
+#upbtn{
+    margin:2% 0 0 45%;
+}

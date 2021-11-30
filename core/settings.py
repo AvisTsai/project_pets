@@ -9,14 +9,12 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-import os
-# import pymysql
-import django_heroku
 
+import os
 from pathlib import Path
+from django.conf.global_settings import DEFAULT_AUTO_FIELD
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-from django.conf.global_settings import DEFAULT_AUTO_FIELD
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -29,9 +27,8 @@ SECRET_KEY = 'django-insecure-(1c#znx*_fh#cd1nni3*v!=xcehc)-23n8x(ieu9k(sk^3%jhs
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS =  [
-    'dearfurkid.herokuapp.com/'
-]
+ALLOWED_HOSTS = ['*']
+
 X_FRAME_OPTIONS = 'ALLOWALL'
 # Application definition
 
@@ -45,9 +42,8 @@ INSTALLED_APPS = [
     'pets.apps.PetsConfig',
     'bootstrap4',
     'django_filters',
-    'django_guid',
-]
 
+]
 
 LOGIN_REDIRECT_URL = '/'
 
@@ -55,22 +51,11 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_guid.middleware.guid_middleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
-
-DJANGO_GUID = {
-    'GUID_HEADER_NAME': 'Correlation-ID',
-    'VALIDATE_GUID': True,
-    'RETURN_HEADER': True,
-    'EXPOSE_HEADER': True,
-    'INTEGRATIONS': [],
-    'UUID_LENGTH': 32,
-}
 
 ROOT_URLCONF = 'core.urls'
 
@@ -97,15 +82,14 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-
-
-
 DATABASES = {
     'default': {
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'fk_test',
+        'NAME': 'project_pets',
         'USER': 'root',
-        'PASSWORD': 'Zhong10746012',
+        'PASSWORD': '0000',
         'HOST': 'localhost',
         'PORT': '3306',
     }
@@ -113,24 +97,6 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
-# AUTH_USER_MODEL = 'pets.Register'
-
-
-# LOGGING = {
-#     'filters': {
-#         'correlation_id': {
-#             '()': 'django_guid.log_filters.CorrelationId'
-#         }
-#     },
-#     'handlers': {
-#         'console': {
-#             'class': 'logging.StreamHandler',
-#             'formatter': 'medium',
-#             'filters': ['correlation_id'],
-#         }
-#     }
-
-# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -164,16 +130,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-    
-if not DEBUG:
-    STATIC_ROOT = ''
-    
-STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'static/'),
-    ]
-
-
-STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -181,5 +140,3 @@ STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
 # DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # AUTH_PROFILE_MODULE = 'accounts.UserProfile'
-
-django_heroku.settings(locals())

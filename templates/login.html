@@ -18,23 +18,34 @@
 
 </div>
 
-{% csrf_token %}
-<div class="container">
 
-    <form method="POST" action="{% url 'pets:index' %}" class="form-inline my-2 my-lg-0">
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
         <div style="text-align:center">
-            <h2>Login DearFurkid</h2><br>
-            <span for="username">帳號:</span>
-            <input class="form-control mr-sm-2" type="text" style="width: 200px;height: 50px;" name="username"
-                   placeholder="Username"><br><br>
-            <span for="password">密碼:</span>
-            <input class="form-control mr-sm-2" type="password" style="width: 200px;height: 50px;" name="user_pwd"
-                   placeholder="Password"><br><br>
-            <button class="btn btn-success" type="submit">送出
-            </button>
+            <!--            <h2>Login DearFurkid</h2><br>-->
+            <!--            <span for="username">帳號:</span>-->
+            <!--            <input class="form-control mr-sm-2" type="text" style="width: 200px;height: 50px;" name="username"-->
+            <!--                   placeholder="Username"><br><br>-->
+            <!--            <span for="password">密碼:</span>-->
+            <!--            <input class="form-control mr-sm-2" type="password" style="width: 200px;height: 50px;" name="user_pwd"-->
+            <!--                   placeholder="Password"><br><br>-->
+            <!--            <a style="margin-right:2%;color:blue;" href="{% url 'pets:registerweb'%}" >註冊</a>-->
+            <!--            <input class="btn btn-success" type="submit" value="送出" />-->
+            <div>
+                {{ form.username.error }}
+                <span style="margin-left:2.2%;font-color:">{{ form.username.label }}</span>
+                {{ form.username }}
+            </div>
+            <div>
+                {{ form.user_pwd.error }}
+                <span style="margin-left:2.2%"> {{ form.user_pwd.label }}</span>
+                {{ form.user_pwd }}
+            </div>
+            <a style="margin-right:2%;color:blue;" href="{% url 'pets:registerweb'%}">註冊</a>-->
+            <input class="btn btn-success" type="submit" value="送出"/>
         </div>
         &nbsp
-        {% csrf_token %}
     </form>
 </div>
 

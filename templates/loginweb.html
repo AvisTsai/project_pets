@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+{% load static %}
+<head>
+    <title>Login DearFurkid</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}"/>
+</head>
+
+<body class="left-sidebar is-preload">
+<div id="page-wrapper">
+    <section id="header" class="wrapper">
+        <div id="logo">
+            <h1>Dearfurkid</h1>
+        </div>
+    </section>
+</div>
+
+
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <div style="text-align:center">
+            <div>
+                {{ form.username.error }}
+                <span style="margin-left:2.2%;font-color:">{{ form.username.label }}</span>
+                {{ form.username }}
+            </div>
+            <div>
+                {{ form.user_pwd.error }}
+                <span style="margin-left:2.2%"> {{ form.user_pwd.label }}</span>
+                {{ form.user_pwd }}
+            </div>
+            <a style="margin-right:2%;color:blue;" href="{% url 'pets:registerweb'%}">註冊</a>-->
+            <input class="btn btn-success" type="submit" value="送出"/>
+        </div>
+        &nbsp
+    </form>
+</div>
+
+<!-- Scripts -->
+<script src="{% static 'assets/js/jquery.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.dropotron.min.js' %}"></script>
+<script src="{% static 'assets/js/browser.min.js' %}"></script>
+<script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+<script src="{% static 'assets/js/util.js' %}"></script>
+<script src="{% static 'assets/js/main.js' %}"></script>
+
+{% if messages %}
+  <script>
+    {% for msg in messages %}
+      alert('{{ msg.message }}');
+    {% endfor %}
+
+    change=location.href.substring(0,location.href.length-8)+'loginweb'
+    window.location=change
+  </script>
+{% endif %}
+
+
+</body>
+
+</html>

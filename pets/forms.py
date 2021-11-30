@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Pet, Register, Money, MemberManagement
+from .models import Pet, Register, Money, Login
 from django.forms import ModelForm, DateInput
 from pets.models import Event
 
@@ -31,8 +31,22 @@ class RegisterForm(ModelForm):
 
     class Meta:
         model = Register
-        # fields = "__all__"
-        fields = ( 'username', 'user_pwd', 'check_password', 'user_email')
+        fields = ('username', 'user_pwd', 'check_password', 'user_email')
+
+
+class LoginForm(ModelForm):
+    username = forms.CharField(
+        label='帳號：',
+        widget=forms.TextInput(attrs={'class': 'form-control'})
+    )
+    user_pwd = forms.CharField(
+        label='密碼：',
+        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+    )
+
+    class Meta:
+        model = Login
+        fields = ('username', 'user_pwd')
 
 
 # 記帳
