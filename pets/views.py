@@ -30,12 +30,13 @@ def registerweb(request):
         form = RegisterForm(request.POST)
         usnm = request.POST.get('username')
         if Register.objects.filter(username=usnm).exists():
-            return HttpResponse('使用者已存在')
+            messages.error(request, '使用者已存在')
+            return render(request, 'registerweb.html', {'form': form})
         else:
             if form.is_valid():
                 messages.success(request, '註冊成功')
                 form.save()
-                return redirect('pets:registerweb')
+                return redirect('pets:loginweb')
             else:
                 return render(request, 'registerweb.html', {'form': form})
     else:
@@ -52,8 +53,9 @@ def loginweb(request):
         if Register.objects.filter(username=usernm).exists():
             if Register.objects.filter(user_pwd=password).exists():
                 form.save()
-                request.session['logindata']
-                return redirect('pets:index')
+                request.session['login_data'] = usernm
+                context = {'token': request.session['login_data']}
+                return render(request, 'index.html', context)
             else:
                 messages.error(request, '此使用者密碼錯誤')
                 return render(request, 'loginweb.html', {'form': form})
@@ -67,11 +69,13 @@ def loginweb(request):
 
 
 def logout(request):
-    try:
-        del request.session['logindata']
-    except KeyError:
-        pass
-    return HttpResponse("You're logged out.")
+    if not request.session.get('login_data',  None):
+        return redirect("pets:loginweb")
+    else:
+        del request.session['login_data']
+        messages.error(request, '您已登出')
+        return redirect("pets:loginweb")
+    return render(request, 'logout.html', locals())
 
 
 def grooming(request):

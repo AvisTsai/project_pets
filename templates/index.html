@@ -7,10 +7,11 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
-
+<script>
+	sessionStorage.token = "{{ token }}"
+</script>
 
 </head>
-
 <body class="homepage is-preload">
 	<div id="page-wrapper">
 
@@ -32,7 +33,7 @@
 						<ul>
 							<li><a href="calendar">提醒事項</a></li>
 							<li><a href="modify">修改密碼</a></li>
-							<li><a href="#">帳號登出</a></li>
+							<li><a href="{% url 'pets:logout'%}">帳號登出</a></li>
 							<li><a href="aboutus">關於我們</a></li>
 						</ul>
 					</li>
