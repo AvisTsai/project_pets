@@ -61,9 +61,9 @@ class MoneyForm(forms.ModelForm):
         #     'item': forms.TextInput(attrs={'class': 'form-control'}),
         #     'price': forms.NumberInput(attrs={'class': 'form-control'})
         # }
-        # label = {
+        # labels = {
         #     'time': '時間',
-        #     'kind-choices': '類別',
+        #     'category': '類別',
         #     'item': '項目',
         #     'price': '價格',
         # }

@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.RemoveField(
             model_name='login',
-            name='id',
+            name='username',
         ),
         migrations.AlterField(
             model_name='login',
