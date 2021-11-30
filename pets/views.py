@@ -1,4 +1,3 @@
-import datetime
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
@@ -133,39 +132,11 @@ def delete(request, pk):
     return render(request, 'delete.html', context)
 
 
+
 # 行事曆
 class CalendarView(generic.ListView):
     model = Event
     template_name = 'calendar.html'
-
-    def prev_month(d):
-        first = d.replace(day=1)
-        print('first', first)
-        prev_month = first - timedelta(days=1)
-        print(prev_month)
-        month = 'month=' + str(prev_month.year) + '-' + str(prev_month.month)
-        return month
-
-    def next_month(d):
-        days_in_month = calendar.monthrange(d.year, d.month)[1]
-        # print('days_in_month', days_in_month)
-        # 31
-        last = d.replace(day=days_in_month)
-        # print('last', last)
-        # 2021-12-31
-        next_month = last + timedelta(days=1)
-        # print(next_month)
-        # 2022-01-01
-        month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
-        # print(month)
-        # mouth=2022-1
-        return month
-
-    def get_date(req_day):
-        if req_day:
-            year, month = (int(x) for x in req_day.split('-'))
-            return date(year, month, day=1)
-        return datetime.today()
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -183,62 +154,97 @@ class CalendarView(generic.ListView):
         context['next_month'] = next_month(d)
         return context
 
-    # get_object_or_404 它在哪裡
 
-    # 它上面奇石沒有帶我覺得 它只是載初始化 規0的感覺 是喔  那要怎麼實現刪除功能你確定帶ID就好嗎? 70%確定 XD
-    def delEvent(request, event_id):
-        instance = Event.objects.get(id=event_id)
-        print(event_id)
-        if request.method == "POST":
-            instance.delete()
-            return redirect('pets:calendar')
-        context = {
-            'instance': instance
-        }
-        return render(request, 'delEvent.html', context)
+def prev_month(d):
+    first = d.replace(day=1)
+    # print('first', first)
+    prev_month = first - timedelta(days=1)
+    # print(prev_month)
+    month = 'month=' + str(prev_month.year) + '-' + str(prev_month.month)
+    return month
 
-    # 行事曆搜尋功能
-    def titleSearch(request):
-        q = request.GET.get('q')
-        title = Event.objects.filter(title__icontains=q)
-        return render(request, 'result.html', {'title': title})
 
-    def new_event(request, event_id=None):
+def next_month(d):
+    days_in_month = calendar.monthrange(d.year, d.month)[1]
+    # print('days_in_month', days_in_month)
+    # 31
+    last = d.replace(day=days_in_month)
+    # print('last', last)
+    # 2021-12-31
+    next_month = last + timedelta(days=1)
+    # print(next_month)
+    # 2022-01-01
+    month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
+    # print(month)
+    # mouth=2022-1
+    return month
+
+
+def get_date(req_day):
+    if req_day:
+        year, month = (int(x) for x in req_day.split('-'))
+        return date(year, month, day=1)
+    return date.today()
+
+
+def new_event(request, event_id=None):
+    instance = Event()
+    form = EventForm(request.POST or None, instance=instance)
+    if request.POST and form.is_valid():
+        print("form have saved")
+
+        form.save()
+        return HttpResponseRedirect(reverse('dog:calendar'))
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'event.html', context)
+
+
+def edit_event(request, event_id=None):
+    instance = Event()
+    instance_id = Event.objects.get(pk=event_id)
+
+    if event_id:
+        instance = get_object_or_404(Event, pk=event_id)
+    else:
         instance = Event()
-        form = EventForm(request.POST or None, instance=instance)
-        if request.POST and form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('pets:calendar'))
-        context = {
-            'form': form,
-        }
 
-        return render(request, 'event.html', context)
+    form = EventForm(request.POST or None, instance=instance)
+    if request.POST and form.is_valid():
+        form.save()
+        return HttpResponseRedirect(reverse('dog:calendar'))
 
-    def date_filter_event(request):
-        if request.method == "GET":
-            try:
-                all_event = Event.objects.all()
-                from_date = dt.strptime(request.GET.get('from_date')[0:10], "%Y-%m-%d")
-                to_date = dt.strptime(request.GET.get('to_date')[0:10], "%Y-%m-%d")
-                searchresult = Event.objects.filter(start_time__gt=from_date).filter(start_time__lt=to_date)
-                context = {'Event': searchresult}
-                return render(request, 'dateSearch.html', context)
-            except:
-                event = Event.objects.all()
-                return render(request, 'dateSearch.html', {'event': event})
+    context = {
+        'form': form,
+        'eventid': instance_id
+    }
+
+    return render(request, 'event.html', context)
 
 
-# titleSearch()
+def delEvent(request, event_id):
+    instance = Event.objects.get(id=event_id)
+    print(event_id)
+    if request.method == "POST":
+        instance.delete()
+        return redirect('dog:calendar')
+    context = {
+        'instance': instance
+    }
+    return render(request, 'delEvent.html', context)
 
-# def viewTitle(request):
-#     title = Event.objects.all()
-#     description = Event.objects.all()
-#     # start_time = Event.objects.all()
-#
-#     context = {'title': title, 'Descriptions': description,
-#                }
-#     return render(request, 'Calendar_title.html', context)
+
+# 行事曆搜尋功能
+def titleSearch(request):
+    q = request.GET.get('q')
+    if not q:
+        error_msg = '請输入關键字'
+        return render(request, 'result.html', {'error_msg': error_msg})
+    title = Event.objects.filter(title__icontains=q)
+    return render(request, 'result.html', {'title': title})
+
 
 
 def viewTitle(request):
@@ -258,21 +264,20 @@ def viewTitle(request):
     return render(request, 'Calendar_title.html', context)
 
 
-# 刪除事件
-def delEvent(request, event_id=None):
-    del_Event = get_object_or_404(Event, pk=event_id)
-    if request.method == "POST":
-        del_Event.delete()
-        return redirect('/')
-    return render(request, 'delEvent.html')
+def date_filter_event(request):
+    if request.method == "GET":
+        try:
+            from_date = dt.strptime(request.GET.get('from_date')[0:10],"%Y-%m-%d")
+            to_date = dt.strptime(request.GET.get('to_date')[0:10],"%Y-%m-%d")
+            searchresult = Event.objects.filter(start_time__gte=from_date).filter(start_time__lte=to_date)
+            context = {'Event': searchresult}
+            return render(request, 'dateSearch.html', context)
+        except:
+            event = Event.objects.all()
+            return render(request, 'dateSearch.html', {'event': event})
 
+# def sen
 
-# def orderEvent(request):
-#     title = Event.objects.all()
-#     context = {'title': title}
-#
-#     return render(request, 'Calendar_title.html', context)
-#
 
 # 散步
 def walk_pet(request):
@@ -471,145 +476,3 @@ def QA(request):
 def privacy(request):
     return render(request, 'privacy.html')
 
-
-# 行事曆
-class CalendarView(generic.ListView):
-    model = Event
-    template_name = 'calendar.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        # use today's date for the calendar
-        d = get_date(self.request.GET.get('month', None))
-
-        # Instantiate our calendar class with today's year and date
-        cal = Calendar(d.year, d.month)
-
-        # Call the formatmonth method, which returns our calendar as a table
-        html_cal = cal.formatmonth(withyear=True)
-        context['calendar'] = mark_safe(html_cal)
-        context['prev_month'] = prev_month(d)
-        context['next_month'] = next_month(d)
-        return context
-
-
-def prev_month(d):
-    first = d.replace(day=1)
-    # print('first', first)
-    prev_month = first - timedelta(days=1)
-    # print(prev_month)
-    month = 'month=' + str(prev_month.year) + '-' + str(prev_month.month)
-    return month
-
-
-def next_month(d):
-    days_in_month = calendar.monthrange(d.year, d.month)[1]
-    # print('days_in_month', days_in_month)
-    # 31
-    last = d.replace(day=days_in_month)
-    # print('last', last)
-    # 2021-12-31
-    next_month = last + timedelta(days=1)
-    # print(next_month)
-    # 2022-01-01
-    month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
-    # print(month)
-    # mouth=2022-1
-    return month
-
-
-def get_date(req_day):
-    if req_day:
-        year, month = (int(x) for x in req_day.split('-'))
-        return date(year, month, day=1)
-    return datetime.date.today()
-
-
-def new_event(request, event_id=None):
-    instance = Event()
-    form = EventForm(request.POST or None, instance=instance)
-    if request.POST and form.is_valid():
-        form.save()
-        return HttpResponseRedirect(reverse('pets:calendar'))
-    context = {
-        'form': form,
-        # 'eventid': instance_id
-    }
-
-    return render(request, 'event.html', context)
-
-
-def edit_event(request, event_id=None):
-    instance = Event()
-    instance_id = Event.objects.get(pk=event_id)
-
-    if event_id:
-        instance = get_object_or_404(Event, pk=event_id)
-    else:
-        instance = Event()
-
-    form = EventForm(request.POST or None, instance=instance)
-    if request.POST and form.is_valid():
-        form.save()
-        return HttpResponseRedirect(reverse('pets:calendar'))
-
-    context = {
-        'form': form,
-        'eventid': instance_id
-    }
-
-    return render(request, 'event.html', context)
-
-
-def delEvent(request, event_id):
-    instance = Event.objects.get(id=event_id)
-    print(event_id)
-    if request.method == "POST":
-        instance.delete()
-        return redirect('pets:calendar')
-    context = {
-        'instance': instance
-    }
-    return render(request, 'delEvent.html', context)
-
-
-# 行事曆搜尋功能
-def titleSearch(request):
-    q = request.GET.get('q')
-    if not q:
-        error_msg = '请输入关键词'
-        return render(request, 'result.html', {'error_msg': error_msg})
-    title = Event.objects.filter(title__icontains=q)
-    return render(request, 'result.html', {'title': title})
-
-
-def viewTitle(request):
-    OrderNo = request.POST.get('orderOption')
-    # titleurl = ''
-    if OrderNo == "dateDESC":
-        EventName = Event.objects.order_by('start_time')
-    elif OrderNo == "dateASC":
-        EventName = Event.objects.order_by('-start_time')
-    elif OrderNo == "createtimeASC":
-        EventName = Event.objects.all()
-    else:
-        EventName = Event.objects.all()[::-1]
-
-    context = {'EvenName': EventName, }
-
-    return render(request, 'Calendar_title.html', context)
-
-
-def date_filter_event(request):
-    if request.method == "GET":
-        try:
-            all_event = Event.objects.all()
-            from_date = dt.strptime(request.GET.get('from_date')[0:10], "%Y-%m-%d")
-            to_date = dt.strptime(request.GET.get('to_date')[0:10], "%Y-%m-%d")
-            searchresult = Event.objects.filter(start_time__gt=from_date).filter(start_time__lt=to_date)
-            context = {'Event': searchresult}
-            return render(request, 'dateSearch.html', context)
-        except:
-            event = Event.objects.all()
-            return render(request, 'dateSearch.html', {'event': event})
