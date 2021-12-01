@@ -126,7 +126,7 @@ class Item(models.TextChoices):
 
 
 class Money(models.Model):
-    time = models.DateTimeField(default='請選擇時間')
+    time = models.DateField(default='請選擇時間')
     category = models.CharField(max_length=255, choices=Category.choices, verbose_name='類別')
     item = models.CharField(max_length=255, choices=Item.choices, verbose_name='項目')
     price = models.IntegerField(verbose_name='金額')

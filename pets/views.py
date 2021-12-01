@@ -194,7 +194,7 @@ def new_event(request, event_id=None):
         print("form have saved")
 
         form.save()
-        return HttpResponseRedirect(reverse('dog:calendar'))
+        return HttpResponseRedirect(reverse('pets:calendar'))
     context = {
         'form': form,
     }
@@ -214,7 +214,7 @@ def edit_event(request, event_id=None):
     form = EventForm(request.POST or None, instance=instance)
     if request.POST and form.is_valid():
         form.save()
-        return HttpResponseRedirect(reverse('dog:calendar'))
+        return HttpResponseRedirect(reverse('pets:calendar'))
 
     context = {
         'form': form,
@@ -229,7 +229,7 @@ def delEvent(request, event_id):
     print(event_id)
     if request.method == "POST":
         instance.delete()
-        return redirect('dog:calendar')
+        return redirect('pets:calendar')
     context = {
         'instance': instance
     }
