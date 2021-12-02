@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['*']
 X_FRAME_OPTIONS = 'ALLOWALL'
 # Application definition
 
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -89,9 +90,9 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'fk_test',
+        'NAME': 'project_pets',
         'USER': 'root',
-        'PASSWORD': 'Zhong10746012',
+        'PASSWORD': '0000',
         'HOST': 'localhost',
         'PORT': '3306',
     }

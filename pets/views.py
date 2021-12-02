@@ -2,7 +2,7 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from .forms import RegisterForm, MoneyForm, EventForm, LoginForm
+from .forms import RegisterForm, MoneyForm, EventForm, LoginForm, ShopForm
 from datetime import datetime, timedelta, date
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
@@ -69,7 +69,7 @@ def loginweb(request):
 
 
 def logout(request):
-    if not request.session.get('login_data',  None):
+    if not request.session.get('login_data', None):
         return redirect("pets:loginweb")
     else:
         del request.session['login_data']
@@ -82,22 +82,27 @@ def grooming(request):
     return render(request, 'grooming_pet.html', locals())
 
 
+def grooming_find(request):
+    return render(request, 'grooming_find.html', locals())
+
+
 # 記帳
 def bookkeeping(request):
     money = Money.objects.all()  # 查詢所有資料
-    form = MoneyForm()
-
     if request.method == 'POST':
         form = MoneyForm(request.POST)
         if form.is_valid():
             form.save()
-        return redirect("pets:bookkeeping")
+            context = {
+                'money': money,
+                'form': form
+            }
+        return render(request, 'bookkeeping.html', context)
 
     context = {
         'money': money,
         'form': MoneyForm
     }
-
     return render(request, 'bookkeeping.html', context)
 
 
@@ -131,6 +136,17 @@ def delete(request, pk):
 
     return render(request, 'delete.html', context)
 
+
+# 商城資料
+def shop_information(request):
+    form = ShopForm()
+    data = Shop.objects.all()
+
+    context = {
+        'form': form,
+        'data': data
+    }
+    return render(request, 'shoppingmall.html', context)
 
 
 # 行事曆
@@ -194,7 +210,7 @@ def new_event(request, event_id=None):
         print("form have saved")
 
         form.save()
-        return HttpResponseRedirect(reverse('dog:calendar'))
+        return HttpResponseRedirect(reverse('pets:calendar'))
     context = {
         'form': form,
     }
@@ -214,7 +230,7 @@ def edit_event(request, event_id=None):
     form = EventForm(request.POST or None, instance=instance)
     if request.POST and form.is_valid():
         form.save()
-        return HttpResponseRedirect(reverse('dog:calendar'))
+        return HttpResponseRedirect(reverse('pets:calendar'))
 
     context = {
         'form': form,
@@ -229,7 +245,7 @@ def delEvent(request, event_id):
     print(event_id)
     if request.method == "POST":
         instance.delete()
-        return redirect('dog:calendar')
+        return redirect('pets:calendar')
     context = {
         'instance': instance
     }
@@ -244,7 +260,6 @@ def titleSearch(request):
         return render(request, 'result.html', {'error_msg': error_msg})
     title = Event.objects.filter(title__icontains=q)
     return render(request, 'result.html', {'title': title})
-
 
 
 def viewTitle(request):
@@ -267,14 +282,15 @@ def viewTitle(request):
 def date_filter_event(request):
     if request.method == "GET":
         try:
-            from_date = dt.strptime(request.GET.get('from_date')[0:10],"%Y-%m-%d")
-            to_date = dt.strptime(request.GET.get('to_date')[0:10],"%Y-%m-%d")
+            from_date = dt.strptime(request.GET.get('from_date')[0:10], "%Y-%m-%d")
+            to_date = dt.strptime(request.GET.get('to_date')[0:10], "%Y-%m-%d")
             searchresult = Event.objects.filter(start_time__gte=from_date).filter(start_time__lte=to_date)
             context = {'Event': searchresult}
             return render(request, 'dateSearch.html', context)
         except:
             event = Event.objects.all()
             return render(request, 'dateSearch.html', {'event': event})
+
 
 # def sen
 
@@ -475,4 +491,3 @@ def QA(request):
 
 def privacy(request):
     return render(request, 'privacy.html')
-

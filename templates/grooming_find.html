@@ -1,30 +1,104 @@
-{%  extends 'base.html' %}
 
+
+
+<html>
+	{% load static %}
+<head>
+	<title>寵物美容 | Dfurkid</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+</head>
+
+<body class="left-sidebar is-preload" style="background-color: #f3f3f3";>
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<section id="header" class="wrapper">
+
+			<!-- Logo -->
+			<div id="logo">
+				<h1><a href="index">Dearfurkid</a></h1>
+				<p>Your Pet</p>
+			</div>
+
+			<!-- Nav -->
+			<nav id="nav">
+				<ul>
+					<li class="current"><a href="index">首 頁</a></li>
+					<li>
+						<a href="#">個人資訊</a>
+						<ul>
+							<li><a href="calendar">提醒事項</a></li>
+							<li><a href="modify">修改密碼</a></li>
+							<li><a href="#">帳號登出</a></li>
+							<li><a href="aboutus">關於我們</a></li>
+						</ul>
+					</li>
+
+					<li>
+						<a href="#">日常生活</a>
+						<ul>
+							<li><a href="bookkeeping">寵物記帳</a></li>
+							<li><a href="walk_pet">散步地圖</a></li>
+							<li><a href="consult">寵物住宿</a></li>
+							<li><a href="grooming_pet">寵物美容</a></li>
+							<li><a href="train_pet">寵物訓練</a></li>
+							<li><a href="adopt_pet1">寵物領養</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">寵物商城</a>
+						<ul>
+							<li><a href="mall_freshfood1">鮮食</a></li>
+							<li><a href="mall_feed1">飼料</a></li>
+							<li><a href="">衣服</a>
+								<ul>
+									<li><a href="mall_clothing1">春夏季</a></li>
+									<li><a href="mall_clothing4">秋冬季</a></li>
+									<li><a href="mall_clothing7">其他</a></li>
+								</ul>
+							</li>
+					</li>
+					<li><a href="mall_accessories1">配件</a></li>
+				</ul>
+				</li>
+				<li>
+					<a href="#">寵物醫院</a>
+					<ul>
+
+						<li><a href="Hospital_visits">看診項目</a></li>
+						<li><a href="Hospital_healthcheck">健康檢查</a></li>
+						<li><a href="Hospital_map">醫院地圖</a></li>
+						<li><a href="funeral_pet">寵物葬儀</a></li>
+						<li><a href="Hospital_commonproblem">常見問題</a></li>
+
+
+					</ul>
+				</li>
+
+				</ul>
+			</nav>
 
 
 		</section>
 		<!-- Main -->
 		<section id="main" class="wrapper style2">
-			<a href="grooming_pet">
-				<div class="title">寵物美容</div>
-			</a>
+			<a href="grooming_pet"><div class="title">寵物美容</div></a>
 			<div class="container">
 				<div class="row gtr-150">
 					<div class="col-4 col-12-medium">
 
 						<!-- Sidebar -->
-						<div id="sidebar">
+						<div id="sidebar" style="margin:35px">
 							<section class="box">
 								<header>
-									<a name="回上面" id="回上面">
-										<h2>目錄</h2>
-									</a>
-
+									<h2>目錄</h2>
 								</header>
 								<a href="grooming_pet">
 									<p\>寵物美容首頁</p>
 								</a>
-								<a href="gromming_find">
+								<a href="grooming_find">
 									<p\>尋找美容院</p>
 								</a>
 							</section>
@@ -56,7 +130,7 @@
 									<li>
 										<article class="box post-excerpt">
 											<a href="https://reurl.cc/2bdOlX" target="_blank" class="image left"><img
-													src="{% static 'images/dog8.jpg ' %}" alt="" /></a>
+													src="{% static 'images/dog8.jpg ' %} " alt="" /></a>
 											<h3><a href="https://reurl.cc/2bdOlX"
 													target="_blank">如何選擇寵物美容店？｜寵物美容老師—林文琳｜PetTalk說寵物</a>
 											</h3>
@@ -87,7 +161,7 @@
 									<li>
 										<article class="box post-excerpt">
 											<a href="https://reurl.cc/g8qopV" target="_blank" class="image left"><img
-													src="{% static 'images/dog11.jpg ' %}" alt="" /></a>
+													src="{% static 'images/dog10.jpg ' %}" alt="" /></a>
 											<h3><a href="https://reurl.cc/g8qopV"
 													target="_blank">「我考寵物美容師證花了三年，辭職只用了三分鐘」｜每日頭條</a>
 											</h3>
@@ -105,7 +179,7 @@
 					<div class="col-8 col-12-medium imp-medium">
 
 						<!-- Content -->
-						<div id="content">
+						<div id="content" style="margin:35px">
 							<article class="box post">
 								<header class="style1">
 									<h2>以下都是在Google推薦的好評美容院</h2>
@@ -139,7 +213,7 @@
 									<p><strong><a href="#top">
 												返回雙北市
 											</a></strong></p><br><br>
-									
+
 									<iframe src="https://www.google.com/maps/d/u/1/embed?mid=1Q3yBZ7r1Ds6Xqj5Se3O5hKRc0XgJ-bOu" width="640" height="480"></iframe>
 									<p><strong><a name="桃園市" id="桃園市"></a>桃園市</strong></p>
 									<p><strong>哈比寵物美容 4.9★</strong></p>
@@ -167,8 +241,8 @@
 									<p>地址：桃園市桃園區龍安街109號</p>
 									<p>電話：(03)360-9911</p>
 									<br>
-									
-									
+
+
 									<p><strong><a href="#桃園市">
 												返回桃園市
 											</a></strong></p><br><br>
@@ -210,7 +284,7 @@
 									<p>地址：台南市永康區永大路二段128-5號</p>
 									<p>電話：0955-513-271</p>
 									<br>
-									
+
 									<p><strong>謎果王子寵物美容工坊 5.0★</strong></p>
 									<p>地址：台南市北區公園北路80號</p>
 									<p>電話：(06)251-4896</p>
@@ -260,7 +334,7 @@
 									<p>地址：高雄市前鎮區一心二路42號</p>
 									<p>電話：(07)333-1239</p>
 									<br>
-								
+
 									<p><strong><a href="#高雄市">
 												返回高雄市
 											</a></strong></p>
@@ -318,11 +392,12 @@
 		</div>
 	</section>
 	<a type="button" id="BackTop" class="toTop-arrow"></a>
+	</body>
 	<!--	GO TOP Button-->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 	<script>
 		$(function(){
-			$('#BackTop').click(function(){ 
+			$('#BackTop').click(function(){
 				$('html,body').animate({scrollTop:0}, 333);
 			});
 			$(window).scroll(function() {
@@ -342,6 +417,8 @@
 	<script src="{% static 'assets/js/util.js' %}"></script>
 	<script src="{% static 'assets/js/main.js' %}"></script>
 
-</body>
+
 
 </html>
+
+

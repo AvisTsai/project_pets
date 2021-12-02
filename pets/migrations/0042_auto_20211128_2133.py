@@ -10,19 +10,19 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RenameField(
-            model_name='login',
-            old_name='username',
-            new_name='username_id',
-        ),
-        migrations.RenameField(
-            model_name='register',
-            old_name='username',
-            new_name='username_id',
-        ),
-        migrations.AlterField(
-            model_name='money',
-            name='item',
-            field=models.CharField(choices=[('food', '食物'), ('toy', '飛盤'), ('clothes', '領巾'), ('salon', '剪毛'), ('others', '項圈')], max_length=255, verbose_name='項目'),
-        ),
+        # migrations.RenameField(
+        #     model_name='login',
+        #     old_name='username',
+        #     new_name='username_id',
+        # ),
+        # migrations.RenameField(
+        #     model_name='register',
+        #     old_name='username',
+        #     new_name='username_id',
+        # ),
+        # migrations.AlterField(
+        #     model_name='money',
+        #     name='item',
+        #     field=models.CharField(choices=[('food', '食物'), ('toy', '飛盤'), ('clothes', '領巾'), ('salon', '剪毛'), ('others', '項圈')], max_length=255, verbose_name='項目'),
+        # ),
     ]
