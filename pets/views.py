@@ -18,6 +18,7 @@ from .utils import Calendar
 from .filters import *
 from .models import Register
 from django.contrib import messages
+from django.core.mail import send_mail
 
 
 def index(request):
@@ -291,10 +292,21 @@ def date_filter_event(request):
             event = Event.objects.all()
             return render(request, 'dateSearch.html', {'event': event})
 
+def sendemail():
+    u_email = Register.objects.get(id=1).values_list('user_email').get()
+    e_title = Event.objects.filter(id=1).get()
+    # e_title = Event.objects.get(id=1)
+    send_mail(
+        "事件提醒",
+        ('您好你明天有一個名為:'+e_title+'的事件'),
+        'dearfurkid@gmail.com',
+        [u_email],
+        fail_silently=False,
+    )
+    print(e_title)
 
-# def sen
 
-
+# sendemail()
 # 散步
 def walk_pet(request):
     return render(request, 'walk_pet.html')
