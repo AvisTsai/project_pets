@@ -68,6 +68,7 @@ urlpatterns = [
 
     
     # 商城
+    path('shoppingmall', views.shop_information, name='shoppingmall'),
     path('mall_freshfood1', views.mall_freshfood1, name='mall_freshfood1'),
     path('mall_freshfood2', views.mall_freshfood2, name='mall_freshfood2'),
     path('mall_freshfood3', views.mall_freshfood3, name='mall_freshfood3'),

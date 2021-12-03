@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import Pet, Register, Money, Login
+from .models import Pet, Register, Money, Login, Shop
 from django.forms import ModelForm, DateInput
 from pets.models import Event
 
@@ -50,10 +50,10 @@ class LoginForm(ModelForm):
 
 
 # 記帳
-class MoneyForm(forms.ModelForm):
+class MoneyForm(ModelForm):
     class Meta:
         model = Money
-        fields = "__all__"
+        fields = ('time', 'category', 'item', 'price')
 
         # widgets = {
         #     'time': forms.TimeField(attrs={'class': 'form-control'}),
@@ -67,6 +67,12 @@ class MoneyForm(forms.ModelForm):
         #     'item': '項目',
         #     'price': '價格',
         # }
+
+
+class ShopForm(forms.ModelForm):
+    class Meta:
+        model = Shop
+        fields = '__all__'
 
 
 # calendar

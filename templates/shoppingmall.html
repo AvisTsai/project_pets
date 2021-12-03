@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/main.css' %}"/>
+    <title>Title</title>
+    <script>alert({{ data }})</script>
+</head>
+{% block content %}
+<body>
+<div class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <div style="text-align:center">
+            {% for d in data %}
+            <div class="col-4 col-12-medium">
+                <section class="highlight">
+                    <a href={{ d.produce_url }} class="image featured" target="_blank"><img
+                            src={{ d.shop_url }} alt=""/></a>
+                    <p><strong>產品名稱：</strong><br>{{ d.shop_title }}</p>
+                    <p><strong>價格：</strong><br>{{ d.shop_price }}</p>
+                    <ul class="actions">
+                        <li><a href="https://reurl.cc/WEpG5Z" class="button style1" target="_blank">比價去</a></li>
+                    </ul>
+                </section>
+            </div>
+            {% endfor %}
+        </div>
+    </form>
+</div>
+</body>
+{% endblock %}
+</html>

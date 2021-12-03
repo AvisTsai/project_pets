@@ -2949,23 +2949,18 @@ input, select, textarea {
       text-decoration:none;
     }
 
-#id_time{
-    width:100%;
- }
-
-
-#id_item{
+select#id_item {
     width:100%;
 }
 
-#id_category{
+input#id_time {
     width:100%;
 }
-
-
-#id_price{
+select#id_category {
     width:100%;
-    margin-left:1%;
+}
+select#id_price {
+    width:100%;
 }
 
 #upbtn{
