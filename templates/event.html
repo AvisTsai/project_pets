@@ -20,6 +20,7 @@ Event
     </tr>
   </table>
 
+
 </form>
 
 {% endblock %}
@@ -35,5 +36,13 @@ Event
         $('#id_time').datetimepicker({
             step:15,
         });
+        $("id_username").val("123")
     });
+
+    $(function () {
+      document.getElementById('id_username').value("123")
+  });
+
+
+    
 </script>

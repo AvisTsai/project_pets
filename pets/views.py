@@ -10,7 +10,7 @@ from django.views import generic
 from django.urls import reverse, reverse_lazy
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, CreateView, UpdateView
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UsernameField
 from django.utils.safestring import mark_safe
 import calendar
 from datetime import datetime as dt
@@ -52,11 +52,16 @@ def loginweb(request):
         usernm = request.POST.get('username')
         password = request.POST.get('user_pwd')
         if Register.objects.filter(username=usernm).exists():
+            print("a")
             if Register.objects.filter(user_pwd=password).exists():
-                form.save()
+                print("b")
+                #form.save()
+                print("c")
                 request.session['login_data'] = usernm
+                response = HttpResponse('Set your lucky_number as 8')
+                response.set_cookie('token',8) 
                 context = {'token': request.session['login_data']}
-                return render(request, 'index.html', context)
+                return render(request,'index.html', context)
             else:
                 messages.error(request, '此使用者密碼錯誤')
                 return render(request, 'loginweb.html', {'form': form})
@@ -133,7 +138,6 @@ def delete(request, pk):
     return render(request, 'delete.html', context)
 
 
-
 # 行事曆
 class CalendarView(generic.ListView):
     model = Event
@@ -191,10 +195,17 @@ def get_date(req_day):
 def new_event(request, event_id=None):
     instance = Event()
     form = EventForm(request.POST or None, instance=instance)
-    if request.POST and form.is_valid():
+    # print(form)
+    #title = request.POST['title']
+    if request.POST and form.is_valid():        
+        username = request.GET['user']
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        start_time = request.POST.get('start_time')
+        end_time = request.POST.get('end_time')
+        data = Event.objects.create(username=username,title=title,description=description,start_time=start_time,end_time=end_time)
+        data.save()
         print("form have saved")
-
-        form.save()
         return HttpResponseRedirect(reverse('pets:calendar'))
     context = {
         'form': form,
@@ -278,17 +289,27 @@ def date_filter_event(request):
             return render(request, 'dateSearch.html', {'event': event})
 
 def sendemail():
-    u_email = Register.objects.get(id=1).values_list('user_email').get()
-    e_title = Event.objects.filter(id=1).get()
+    now = dt.now()
+    date = now + timedelta(days = 1)
+    print(date)
+    tomorrow_YMD = dt.strftime(date,"%Y-%m-%d")
+    print("today_YMD:",tomorrow_YMD)
+    all_tomorrow_event = Event.objects.filter(start_time = tomorrow_YMD)
+    for i in all_tomorrow_event:
+        event_username = Event.objects.filter(start_time = tomorrow_YMD).values_list('username').get()
+        print(event_username)
+    # print(all_tomorrow_event)
+    # u_email = Register.objects.get(id=1).values_list('user_email').get()
+    # e_title = Event.objects.filter(id=1).get()
     # e_title = Event.objects.get(id=1)
-    send_mail(
-        "事件提醒",
-        ('您好你明天有一個名為:'+e_title+'的事件'),
-        'dearfurkid@gmail.com',
-        [u_email],
-        fail_silently=False,
-    )
-    print(e_title)
+    # send_mail(
+    #     "事件提醒",
+    #     ('您好你明天有一個名為:'+e_title+'的事件'),
+    #     'dearfurkid@gmail.com',
+    #     [u_email],
+    #     fail_silently=False,
+    # )
+    # print(e_title)
 
 
 # sendemail()

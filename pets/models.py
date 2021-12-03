@@ -21,7 +21,7 @@ class Register(models.Model):
 
 
 class Login(models.Model):
-    username = models.CharField(max_length=15)
+    username = models.ForeignKey(Register, null=True, on_delete=models.CASCADE)
     user_pwd = models.CharField(max_length=15)
 
     def __str__(self):
@@ -145,6 +145,7 @@ class Mobject(models.Model):
 # 行事曆
 
 class Event(models.Model):
+    username = models.TextField(max_length=15)
     title = models.CharField("標題", max_length=200)
     description = models.TextField()
     start_time = models.DateField(default='請選擇時間')

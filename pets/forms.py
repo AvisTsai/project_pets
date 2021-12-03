@@ -75,16 +75,17 @@ class EventForm(ModelForm):
         model = Event
         # datetime-local is a HTML5 input type, format to make date time show on fields
         # format datetime在html上
+        # username = forms.TextInput(attrs={'class': 'form-control','type':'hidden',"value":1})
         widgets = {
-            'start_time': DateInput(attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
-            'end_time': DateInput(attrs={'type': 'datetime-local'}, format='%Y-%m-%dT%H:%M'),
+            'start_time': DateInput(attrs={'type': 'date'}, format='%Y-%m-%dT%H:%M'),
+            'end_time': DateInput(attrs={'type': 'date'}, format='%Y-%m-%dT%H:%M'),
         }
-        fields = '__all__'
+        fields = ( 'title', 'description', 'start_time', 'end_time')
 
     def __init__(self, *args, **kwargs):
         super(EventForm, self).__init__(*args, **kwargs)
         # input_formats to parse HTML5 datetime-local input to datetime field
         # datetime input設定
         # 用於嘗試將字符串轉換為有效datetime.datetime對象的格式列表
-        self.fields['start_time'].input_formats = ('%Y-%m-%dT%H:%M',)
-        self.fields['end_time'].input_formats = ('%Y-%m-%dT%H:%M',)
+        self.fields['start_time'].input_formats = ('%Y-%m-%d',)
+        self.fields['end_time'].input_formats = ('%Y-%m-%d',)

@@ -89,10 +89,10 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'fk_test',
-        'USER': 'root',
-        'PASSWORD': 'Zhong10746012',
-        'HOST': 'localhost',
+        'NAME': 'heroku_29a7a823f0f1e48',
+        'USER': 'b8aaeb3babe522',
+        'PASSWORD': 'edb9a8a2',
+        'HOST': 'us-cdbr-east-04.cleardb.com',
         'PORT': '3306',
     }
 }
