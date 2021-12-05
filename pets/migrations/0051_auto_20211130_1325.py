@@ -11,13 +11,13 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='login',
-            name='username',
-        ),
+        # migrations.RemoveField(
+        #     model_name='login',
+        #     name='username',
+        # ),
         migrations.AlterField(
             model_name='login',
             name='username',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, primary_key=True, related_name='verify', serialize=False, to='pets.register'),
+            field=models.CharField(max_length=15)
         ),
     ]

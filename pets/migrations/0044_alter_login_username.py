@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='login',
             name='username',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='verify', to='pets.register'),
+            field=models.CharField(max_length=15),
         ),
     ]

@@ -21,7 +21,7 @@ class Register(models.Model):
 
 
 class Login(models.Model):
-    username = models.CharField(max_length=15)
+    username = models.ForeignKey(Register, null=True, on_delete=models.CASCADE)
     user_pwd = models.CharField(max_length=15)
 
     def __str__(self):
@@ -104,29 +104,38 @@ class MemberManagement(models.Model):
 
 # 記帳
 class Category(models.TextChoices):
-    food = 'food', '食物'
-    toy = 'toy', '玩具'
-    clothes = 'clothes', '衣服'
-    salon = 'salon', '美容'
-    others = 'others', '其他'
+    food = '食物', '食物'
+    toy = '玩具', '玩具'
+    clothes = '衣服', '衣服'
+    salon = '美容', '美容'
+    others = '其他', '其他'
 
 
 class Item(models.TextChoices):
     food = '肉乾', '肉乾'
     food1 = '鮮食', '鮮食'
+    food2 = '飼料', '飼料'
+    food3 = '餅乾', '餅乾'
+    food4 = '潔牙骨', '潔牙骨'
     toy = '飛盤', '飛盤'
-    clothes = 'clothes', '領巾'
-    salon = 'salon', '剪毛'
-    others = 'others', '項圈'
-    # food = {'飼料', '鮮食', '餅乾', '潔牙骨', '肉乾'}
-    # toy = {'球', '飛盤', '繩索', '玩偶', '塑膠玩具'}
-    # clothes = {'褲裝', '領巾', '裙裝'}
-    # salon = {'洗澡', '剪毛'}
-    # others = {'預防針', '項圈', '保養品', '看醫生'}
+    toy1 = '球', '球'
+    toy2 = '繩索', '繩索'
+    toy3 = '玩偶', '玩偶'
+    toy4 = '塑膠玩具', '塑膠玩具'
+    clothes = '領巾', '領巾'
+    clothes1 = '褲裝', '褲裝'
+    clothes2 = '裙裝', '裙裝'
+    salon = '洗澡', '洗澡'
+    salon1 = '剪毛', '剪毛'
+    others = '預防針', '預防針'
+    others1 = '保養品', '保養品'
+    others2 = '看醫生', '看醫生'
+    others3 = '項圈', '項圈'
 
 
 class Money(models.Model):
-    time = models.DateTimeField(default='請選擇時間')
+    storage_token = models.CharField(max_length=255, default='')
+    time = models.CharField(max_length=255, default='請選擇時間')
     category = models.CharField(max_length=255, choices=Category.choices, verbose_name='類別')
     item = models.CharField(max_length=255, choices=Item.choices, verbose_name='項目')
     price = models.IntegerField(verbose_name='金額')
@@ -138,13 +147,16 @@ class Money(models.Model):
         verbose_name = '記帳'
         verbose_name_plural = '記帳'
 
-class Mobject(models.Model):
-    category = models.CharField(max_length=255, choices=Category.choices, verbose_name='類別')
-    item = models.CharField(max_length=255, choices=Item.choices, verbose_name='項目')
+
+# class Mobject(models.Model):
+#     category = models.CharField(max_length=255, choices=Category.choices, verbose_name='類別')
+#     item = models.CharField(max_length=255, choices=Item.choices, verbose_name='項目')
+
 
 # 行事曆
 
 class Event(models.Model):
+    # username = models.TextField(max_length=15)
     title = models.CharField("標題", max_length=200)
     description = models.TextField()
     start_time = models.DateField(default='請選擇時間')
@@ -164,6 +176,7 @@ class Event(models.Model):
 
 class Shop(models.Model):
     shop_url = models.CharField('圖片網址', max_length=255, default='')
+    produce_url = models.CharField('產品網址', max_length=255, default='')
     shop_title = models.CharField('標題', max_length=255)
     shop_price = models.CharField('價格', max_length=20)
 

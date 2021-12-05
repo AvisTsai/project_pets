@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% extends 'catch.html' %}
+
+<html lang="en">
+{% block content %}
+<head>
+    <title>商城-配件</title>
+</head>
+
+<body>
+<section id="highlights" class="wrapper style3">
+    <div class="title">配件</div>
+    <div class="container">
+        <!--        <div class="row aln-center">-->
+        <form method="POST">
+            {% csrf_token %}
+            <div style="text-align:center;">
+                    {% for d in data %}
+                    <section class="section_style">
+                        <div class="img_style">
+                            <a href={{ d.produce_url }} class="image featured" target="_blank"><img
+                                    src={{ d.shop_url }} alt=""/></a>
+                        </div>
+                        <div class="introduce_style"><strong>產品名稱：</strong><br><span class="introtext">{{ d.shop_title }}</span></div>
+                        <div class="price_style"><strong>價格：</strong><br><span class="introtext">{{ d.shop_price }}</span></div>
+
+                        <ul class="actions">
+                            <li><a href={{ d.produce_url }} class="button style1" target="_blank">前往購買網頁</a></li>
+                        </ul>
+
+                    </section>
+                    {% endfor %}
+            </div>
+
+        </form>
+
+        <!--        </div>-->
+
+    </div>
+    </div>
+</section>
+</body>
+{% endblock %}
+</html>

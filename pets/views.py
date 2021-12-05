@@ -2,7 +2,7 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from .forms import RegisterForm, MoneyForm, EventForm, LoginForm
+from .forms import RegisterForm, MoneyForm, EventForm, LoginForm, ShopForm
 from datetime import datetime, timedelta, date
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
@@ -10,7 +10,7 @@ from django.views import generic
 from django.urls import reverse, reverse_lazy
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, CreateView, UpdateView
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UsernameField
 from django.utils.safestring import mark_safe
 import calendar
 from datetime import datetime as dt
@@ -18,6 +18,7 @@ from .utils import Calendar
 from .filters import *
 from .models import Register
 from django.contrib import messages
+from django.core.mail import send_mail
 
 
 def index(request):
@@ -52,10 +53,9 @@ def loginweb(request):
         password = request.POST.get('user_pwd')
         if Register.objects.filter(username=usernm).exists():
             if Register.objects.filter(user_pwd=password).exists():
-                form.save()
                 request.session['login_data'] = usernm
                 context = {'token': request.session['login_data']}
-                return render(request, 'index.html', context)
+                return render(request,'index.html', context)
             else:
                 messages.error(request, '此使用者密碼錯誤')
                 return render(request, 'loginweb.html', {'form': form})
@@ -84,11 +84,15 @@ def grooming(request):
 
 # 記帳
 def bookkeeping(request):
+    print(request.GET)
     money = Money.objects.all()  # 查詢所有資料
+    aa = request.GET.get('username')
+    print(aa)
     form = MoneyForm()
-
     if request.method == 'POST':
         form = MoneyForm(request.POST)
+        usernm = request.POST.get('username')
+        money = Money.objects.filter(storage_token=usernm)
         if form.is_valid():
             form.save()
         return redirect("pets:bookkeeping")
@@ -131,8 +135,15 @@ def delete(request, pk):
 
     return render(request, 'delete.html', context)
 
+def shop_information(request):
+    form = ShopForm()
+    data = Shop.objects.all()
 
-
+    context = {
+        'form': form,
+        'data': data
+    }
+    return render(request, 'shoppingmall.html', context)
 # 行事曆
 class CalendarView(generic.ListView):
     model = Event
@@ -190,11 +201,18 @@ def get_date(req_day):
 def new_event(request, event_id=None):
     instance = Event()
     form = EventForm(request.POST or None, instance=instance)
-    if request.POST and form.is_valid():
+    # print(form)
+    #title = request.POST['title']
+    if request.POST and form.is_valid():        
+        username = request.GET['user']
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        start_time = request.POST.get('start_time')
+        end_time = request.POST.get('end_time')
+        data = Event.objects.create(username=username,title=title,description=description,start_time=start_time,end_time=end_time)
+        data.save()
         print("form have saved")
-
-        form.save()
-        return HttpResponseRedirect(reverse('dog:calendar'))
+        return HttpResponseRedirect(reverse('pets:calendar'))
     context = {
         'form': form,
     }
@@ -214,7 +232,7 @@ def edit_event(request, event_id=None):
     form = EventForm(request.POST or None, instance=instance)
     if request.POST and form.is_valid():
         form.save()
-        return HttpResponseRedirect(reverse('dog:calendar'))
+        return HttpResponseRedirect(reverse('pets:calendar'))
 
     context = {
         'form': form,
@@ -229,7 +247,7 @@ def delEvent(request, event_id):
     print(event_id)
     if request.method == "POST":
         instance.delete()
-        return redirect('dog:calendar')
+        return redirect('pets:calendar')
     context = {
         'instance': instance
     }
@@ -276,9 +294,31 @@ def date_filter_event(request):
             event = Event.objects.all()
             return render(request, 'dateSearch.html', {'event': event})
 
-# def sen
+def sendemail():
+    now = dt.now()
+    date = now + timedelta(days = 1)
+    print(date)
+    tomorrow_YMD = dt.strftime(date,"%Y-%m-%d")
+    print("today_YMD:",tomorrow_YMD)
+    all_tomorrow_event = Event.objects.filter(start_time = tomorrow_YMD)
+    for i in all_tomorrow_event:
+        event_username = Event.objects.filter(start_time = tomorrow_YMD).values_list('username').get()
+        print(event_username)
+    # print(all_tomorrow_event)
+    # u_email = Register.objects.get(id=1).values_list('user_email').get()
+    # e_title = Event.objects.filter(id=1).get()
+    # e_title = Event.objects.get(id=1)
+    # send_mail(
+    #     "事件提醒",
+    #     ('您好你明天有一個名為:'+e_title+'的事件'),
+    #     'dearfurkid@gmail.com',
+    #     [u_email],
+    #     fail_silently=False,
+    # )
+    # print(e_title)
 
 
+# sendemail()
 # 散步
 def walk_pet(request):
     return render(request, 'walk_pet.html')
