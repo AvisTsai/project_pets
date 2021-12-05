@@ -134,7 +134,7 @@ class Item(models.TextChoices):
 
 
 class Money(models.Model):
-    # M_username = models.CharField(max_length=15, )
+    storage_token = models.CharField(max_length=255, default='')
     time = models.CharField(max_length=255, default='請選擇時間')
     category = models.CharField(max_length=255, choices=Category.choices, verbose_name='類別')
     item = models.CharField(max_length=255, choices=Item.choices, verbose_name='項目')
@@ -156,7 +156,7 @@ class Money(models.Model):
 # 行事曆
 
 class Event(models.Model):
-    username = models.TextField(max_length=15)
+    # username = models.TextField(max_length=15)
     title = models.CharField("標題", max_length=200)
     description = models.TextField()
     start_time = models.DateField(default='請選擇時間')

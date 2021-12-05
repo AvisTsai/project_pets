@@ -1459,7 +1459,7 @@ input, select, textarea {
 
 	section,
 	article {
-		margin: 0 0 4em 0;
+		margin: 0 0 2em 0;
 	}
 
 	section > :last-child,
@@ -1615,12 +1615,11 @@ input, select, textarea {
 	}
 
 		.image img {
-			display: block;
-			width: 100%;
+		    width: 100%;
+		    margin: 0 auto;
 		}
 
 		.image.fit {
-			display: block;
 			width: 100%;
 		}
 
@@ -1640,9 +1639,11 @@ input, select, textarea {
 			}
 
 		.image.featured {
-			display: block;
 			width: 100%;
-			margin: 0 0 2em 0;
+			margin: 0 0 1.5em 0;
+			position: relative;
+			top: 50%;
+			transform:translateY(-50%);
 		}
 
 /* Button */
@@ -2060,7 +2061,7 @@ input, select, textarea {
 			}
 
 			.wrapper.style3 .image {
-				border: solid 10px #fff;
+				border: solid 2px #fff;
 			}
 
 /* Page Wrapper */
@@ -2293,7 +2294,7 @@ input, select, textarea {
 
 	#highlights .highlight {
 		text-align: center;
-
+	    width:100%;
 	}
 
 		#highlights .highlight h3 {
@@ -2966,4 +2967,37 @@ select#id_price {
 
 #upbtn{
     margin:2% 0 0 45%;
+}
+
+.section_style{
+    width:32%;
+    height:600px;
+    display:inline-block;
+    margin: 0 0.55% 2% 0.55%;
+}
+
+.img_style{
+    width:100%;
+    background-color:#fff;
+    height:60%;
+}
+
+.img_style a{
+	display: flex;
+    align-items: center;
+    justify-content:center;
+}
+
+
+.introduce_style{
+    margin-top:2%;
+    height:15%;
+}
+
+.price_style{
+    height:11%;
+}
+
+.introtext{
+   color:#484d55;
 }

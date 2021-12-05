@@ -2,7 +2,7 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from .forms import RegisterForm, MoneyForm, EventForm, LoginForm
+from .forms import RegisterForm, MoneyForm, EventForm, LoginForm, ShopForm
 from datetime import datetime, timedelta, date
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
@@ -52,14 +52,8 @@ def loginweb(request):
         usernm = request.POST.get('username')
         password = request.POST.get('user_pwd')
         if Register.objects.filter(username=usernm).exists():
-            print("a")
             if Register.objects.filter(user_pwd=password).exists():
-                print("b")
-                #form.save()
-                print("c")
                 request.session['login_data'] = usernm
-                response = HttpResponse('Set your lucky_number as 8')
-                response.set_cookie('token',8) 
                 context = {'token': request.session['login_data']}
                 return render(request,'index.html', context)
             else:
@@ -90,11 +84,15 @@ def grooming(request):
 
 # 記帳
 def bookkeeping(request):
+    print(request.GET)
     money = Money.objects.all()  # 查詢所有資料
+    aa = request.GET.get('username')
+    print(aa)
     form = MoneyForm()
-
     if request.method == 'POST':
         form = MoneyForm(request.POST)
+        usernm = request.POST.get('username')
+        money = Money.objects.filter(storage_token=usernm)
         if form.is_valid():
             form.save()
         return redirect("pets:bookkeeping")
@@ -137,7 +135,15 @@ def delete(request, pk):
 
     return render(request, 'delete.html', context)
 
+def shop_information(request):
+    form = ShopForm()
+    data = Shop.objects.all()
 
+    context = {
+        'form': form,
+        'data': data
+    }
+    return render(request, 'shoppingmall.html', context)
 # 行事曆
 class CalendarView(generic.ListView):
     model = Event

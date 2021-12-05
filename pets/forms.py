@@ -53,7 +53,7 @@ class LoginForm(ModelForm):
 class MoneyForm(ModelForm):
     class Meta:
         model = Money
-        fields = ('time', 'category', 'item', 'price')
+        fields = ('storage_token', 'time', 'category', 'item', 'price')
 
         # widgets = {
         #     'time': forms.TimeField(attrs={'class': 'form-control'}),
@@ -86,7 +86,7 @@ class EventForm(ModelForm):
             'start_time': DateInput(attrs={'type': 'date'}, format='%Y-%m-%dT%H:%M'),
             'end_time': DateInput(attrs={'type': 'date'}, format='%Y-%m-%dT%H:%M'),
         }
-        fields = ( 'title', 'description', 'start_time', 'end_time')
+        fields = ('title', 'description', 'start_time', 'end_time')
 
     def __init__(self, *args, **kwargs):
         super(EventForm, self).__init__(*args, **kwargs)
