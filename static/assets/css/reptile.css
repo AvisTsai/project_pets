@@ -195,9 +195,11 @@ input, select, textarea {
 /* Container */
 
 	.container {
+	    padding-top:3%;
 		margin: 0 auto;
 		max-width: 100%;
 		width: 68em;
+
 	}
 
 		@media screen and (max-width: 1680px) {

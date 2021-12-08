@@ -1,8 +1,13 @@
 from django import forms
-from django.contrib.auth.models import User
-from .models import Pet, Register, Money, Login, Shop
+from .models import Pet, Register, Money, Login, Shop, User
 from django.forms import ModelForm, DateInput
 from pets.models import Event
+from django.contrib.auth.forms import UserCreationForm
+
+class RegisterForm(forms.ModelForm):
+    class Meta:
+        model=User
+        fields = ('username', 'password')
 
 
 class PetForm(forms.ModelForm):
@@ -11,27 +16,27 @@ class PetForm(forms.ModelForm):
         model = Pet
 
 
-class RegisterForm(ModelForm):
-    username = forms.CharField(
-        label='帳號：',
-        widget=forms.TextInput(attrs={'class': 'form-control'})
-    )
-    user_pwd = forms.CharField(
-        label='密碼：',
-        widget=forms.PasswordInput(attrs={'class': 'form-control'})
-    )
-    check_password = forms.CharField(
-        label='確認密碼：',
-        widget=forms.PasswordInput(attrs={'class': 'form-control'})
-    )
-    user_email = forms.EmailField(
-        label='電子郵件：',
-        widget=forms.EmailInput(attrs={'class': 'form-control'})
-    )
-
-    class Meta:
-        model = Register
-        fields = ('username', 'user_pwd', 'check_password', 'user_email')
+# class RegisterForm(ModelForm):
+#     username = forms.CharField(
+#         label='帳號：',
+#         widget=forms.TextInput(attrs={'class': 'form-control'})
+#     )
+#     user_pwd = forms.CharField(
+#         label='密碼：',
+#         widget=forms.PasswordInput(attrs={'class': 'form-control'})
+#     )
+#     check_password = forms.CharField(
+#         label='確認密碼：',
+#         widget=forms.PasswordInput(attrs={'class': 'form-control'})
+#     )
+#     user_email = forms.EmailField(
+#         label='電子郵件：',
+#         widget=forms.EmailInput(attrs={'class': 'form-control'})
+#     )
+#
+#     class Meta:
+#         model = Register
+#         fields = ('username', 'user_pwd', 'check_password', 'user_email')
 
 
 class LoginForm(ModelForm):

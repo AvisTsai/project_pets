@@ -1948,8 +1948,9 @@ input, select, textarea {
 
 		.box header.style1 {
 			position: relative;
-			margin: -0.5em 0 0 0;
+			margin: 3% 0 0 0;
 			padding-top: 0;
+
 		}
 
 	.box h2 {
@@ -2966,4 +2967,8 @@ select#id_price {
 
 #upbtn{
     margin:2% 0 0 45%;
+}
+
+#sidebar{
+    margin: 10% 0 0 0;
 }
