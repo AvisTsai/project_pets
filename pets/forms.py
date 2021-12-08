@@ -1,12 +1,13 @@
 from django import forms
-from .models import Pet, Register, Money, Login, Shop, User
+from .models import Pet, Register, Money, Login, Shop, User, Clothes, Fresh_food, Feed
 from django.forms import ModelForm, DateInput
 from pets.models import Event
 from django.contrib.auth.forms import UserCreationForm
 
+
 class RegisterForm(forms.ModelForm):
     class Meta:
-        model=User
+        model = User
         fields = ('username', 'password')
 
 
@@ -74,9 +75,28 @@ class MoneyForm(ModelForm):
         # }
 
 
+# 商城表單
 class ShopForm(forms.ModelForm):
     class Meta:
         model = Shop
+        fields = '__all__'
+
+
+class ClothesForm(forms.ModelForm):
+    class Meta:
+        model = Clothes
+        fields = '__all__'
+
+
+class FeedForm(forms.ModelForm):
+    class Meta:
+        model = Feed
+        fields = '__all__'
+
+
+class Fresh_foodForm(forms.ModelForm):
+    class Meta:
+        model = Fresh_food
         fields = '__all__'
 
 

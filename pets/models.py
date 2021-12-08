@@ -174,6 +174,7 @@ class Event(models.Model):
         return f'<a href="{url}"> {self.title} </a>'
 
 
+# 商城資料庫
 class Shop(models.Model):
     shop_url = models.CharField('圖片網址', max_length=255, default='')
     produce_url = models.CharField('產品網址', max_length=255, default='')
@@ -184,5 +185,47 @@ class Shop(models.Model):
         return self.shop_title
 
     class Meta:
-        verbose_name = '商店'
-        verbose_name_plural = '商店'
+        verbose_name = '配件'
+        verbose_name_plural = '配件'
+
+
+class Clothes(models.Model):
+    clothes_url = models.CharField('圖片網址', max_length=255, default='')
+    clothes_produce_url = models.CharField('產品網址', max_length=255, default='')
+    clothes_title = models.CharField('標題', max_length=255)
+    clothes_price = models.CharField('價格', max_length=20)
+
+    def __str__(self):
+        return self.clothes_title
+
+    class Meta:
+        verbose_name = '衣服'
+        verbose_name_plural = '衣服'
+
+
+class Feed(models.Model):
+    feed_url = models.CharField('圖片網址', max_length=255, default='')
+    feed_produce_url = models.CharField('產品網址', max_length=255, default='')
+    feed_title = models.CharField('標題', max_length=255)
+    feed_price = models.CharField('價格', max_length=20)
+
+    def __str__(self):
+        return self.feed_title
+
+    class Meta:
+        verbose_name = '飼料'
+        verbose_name_plural = '飼料'
+
+
+class Fresh_food(models.Model):
+    Fresh_food = models.CharField('圖片網址', max_length=255, default='')
+    Fresh_food_produce_url = models.CharField('產品網址', max_length=255, default='')
+    Fresh_food_title = models.CharField('標題', max_length=255)
+    Fresh_food_price = models.CharField('價格', max_length=20)
+
+    def __str__(self):
+        return self.Fresh_food_title
+
+    class Meta:
+        verbose_name = '鮮食'
+        verbose_name_plural = '鮮食'

@@ -1,5 +1,3 @@
-from typing import ItemsView
-
 import mysql.connector
 import requests
 import pymysql
@@ -8,13 +6,13 @@ from bs4 import BeautifulSoup
 db = pymysql.connect(host='localhost', port=3306, user='root', passwd='0000',
                      db='project_pets', charset='utf8')
 cursor = db.cursor()
-response = requests.get('https://www.fuzeshop.com.tw/categories/%E7%8B%97%E7%8B%97%E9%A3%BC%E6%96%99')
+response = requests.get('https://www.fuzeshop.com.tw/categories/%E7%8B%97%E7%8B%97%E7%94%A8%E5%93%81')
 soup = BeautifulSoup(response.text, "html.parser")
 
 container = soup.select(".boxify-image")
 
 
-class feed_item:
+class shop_item:
     def __int__(self, title, price, url, produce_url):
         self.title = title
         self.price = price
@@ -47,7 +45,7 @@ for pri in price:
     list_price.append(pri.getText().strip())
 
 for result in zip(list_title, list_price, list_url, list_produce_url):
-    sql = f"INSERT INTO project_pets.pets_feed(feed_title, feed_price, feed_url, feed_produce_url) VALUES (" + "'" + result[0] + "'" + ',' + "'" + result[1] + "'" + ',' + "'" + result[2] + "'" + "," + "'" + result[3] + "'" + ")"
+    sql = f"INSERT INTO project_pets.pets_shop(shop_title, shop_price, shop_url, produce_url) VALUES (" + "'" + result[0] + "'" + ',' + "'" + result[1] + "'" + ',' + "'" + result[2] + "'" + "," + "'" + result[3] + "'" + ")"
     cursor.execute(sql)
 db.commit()
 # print(len(list_title))

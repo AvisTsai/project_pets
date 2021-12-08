@@ -2,7 +2,7 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from .forms import RegisterForm, MoneyForm, EventForm, LoginForm, ShopForm
+from .forms import RegisterForm, MoneyForm, EventForm, LoginForm, ShopForm, ClothesForm, FeedForm, Fresh_foodForm
 from datetime import datetime, timedelta, date
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
@@ -153,7 +153,7 @@ def delete(request, pk):
 
     return render(request, 'delete.html', context)
 
-
+# 商城
 def shop_information(request):
     form = ShopForm()
     data = Shop.objects.all()
@@ -162,9 +162,37 @@ def shop_information(request):
         'form': form,
         'data': data
     }
-    return render(request, 'shoppingmall.html', context)
+    return render(request, 'accessories.html', context)
 
+def clothes(request):
+    form = ClothesForm()
+    data = Clothes.objects.all()
 
+    context = {
+        'form': form,
+        'data': data
+    }
+    return render(request, 'clothes.html', context)
+
+def feed(request):
+    form = FeedForm()
+    data = Feed.objects.all()
+
+    context = {
+        'form': form,
+        'data': data
+    }
+    return render(request, 'feed.html', context)
+
+def fresh_food(request):
+    form = Fresh_foodForm()
+    data = Fresh_food.objects.all()
+
+    context = {
+        'form': form,
+        'data': data
+    }
+    return render(request, 'fresh_food.html', context)
 # 行事曆
 class CalendarView(generic.ListView):
     model = Event
