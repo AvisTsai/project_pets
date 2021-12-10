@@ -45,9 +45,9 @@
             <li>
                 <a href="#">寵物商城</a>
                 <ul>
-                    <li><a href="mall_freshfood1">鮮食</a></li>
-                    <li><a href="mall_feed1">飼料</a></li>
-                    <li><a href="">衣服</a>
+                    <li><a href="{% url 'pets:fresh_food'%}">鮮食</a></li>
+                    <li><a href="{% url 'pets:feed'%}">飼料</a></li>
+                    <li><a href="{% url 'pets:clothes'%}">衣服</a>
                         <ul>
                             <li><a href="mall_clothing1">春夏季</a></li>
                             <li><a href="mall_clothing4">秋冬季</a></li>
@@ -55,7 +55,7 @@
                         </ul>
                     </li>
                     </li>
-                    <li><a href="mall_accessories1">配件</a></li>
+                    <li><a href="{% url 'pets:accessories'%}">配件</a></li>
                 </ul>
             </li>
             <li>
