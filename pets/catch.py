@@ -47,7 +47,7 @@ for pri in price:
     list_price.append(pri.getText().strip())
 
 for result in zip(list_title, list_price, list_url, list_produce_url):
-    sql = f"INSERT INTO project_pets.pets_feed(feed_title, feed_price, feed_url, feed_produce_url) VALUES (" + "'" + result[0] + "'" + ',' + "'" + result[1] + "'" + ',' + "'" + result[2] + "'" + "," + "'" + result[3] + "'" + ")"
+    sql = f"INSERT INTO project_pets.pets_clothes(clothes_title, clothes_price, clothes_url, clothes_produce_url) VALUES (" + "'" + result[0] + "'" + ',' + "'" + result[1] + "'" + ',' + "'" + result[2] + "'" + "," + "'" + result[3] + "'" + ")"
     cursor.execute(sql)
 db.commit()
 # print(len(list_title))
