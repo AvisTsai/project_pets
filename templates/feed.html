@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% extends 'catch.html' %}
+
+<html lang="en">
+{% block content %}
+<head>
+    <title>商城-飼料</title>
+</head>
+
+<body>
+<section id="highlights" class="wrapper style3">
+    <div class="title">飼料</div>
+    <div class="container">
+        <!--        <div class="row aln-center">-->
+        <form method="POST">
+            {% csrf_token %}
+            <div style="text-align:center;">
+                    {% for d in data %}
+                    <section class="section_style">
+                        <div class="img_style">
+                            <a href={{ d.feed_produce_url }} class="image featured" target="_blank"><img
+                                    src={{ d.feed_url }} alt=""/></a>
+                        </div>
+                        <div class="introduce_style"><strong>產品名稱：</strong><br><span class="introtext">{{ d.feed_title }}</span></div>
+                        <div class="price_style"><strong>價格：</strong><br><span class="introtext">{{ d.feed_price }}</span></div>
+
+                        <ul class="actions">
+                            <li><a href={{ d.feed_produce_url }} class="button style1" target="_blank">前往購買網頁</a></li>
+                        </ul>
+
+                    </section>
+                    {% endfor %}
+            </div>
+
+        </form>
+
+        <!--        </div>-->
+
+    </div>
+    </div>
+</section>
+</body>
+{% endblock %}
+</html>

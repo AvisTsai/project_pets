@@ -1,8 +1,14 @@
 from django import forms
-from django.contrib.auth.models import User
-from .models import Pet, Register, Money, Login, Shop
+from .models import Pet, Register, Money, Login, Shop, User, Clothes, Fresh_food, Feed
 from django.forms import ModelForm, DateInput
 from pets.models import Event
+from django.contrib.auth.forms import UserCreationForm
+
+
+class RegisterForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('username', 'password')
 
 
 class PetForm(forms.ModelForm):
@@ -11,27 +17,27 @@ class PetForm(forms.ModelForm):
         model = Pet
 
 
-class RegisterForm(ModelForm):
-    username = forms.CharField(
-        label='帳號：',
-        widget=forms.TextInput(attrs={'class': 'form-control'})
-    )
-    user_pwd = forms.CharField(
-        label='密碼：',
-        widget=forms.PasswordInput(attrs={'class': 'form-control'})
-    )
-    check_password = forms.CharField(
-        label='確認密碼：',
-        widget=forms.PasswordInput(attrs={'class': 'form-control'})
-    )
-    user_email = forms.EmailField(
-        label='電子郵件：',
-        widget=forms.EmailInput(attrs={'class': 'form-control'})
-    )
-
-    class Meta:
-        model = Register
-        fields = ('username', 'user_pwd', 'check_password', 'user_email')
+# class RegisterForm(ModelForm):
+#     username = forms.CharField(
+#         label='帳號：',
+#         widget=forms.TextInput(attrs={'class': 'form-control'})
+#     )
+#     user_pwd = forms.CharField(
+#         label='密碼：',
+#         widget=forms.PasswordInput(attrs={'class': 'form-control'})
+#     )
+#     check_password = forms.CharField(
+#         label='確認密碼：',
+#         widget=forms.PasswordInput(attrs={'class': 'form-control'})
+#     )
+#     user_email = forms.EmailField(
+#         label='電子郵件：',
+#         widget=forms.EmailInput(attrs={'class': 'form-control'})
+#     )
+#
+#     class Meta:
+#         model = Register
+#         fields = ('username', 'user_pwd', 'check_password', 'user_email')
 
 
 class LoginForm(ModelForm):
@@ -53,7 +59,7 @@ class LoginForm(ModelForm):
 class MoneyForm(ModelForm):
     class Meta:
         model = Money
-        fields = ('time', 'category', 'item', 'price')
+        fields = ('storage_token', 'time', 'category', 'item', 'price')
 
         # widgets = {
         #     'time': forms.TimeField(attrs={'class': 'form-control'}),
@@ -69,9 +75,28 @@ class MoneyForm(ModelForm):
         # }
 
 
+# 商城表單
 class ShopForm(forms.ModelForm):
     class Meta:
         model = Shop
+        fields = '__all__'
+
+
+class ClothesForm(forms.ModelForm):
+    class Meta:
+        model = Clothes
+        fields = '__all__'
+
+
+class FeedForm(forms.ModelForm):
+    class Meta:
+        model = Feed
+        fields = '__all__'
+
+
+class Fresh_foodForm(forms.ModelForm):
+    class Meta:
+        model = Fresh_food
         fields = '__all__'
 
 
@@ -86,7 +111,7 @@ class EventForm(ModelForm):
             'start_time': DateInput(attrs={'type': 'date'}, format='%Y-%m-%dT%H:%M'),
             'end_time': DateInput(attrs={'type': 'date'}, format='%Y-%m-%dT%H:%M'),
         }
-        fields = ( 'title', 'description', 'start_time', 'end_time')
+        fields = ('title', 'description', 'start_time', 'end_time')
 
     def __init__(self, *args, **kwargs):
         super(EventForm, self).__init__(*args, **kwargs)

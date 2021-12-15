@@ -2,7 +2,7 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from .forms import RegisterForm, MoneyForm, EventForm, LoginForm
+from .forms import RegisterForm, MoneyForm, EventForm, LoginForm, ShopForm, ClothesForm, FeedForm, Fresh_foodForm
 from datetime import datetime, timedelta, date
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
@@ -19,6 +19,7 @@ from .filters import *
 from .models import Register
 from django.contrib import messages
 from django.core.mail import send_mail
+from django.contrib.auth.forms import UserCreationForm
 
 
 def index(request):
@@ -46,42 +47,53 @@ def registerweb(request):
         return render(request, 'registerweb.html', context)
 
 
+# def loginweb(request):
+#     if request.method == 'POST':
+#         form = LoginForm(request.POST)
+#         usernm = request.POST.get('username')
+#         password = request.POST.get('user_pwd')
+#         if Register.objects.filter(username=usernm).exists():
+#             if Register.objects.filter(user_pwd=password).exists():
+#                 request.session['login_data'] = usernm
+#                 context = {'token': request.session['login_data']}
+#                 return render(request,'index.html', context)
+#             else:
+#                 messages.error(request, '此使用者密碼錯誤')
+#                 return render(request, 'loginweb.html', {'form': form})
+#         else:
+#             messages.error(request, '此使用者帳號尚未註冊')
+#             return redirect('pets:loginweb')
+#     else:
+#         form = LoginForm()
+#         context = {'form': form}
+#         return render(request, 'loginweb.html', context)
+
 def loginweb(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        usernm = request.POST.get('username')
-        password = request.POST.get('user_pwd')
-        if Register.objects.filter(username=usernm).exists():
-            print("a")
-            if Register.objects.filter(user_pwd=password).exists():
-                print("b")
-                #form.save()
-                print("c")
-                request.session['login_data'] = usernm
-                response = HttpResponse('Set your lucky_number as 8')
-                response.set_cookie('token',8) 
-                context = {'token': request.session['login_data']}
-                return render(request,'index.html', context)
-            else:
-                messages.error(request, '此使用者密碼錯誤')
-                return render(request, 'loginweb.html', {'form': form})
-        else:
-            messages.error(request, '此使用者帳號尚未註冊')
-            return redirect('pets:loginweb')
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('pets:index')
+
+    username = request.POST.get('username')
+    password = request.POST.get('user_pwd')
+    user = authenticate(request, username=username, password=password)
+    print(user)
+    if user is not None and user.is_active:
+        login(request, user)
+        return HttpResponseRedirect('pets:index')
     else:
-        form = LoginForm()
-        context = {'form': form}
-        return render(request, 'loginweb.html', context)
+
+        return render(request, 'loginweb.html', {'form': LoginForm})
 
 
 def logout(request):
-    if not request.session.get('login_data',  None):
-        return redirect("pets:loginweb")
-    else:
-        del request.session['login_data']
-        messages.error(request, '您已登出')
-        return redirect("pets:loginweb")
-    return render(request, 'logout.html', locals())
+    auth.logout(request)
+    return HttpResponseRedirect('pets:index')
+    # if not request.session.get('login_data',  None):
+    #     return redirect("pets:loginweb")
+    # else:
+    #     del request.session['login_data']
+    #     messages.error(request, '您已登出')
+    #     return redirect("pets:loginweb")
+    # return render(request, 'logout.html', locals())
 
 
 def grooming(request):
@@ -90,11 +102,15 @@ def grooming(request):
 
 # 記帳
 def bookkeeping(request):
+    print(request.GET)
     money = Money.objects.all()  # 查詢所有資料
+    aa = request.GET.get('username')
+    print(aa)
     form = MoneyForm()
-
     if request.method == 'POST':
         form = MoneyForm(request.POST)
+        usernm = request.POST.get('username')
+        money = Money.objects.filter(storage_token=usernm)
         if form.is_valid():
             form.save()
         return redirect("pets:bookkeeping")
@@ -137,7 +153,46 @@ def delete(request, pk):
 
     return render(request, 'delete.html', context)
 
+# 商城
+def shop_information(request):
+    form = ShopForm()
+    data = Shop.objects.all()
 
+    context = {
+        'form': form,
+        'data': data
+    }
+    return render(request, 'accessories.html', context)
+
+def clothes(request):
+    form = ClothesForm()
+    data = Clothes.objects.all()
+
+    context = {
+        'form': form,
+        'data': data
+    }
+    return render(request, 'clothes.html', context)
+
+def feed(request):
+    form = FeedForm()
+    data = Feed.objects.all()
+
+    context = {
+        'form': form,
+        'data': data
+    }
+    return render(request, 'feed.html', context)
+
+def fresh_food(request):
+    form = Fresh_foodForm()
+    data = Fresh_food.objects.all()
+
+    context = {
+        'form': form,
+        'data': data
+    }
+    return render(request, 'fresh_food.html', context)
 # 行事曆
 class CalendarView(generic.ListView):
     model = Event
@@ -196,14 +251,15 @@ def new_event(request, event_id=None):
     instance = Event()
     form = EventForm(request.POST or None, instance=instance)
     # print(form)
-    #title = request.POST['title']
-    if request.POST and form.is_valid():        
+    # title = request.POST['title']
+    if request.POST and form.is_valid():
         username = request.GET['user']
         title = request.POST.get('title')
         description = request.POST.get('description')
         start_time = request.POST.get('start_time')
         end_time = request.POST.get('end_time')
-        data = Event.objects.create(username=username,title=title,description=description,start_time=start_time,end_time=end_time)
+        data = Event.objects.create(username=username, title=title, description=description, start_time=start_time,
+                                    end_time=end_time)
         data.save()
         print("form have saved")
         return HttpResponseRedirect(reverse('pets:calendar'))
@@ -258,7 +314,6 @@ def titleSearch(request):
     return render(request, 'result.html', {'title': title})
 
 
-
 def viewTitle(request):
     OrderNo = request.POST.get('orderOption')
     # titleurl = ''
@@ -279,8 +334,8 @@ def viewTitle(request):
 def date_filter_event(request):
     if request.method == "GET":
         try:
-            from_date = dt.strptime(request.GET.get('from_date')[0:10],"%Y-%m-%d")
-            to_date = dt.strptime(request.GET.get('to_date')[0:10],"%Y-%m-%d")
+            from_date = dt.strptime(request.GET.get('from_date')[0:10], "%Y-%m-%d")
+            to_date = dt.strptime(request.GET.get('to_date')[0:10], "%Y-%m-%d")
             searchresult = Event.objects.filter(start_time__gte=from_date).filter(start_time__lte=to_date)
             context = {'Event': searchresult}
             return render(request, 'dateSearch.html', context)
@@ -288,15 +343,16 @@ def date_filter_event(request):
             event = Event.objects.all()
             return render(request, 'dateSearch.html', {'event': event})
 
+
 def sendemail():
     now = dt.now()
-    date = now + timedelta(days = 1)
+    date = now + timedelta(days=1)
     print(date)
-    tomorrow_YMD = dt.strftime(date,"%Y-%m-%d")
-    print("today_YMD:",tomorrow_YMD)
-    all_tomorrow_event = Event.objects.filter(start_time = tomorrow_YMD)
+    tomorrow_YMD = dt.strftime(date, "%Y-%m-%d")
+    print("today_YMD:", tomorrow_YMD)
+    all_tomorrow_event = Event.objects.filter(start_time=tomorrow_YMD)
     for i in all_tomorrow_event:
-        event_username = Event.objects.filter(start_time = tomorrow_YMD).values_list('username').get()
+        event_username = Event.objects.filter(start_time=tomorrow_YMD).values_list('username').get()
         print(event_username)
         userDate = Register.objects.filter(username= event_username)
         print(userDate)
@@ -332,15 +388,31 @@ def main(request):
 
 
 def login(request):
-    return render(request, 'login.html')
+    if request.user.is_authenticated:
+        return HttpResponseRedirect('pets:index')
+    username = request.POST.get('username', '')
+    password = request.POST.get('password', '')
+    user = auth.authenticate(username=username, password=password)
+    if user is not None and user.is_active:
+        auth.login(request, user)
+        return HttpResponseRedirect('pets:index')
+    else:
+        return render(request, 'login.html', locals())
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            return HttpResponseRedirect('pets:login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'register.html', locals())
 
 
 def forgot(request):
     return render(request, 'forgot.html')
-
-
-def register(request):
-    return render(request, 'registerweb.html')
 
 
 def index1(request):
@@ -512,4 +584,3 @@ def QA(request):
 
 def privacy(request):
     return render(request, 'privacy.html')
-

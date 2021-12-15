@@ -7,6 +7,7 @@ app_name = 'pets'
 
 urlpatterns = [
     path('index', views.index, name='index'),
+    path('register', views.register, name='register'),
     path('registerweb', views.registerweb, name='registerweb'),
     path('login', views.login, name='login'),
     path('loginweb', views.loginweb, name='loginweb'),
@@ -68,7 +69,10 @@ urlpatterns = [
 
     
     # 商城
-    # path('shoppingmall', views.shop_information, name='shoppingmall'),
+    path('clothes', views.clothes, name='clothes'),
+    path('feed', views.feed, name='feed'),
+    path('fresh_food', views.fresh_food, name='fresh_food'),
+    path('accessories', views.shop_information, name='accessories'),
     path('mall_freshfood1', views.mall_freshfood1, name='mall_freshfood1'),
     path('mall_freshfood2', views.mall_freshfood2, name='mall_freshfood2'),
     path('mall_freshfood3', views.mall_freshfood3, name='mall_freshfood3'),
