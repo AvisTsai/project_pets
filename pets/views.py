@@ -298,6 +298,9 @@ def sendemail():
     for i in all_tomorrow_event:
         event_username = Event.objects.filter(start_time = tomorrow_YMD).values_list('username').get()
         print(event_username)
+        userDate = Register.objects.filter(username= event_username)
+        print(userDate)
+        # user_email = userDate.
     # print(all_tomorrow_event)
     # u_email = Register.objects.get(id=1).values_list('user_email').get()
     # e_title = Event.objects.filter(id=1).get()
@@ -312,7 +315,7 @@ def sendemail():
     # print(e_title)
 
 
-# sendemail()
+sendemail()
 # 散步
 def walk_pet(request):
     return render(request, 'walk_pet.html')
