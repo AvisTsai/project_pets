@@ -47,53 +47,51 @@ def registerweb(request):
         return render(request, 'registerweb.html', context)
 
 
-# def loginweb(request):
-#     if request.method == 'POST':
-#         form = LoginForm(request.POST)
-#         usernm = request.POST.get('username')
-#         password = request.POST.get('user_pwd')
-#         if Register.objects.filter(username=usernm).exists():
-#             if Register.objects.filter(user_pwd=password).exists():
-#                 request.session['login_data'] = usernm
-#                 context = {'token': request.session['login_data']}
-#                 return render(request,'index.html', context)
-#             else:
-#                 messages.error(request, '此使用者密碼錯誤')
-#                 return render(request, 'loginweb.html', {'form': form})
-#         else:
-#             messages.error(request, '此使用者帳號尚未註冊')
-#             return redirect('pets:loginweb')
-#     else:
-#         form = LoginForm()
-#         context = {'form': form}
-#         return render(request, 'loginweb.html', context)
-
 def loginweb(request):
-    if request.user.is_authenticated:
-        return HttpResponseRedirect('pets:index')
-
-    username = request.POST.get('username')
-    password = request.POST.get('user_pwd')
-    user = authenticate(request, username=username, password=password)
-    print(user)
-    if user is not None and user.is_active:
-        login(request, user)
-        return HttpResponseRedirect('pets:index')
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        usernm = request.POST.get('username')
+        password = request.POST.get('user_pwd')
+        if Register.objects.filter(username=usernm).exists():
+            if Register.objects.filter(user_pwd=password).exists():
+                request.session['login_data'] = usernm
+                context = {'token': request.session['login_data']}
+                return render(request,'index.html', context)
+            else:
+                messages.error(request, '此使用者密碼錯誤')
+                return render(request, 'loginweb.html', {'form': form})
+        else:
+            messages.error(request, '此使用者帳號尚未註冊')
+            return redirect('pets:loginweb')
     else:
+        form = LoginForm()
+        context = {'form': form}
+        return render(request, 'loginweb.html', context)
 
-        return render(request, 'loginweb.html', {'form': LoginForm})
+# def loginweb(request):
+#     if request.user.is_authenticated:
+#         return HttpResponseRedirect('pets:index')
+
+#     username = request.POST.get('username')
+#     password = request.POST.get('user_pwd')
+#     user = authenticate(request, username=username, password=password)
+#     print(user)
+#     if user is not None and user.is_active:
+#         login(request, user)
+#         return HttpResponseRedirect('pets:index')
+#     else:
+
+#         return render(request, 'loginweb.html', {'form': LoginForm})
 
 
 def logout(request):
-    auth.logout(request)
-    return HttpResponseRedirect('pets:index')
-    # if not request.session.get('login_data',  None):
-    #     return redirect("pets:loginweb")
-    # else:
-    #     del request.session['login_data']
-    #     messages.error(request, '您已登出')
-    #     return redirect("pets:loginweb")
-    # return render(request, 'logout.html', locals())
+    if not request.session.get('login_data',  None):
+        return redirect("pets:loginweb")
+    else:
+        del request.session['login_data']
+        messages.error(request, '您已登出')
+        return redirect("pets:loginweb")
+    return render(request, 'logout.html', locals())
 
 
 def grooming(request):
